@@ -211,6 +211,12 @@ $(document).ready(function(){
     }
 
     function createPlacemark(country){
+    	var latitude = country.latitude;
+	    var longitude = country.longitude;
+	    if (latitude === null && longitude === null){
+	    	return;
+	    }
+
     	var placemark = ge.createPlacemark('');
     	placemark.setName(country.name);
 	    ge.getFeatures().appendChild(placemark);
@@ -225,8 +231,9 @@ $(document).ready(function(){
 	  
 	    // Create point
 	    var point = ge.createPoint('');
-	    point.setLatitude(43);
-	    point.setLongitude(-79);
+
+	    point.setLatitude(latitude);
+	    point.setLongitude(longitude);
 	    placemark.setGeometry(point);
 
 	    //testing out to see if we can get Toronto to populate the news section with Toronto news

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303211434) do
+ActiveRecord::Schema.define(version: 20140304215958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20140303211434) do
     t.integer "population"
     t.string  "title",                limit: 50
     t.string  "comment"
+    t.float   "latitude"
+    t.float   "longitude"
   end
 
   add_index "countries", ["name"], name: "index_countries_on_name", using: :btree

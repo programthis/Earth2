@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+	var ge;
+    // var kml;
+    var placemark;
+    var newsSearch;
+
+
+
 	function addSampleButton(caption, clickHandler) {
 	  var btn = document.createElement('input');
 	  btn.type = 'button';
@@ -18,15 +25,6 @@ $(document).ready(function(){
 	  document.getElementById('sample-ui').innerHTML += html;
 	}
 
-	var ge;
-    // var kml;
-    var placemark;
-    var newsSearch;
-
-    google.load("earth", "1", {"other_params":"sensor=true_or_false"});
-    google.load('search', '1');
-    google.load("elements", "1", {packages : ["newsshow"]});
-
     function init() {
       google.earth.createInstance('map3d', initCB, failureCB);
       addSampleButton('Look up in the sky, kid.', showSky);
@@ -35,83 +33,80 @@ $(document).ready(function(){
       addSampleButton('Hide Sun', hideSun);
       addSampleButton('Show the placemark\'s balloon!', buttonClick);
 
-      // // Create a search control
-      // var searchControl = new google.search.SearchControl();
+      //object which has all the countries in the world
+      var countries = gon.countries;
+      var cities = gon.cities;
+      var options = [];
 
-      // // Create a News Search instance.
-      // newsSearch = new google.search.NewsSearch();
-      // var extendedArgs = google.search.Search.RESTRICT_EXTENDED_ARGS;
-
-      // // Set searchComplete as the callback function when a search is 
-      // // complete.  The newsSearch object will have results in it.
-      // newsSearch.setSearchCompleteCallback(this, searchComplete, null);
-
-      // // Search by date (instead of relevence)
-      // newsSearch.setRestriction(extendedArgs, {'scoring':'d'});
-
-      // // Add the searcher to the SearchControl
-      // searchControl.addSearcher(newsSearch);
-          
-      // // tell the searcher to draw itself and tell it where to attach
-      // searchControl.draw(document.getElementById("content"));
-
-      // // A good sport
-      // searchControl.execute('President');
-
-      // // Include the required Google branding
-      // google.search.Search.getBranding('branding');
-
-      var options = { "format" : "300x250", 
+      function setCountryOption(country, index){
+      	options[index] = { "format" : "300x250", 
       "queryList" : [
             {
               "title" : "World News",
-              "q" : "Syria"
+              "q" : countries[index].name
             },
             {
-              "q" : "Russia"
+              "q" : countries[index].name
             }
           ]
-
   		};
+      }	
 
-		    var options2 = { "format" : "300x250", 
-		    "queryList" : [
-		          {
-		            "title" : "World News",
-		            "q" : "Ukraine"
-		          },
-		          {
-		            "q" : "Protesting"
-		          }
-		        ]
+      countries.forEach(setCountryOption);
 
-				};
+      //object which has all the cities in the world
 
-	    var options3 = { "format" : "300x250", 
-	    "queryList" : [
-	          {
-	            "title" : "World News",
-	            "q" : "Syria"
-	          },
-	          {
-	            "q" : "Russia"
-	          }
-	        ]
+   //    var options = { "format" : "300x250", 
+   //    "queryList" : [
+   //          {
+   //            "title" : "World News",
+   //            "q" : "Syria"
+   //          },
+   //          {
+   //            "q" : "Russia"
+   //          }
+   //        ]
 
-			};
+  	// 	};
 
-	    var options4 = { "format" : "300x250", 
-	    "queryList" : [
-	          {
-	            "title" : "World News",
-	            "q" : "Syria"
-	          },
-	          {
-	            "q" : "Russia"
-	          }
-	        ]
+	  //   var options2 = { "format" : "300x250", 
+	  //   "queryList" : [
+	  //         {
+	  //           "title" : "World News",
+	  //           "q" : "Ukraine"
+	  //         },
+	  //         {
+	  //           "q" : "Protesting"
+	  //         }
+	  //       ]
 
-			};
+			// };
+
+	  //   var options3 = { "format" : "300x250", 
+	  //   "queryList" : [
+	  //         {
+	  //           "title" : "World News",
+	  //           "q" : "Syria"
+	  //         },
+	  //         {
+	  //           "q" : "Russia"
+	  //         }
+	  //       ]
+
+			// };
+
+	  //   var options4 = { "format" : "300x250", 
+	  //   "queryList" : [
+	  //         {
+	  //           "title" : "World News",
+	  //           "q" : "Syria"
+	  //         },
+	  //         {
+	  //           "q" : "Russia"
+	  //         }
+	  //       ]
+
+			// };
 
       var content = document.getElementById("content");
       var content2 = document.getElementById("content");
@@ -135,101 +130,135 @@ $(document).ready(function(){
       // add some layers
       ge.getLayerRoot().enableLayerById(ge.LAYER_BORDERS, true);
       //ge.getLayerRoot().enableLayerById(ge.LAYER_ROADS, true);
-      ge.getLayerRoot().enableLayerById(ge.LAYER_BUILDINGS, true);
+      //ge.getLayerRoot().enableLayerById(ge.LAYER_BUILDINGS, true);
       //adding terrain layer
-      var layerRoot = ge.getLayerRoot();
-      var terrainLayer = layerRoot.getLayerById(ge.LAYER_TERRAIN);
-      terrainLayer.setVisibility(true);
+      // var layerRoot = ge.getLayerRoot();
+      // var terrainLayer = layerRoot.getLayerById(ge.LAYER_TERRAIN);
+      // terrainLayer.setVisibility(true);
 
-      //creating the placemark
-      placemark = ge.createPlacemark('');
-      var point = ge.createPoint('');
-      point.setLatitude(37);
-      point.setLongitude(-122);
-      placemark.setGeometry(point);
+      //creating the placemark for every country in the world
+      var countries = gon.countries;
+      var cities = gon.cities;
+      // var placemark = [];
+      // var point = [];
 
-      //adding the placemark to the earth
-      ge.getFeatures().appendChild(placemark);
+      // function setPlacemark(country, index){
+      // 	placemark[index] = ge.createPlacemark('');
+      // }
+      // countries.forEach(setPlacemark);
+
+      // function setPoint(country,index){
+      // 	point[index] = ge.createPoint('');
+      // 	point[index].setLatitude(50);
+      // 	point[index].setLongitude(50);
+      // 	console.log(point[index]);
+      // }
+      // console.log("********HEY FRANKLIN*****");
+      // countries.forEach(setPoint);
+
+      // function addPlacemarkToPoint(placemark,index){
+      // 	//adding the point to the placemark
+      // 	placemark[index].setGeometry(point[index]);
+      // 	//adding the placemark to the earth
+      // 	ge.getFeatures().appendChild(placemark[index]);
+      // 	placemark[index].setName("Click me please sir.");
+      // }
+      // placemark.forEach(addPlacemarkToPoint);
+
+
+      // placemark = ge.createPlacemark('');
+      // var point = ge.createPoint('');
+      // point.setLatitude(37);
+      // point.setLongitude(-122);
+      // placemark.setGeometry(point);
+
+      // //adding the placemark to the earth
+      // ge.getFeatures().appendChild(placemark);
+
+
+
 
       //zooming in on the placemark we just made
-      var la = ge.createLookAt('');
-      la.set(43, -79,
-        0, // altitude
-        ge.ALTITUDE_RELATIVE_TO_GROUND,
-        0, // heading
-        0, // straight-down tilt
-        5000 // range (inverse of zoom)
-        );
-      ge.getView().setAbstractView(la);
+      // var la = ge.createLookAt('');
+      // la.set(43, -79,
+      //   0, // altitude
+      //   ge.ALTITUDE_RELATIVE_TO_GROUND,
+      //   0, // heading
+      //   0, // straight-down tilt
+      //   5000 // range (inverse of zoom)
+      //   );
+      // ge.getView().setAbstractView(la);
 
       //giving the placemark a name and description (a balloon will automatically show on click)
-      placemark.setName("Click me please sir.");
+      // placemark.setName("Click me please sir.");
 
-      google.earth.addEventListener(placemark, "click", function(event){
-      	event.preventDefault();
+      // google.earth.addEventListener(placemark, "click", function(event){
+      // 	event.preventDefault();
 
-      	var balloon = ge.createHtmlStringBalloon("");
-      	balloon.setFeature(event.getTarget());
-      	balloon.setMaxWidth(300);
+      // 	var balloon = ge.createHtmlStringBalloon("");
+      // 	balloon.setFeature(event.getTarget());
+      // 	balloon.setMaxWidth(300);
 
-      	balloon.setContentString("HEY MAN");
-      	ge.setBalloon(balloon);
-      });
+      // 	balloon.setContentString("HEY MAN");
+      // 	ge.setBalloon(balloon);
+      // });
 
       //creating the world placemarks at the beginning
-      createPlacemark();
+      countries.forEach(createPlacemark);
+      
       createPlacemark2();
 
     }
 
-    function createPlacemark() {
-      var placemark = ge.createPlacemark('');
-      placemark.setName("Toronto?");
-      ge.getFeatures().appendChild(placemark);
-    
-      // Create style map for placemark
-      var icon = ge.createIcon('');
-      icon.setHref('http://maps.google.com/mapfiles/kml/shapes/triangle.png');
-      var style = ge.createStyle('');
-      style.getIconStyle().setIcon(icon);
-      style.getIconStyle().setScale(5.0);
-      placemark.setStyleSelector(style);
-    
-      // Create point
-      var point = ge.createPoint('');
-      point.setLatitude(43);
-      point.setLongitude(-79);
-      placemark.setGeometry(point);
+    function createPlacemark(country){
+    	var placemark = ge.createPlacemark('');
+    	placemark.setName(country.name);
+	    ge.getFeatures().appendChild(placemark);
+	  
+	    // Create style map for placemark
+	    var icon = ge.createIcon('');
+	    icon.setHref('http://maps.google.com/mapfiles/kml/shapes/triangle.png');
+	    var style = ge.createStyle('');
+	    style.getIconStyle().setIcon(icon);
+	    style.getIconStyle().setScale(5.0);
+	    placemark.setStyleSelector(style);
+	  
+	    // Create point
+	    var point = ge.createPoint('');
+	    point.setLatitude(43);
+	    point.setLongitude(-79);
+	    placemark.setGeometry(point);
 
-      //testing out to see if we can get Toronto to populate the news section with Toronto news
-      google.earth.addEventListener(placemark, "click", function(event){
-      	//preventing the default balloon from popping up
-      	event.preventDefault();
+	    //testing out to see if we can get Toronto to populate the news section with Toronto news
+	    google.earth.addEventListener(placemark, "click", function(event){
+	    	//preventing the default balloon from popping up
+	    	event.preventDefault();
 
-      	//testing out the time
-      	//var tp = ge.getTime().getTimePrimitive();
-      	//console.log(tp.getWhen().get());
+	    	//testing out the time
+	    	//var tp = ge.getTime().getTimePrimitive();
+	    	//console.log(tp.getWhen().get());
 
-  	    var options = { "format" : "300x250", 
-  	    "queryList" : [
-  	          {
-  	            "title" : "GTA",
-  	            "q" : "Toronto"
-  	          },
-  	          {
-  	            "q" : "Rob Ford"
-  	          }
-  	        ]
-  	        // ,"scoring" : "tp"
+		    var options = { "format" : "300x250", 
+		    "queryList" : [
+		          {
+		            "title" : "GTA",
+		            "q" : country.name
+		          },
+		          {
+		            "q" : country.name
+		          }
+		        ]
+		        // ,"scoring" : "tp"
 
-  			};
-  		var content = document.getElementById("content");
-  		var newsShow = new google.elements.NewsShow(content,options);
+				};
+			var content = document.getElementById("content");
+			var newsShow = new google.elements.NewsShow(content,options);
 
-  		
-      });
-    
+	    });
+
     }
+
+
     function createPlacemark2() {
       var placemark = ge.createPlacemark('');
       placemark.setName("Niagara Falls");
@@ -354,27 +383,6 @@ $(document).ready(function(){
       ge.getSun().setVisibility(false);
     }
 
-    function searchComplete() {
-
-      // Check that we got results
-      document.getElementById('content').innerHTML = '';
-      if (newsSearch.results && newsSearch.results.length > 0) {
-        for (var i = 0; i < newsSearch.results.length; i++) {
-
-          // Create HTML elements for search results
-          var p = document.createElement('p');
-          var a = document.createElement('a');
-          a.href = newsSearch.results[i].url;
-          a.innerHTML = newsSearch.results[i].title;
-
-          // Append search results to the HTML nodes
-          p.appendChild(a);
-          document.body.appendChild(p);
-        }
-      }
-    }
-
     google.setOnLoadCallback(init);
-
 
 });

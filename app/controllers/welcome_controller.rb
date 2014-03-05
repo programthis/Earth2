@@ -6,8 +6,8 @@ class WelcomeController < ApplicationController
 	@regions = Region.all
 
 	gon.countries = @countries
-	# gon.cities = @cities
-	gon.regions = @regions
+	gon.cities = @cities
+	# gon.regions = @regions
   end
 
 

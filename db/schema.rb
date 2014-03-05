@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140304215958) do
+ActiveRecord::Schema.define(version: 20140305031239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140304215958) do
     t.string  "timezone",   limit: 10, null: false
     t.integer "dma_id"
     t.string  "code",       limit: 4
+    t.string  "capital"
   end
 
   add_index "cities", ["name"], name: "index_cities_on_name", using: :btree

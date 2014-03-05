@@ -98,11 +98,10 @@ $(document).ready(function(){
 
       //creating the placemark for every country in the world
       var countries = gon.countries;
-      // var cities = gon.cities;
+      var cities = gon.cities;
       
       countries.forEach(createPlacemarkForCountry);
       cities.forEach(createPlacemarkForCity);
-
     }
 
     function createPlacemarkForCountry(country){
@@ -141,7 +140,7 @@ $(document).ready(function(){
 	    var highlightIcon = ge.createIcon('');
 	    highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/world.png');
 	    highlightStyle.getIconStyle().setIcon(highlightIcon);
-	    highlightStyle.getIconStyle().setScale(20.0);
+	    highlightStyle.getIconStyle().setScale(15.0);
 
 	    styleMap.setNormalStyle(normalStyle);
 	    styleMap.setHighlightStyle(highlightStyle);
@@ -194,6 +193,12 @@ $(document).ready(function(){
 	    	return;
 	    }
 
+	    if (city.capital === "no"){
+	    	return;
+	    }
+	    console.log(city.name);
+	    console.log(city.capital);
+
     	var placemark = ge.createPlacemark('');
     	placemark.setName(city.name);
 	    ge.getFeatures().appendChild(placemark);
@@ -203,7 +208,7 @@ $(document).ready(function(){
 	    icon.setHref('http://maps.google.com/mapfiles/kml/paddle/red-circle.png');
 	    var style = ge.createStyle('');
 	    style.getIconStyle().setIcon(icon);
-	    style.getIconStyle().setScale(1.0);
+	    style.getIconStyle().setScale(3.0);
 	    placemark.setStyleSelector(style);
 	  
 	    // Create point

@@ -84,12 +84,25 @@ $(document).ready(function(){
       // var terrainLayer = layerRoot.getLayerById(ge.LAYER_TERRAIN);
       // terrainLayer.setVisibility(true);
 
+
+      //making it so the earth look at the "non-western" side of the world upon load
+      var la = ge.createLookAt('');
+      la.set(48, 31,
+        0, // altitude
+        ge.ALTITUDE_RELATIVE_TO_GROUND,
+        0, // heading
+        0, // straight-down tilt
+        8000000 // range (inverse of zoom)
+        );
+      ge.getView().setAbstractView(la);
+
       //creating the placemark for every country in the world
       var countries = gon.countries;
       // var cities = gon.cities;
       
       countries.forEach(createPlacemarkForCountry);
       cities.forEach(createPlacemarkForCity);
+
     }
 
     function createPlacemarkForCountry(country){
@@ -128,7 +141,7 @@ $(document).ready(function(){
 	    var highlightIcon = ge.createIcon('');
 	    highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/world.png');
 	    highlightStyle.getIconStyle().setIcon(highlightIcon);
-	    highlightStyle.getIconStyle().setScale(9.0);
+	    highlightStyle.getIconStyle().setScale(20.0);
 
 	    styleMap.setNormalStyle(normalStyle);
 	    styleMap.setHighlightStyle(highlightStyle);

@@ -31,41 +31,41 @@ $(document).ready(function(){
 
       var countries = gon.countries;
       var cities = gon.cities;
-      var options = [];
+      // var options = [];
 
       //setting the query for all the countries in the world
-      function setCountryOption(country, index){
-      	options[index] = { "format" : "300x250", 
-      "queryList" : [
-            {
-              "title" : "World News",
-              "q" : countries[index].name
-            },
-            {
-              "q" : countries[index].name
-            }
-          ]
-  		};
-      }	
-      countries.forEach(setCountryOption);
+    //   function setCountryOption(country, index){
+    //   	options[index] = { "format" : "300x250", 
+    //   "queryList" : [
+    //         {
+    //           "title" : "World News",
+    //           "q" : countries[index].name
+    //         },
+    //         {
+    //           "q" : countries[index].name
+    //         }
+    //       ]
+  		// };
+    //   }	
+    //   countries.forEach(setCountryOption);
 
-      //setting the query for all the countries in the world
-      function setCityOption(city, index){
-      	options[index] = { "format" : "300x250", 
-      "queryList" : [
-            {
-              "title" : "World News",
-              "q" : cities[index].name
-            },
-            {
-              "q" : cities[index].name
-            }
-          ]
-  		};
-      }	
-      cities.forEach(setCityOption);
+    //   //setting the query for all the countries in the world
+    //   function setCityOption(city, index){
+    //   	options[index] = { "format" : "300x250", 
+    //   "queryList" : [
+    //         {
+    //           "title" : "World News",
+    //           "q" : cities[index].name
+    //         },
+    //         {
+    //           "q" : cities[index].name
+    //         }
+    //       ]
+  		// };
+    //   }	
+    //   cities.forEach(setCityOption);
 
-      var content = document.getElementById("content");
+    //   var content = document.getElementById("content");
     }
 
     function initCB(instance) {

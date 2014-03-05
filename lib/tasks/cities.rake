@@ -4,8 +4,13 @@ namespace :cities do
 		cities = City.all
 		countries = Country.all
 		cities.each do |city|
+			city_id = city.country_id
 			countries.each do |country|
-				if country.capital.strip == city.name.strip
+				country_id = country.id
+				country_capital = country.capital.strip
+				city_name = city.name.strip
+				# need to match the city's ID with country ID as well
+				if country_capital == city_name && city_id == country_id
 					city.capital = "yes"
 				else
 					city.capital = "no"

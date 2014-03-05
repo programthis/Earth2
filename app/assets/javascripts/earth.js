@@ -1,11 +1,8 @@
 $(document).ready(function(){
 
 	var ge;
-    // var kml;
     var placemark;
     var newsSearch;
-
-
 
 	function addSampleButton(caption, clickHandler) {
 	  var btn = document.createElement('input');
@@ -31,13 +28,12 @@ $(document).ready(function(){
       addSampleButton('Homeward Bound', showEarth);
       addSampleButton('Show Sun (Dusk/Dawn)', showSun);
       addSampleButton('Hide Sun', hideSun);
-      addSampleButton('Show the placemark\'s balloon!', buttonClick);
 
-      //object which has all the countries in the world
       var countries = gon.countries;
       var cities = gon.cities;
       var options = [];
 
+      //setting the query for all the countries in the world
       function setCountryOption(country, index){
       	options[index] = { "format" : "300x250", 
       "queryList" : [
@@ -51,73 +47,25 @@ $(document).ready(function(){
           ]
   		};
       }	
-
       countries.forEach(setCountryOption);
 
-      //object which has all the cities in the world
-
-   //    var options = { "format" : "300x250", 
-   //    "queryList" : [
-   //          {
-   //            "title" : "World News",
-   //            "q" : "Syria"
-   //          },
-   //          {
-   //            "q" : "Russia"
-   //          }
-   //        ]
-
-  	// 	};
-
-	  //   var options2 = { "format" : "300x250", 
-	  //   "queryList" : [
-	  //         {
-	  //           "title" : "World News",
-	  //           "q" : "Ukraine"
-	  //         },
-	  //         {
-	  //           "q" : "Protesting"
-	  //         }
-	  //       ]
-
-			// };
-
-	  //   var options3 = { "format" : "300x250", 
-	  //   "queryList" : [
-	  //         {
-	  //           "title" : "World News",
-	  //           "q" : "Syria"
-	  //         },
-	  //         {
-	  //           "q" : "Russia"
-	  //         }
-	  //       ]
-
-			// };
-
-	  //   var options4 = { "format" : "300x250", 
-	  //   "queryList" : [
-	  //         {
-	  //           "title" : "World News",
-	  //           "q" : "Syria"
-	  //         },
-	  //         {
-	  //           "q" : "Russia"
-	  //         }
-	  //       ]
-
-			// };
+      //setting the query for all the countries in the world
+      function setCityOption(city, index){
+      	options[index] = { "format" : "300x250", 
+      "queryList" : [
+            {
+              "title" : "World News",
+              "q" : cities[index].name
+            },
+            {
+              "q" : cities[index].name
+            }
+          ]
+  		};
+      }	
+      cities.forEach(setCityOption);
 
       var content = document.getElementById("content");
-      var content2 = document.getElementById("content");
-      var content3 = document.getElementById("content3");
-      var content4 = document.getElementById("content4");
-
-      //var newsShow = new google.elements.NewsShow(content,options);
-      //var newsShow2 = new google.elements.NewsShow(content2,options2);
-      // var newsShow3 = new google.elements.NewsShow(content3,options3);
-      // var newsShow4 = new google.elements.NewsShow(content4,options4);
-
     }
 
     function initCB(instance) {
@@ -138,79 +86,13 @@ $(document).ready(function(){
 
       //creating the placemark for every country in the world
       var countries = gon.countries;
-      var cities = gon.cities;
-      // var placemark = [];
-      // var point = [];
-
-      // function setPlacemark(country, index){
-      // 	placemark[index] = ge.createPlacemark('');
-      // }
-      // countries.forEach(setPlacemark);
-
-      // function setPoint(country,index){
-      // 	point[index] = ge.createPoint('');
-      // 	point[index].setLatitude(50);
-      // 	point[index].setLongitude(50);
-      // 	console.log(point[index]);
-      // }
-      // console.log("********HEY FRANKLIN*****");
-      // countries.forEach(setPoint);
-
-      // function addPlacemarkToPoint(placemark,index){
-      // 	//adding the point to the placemark
-      // 	placemark[index].setGeometry(point[index]);
-      // 	//adding the placemark to the earth
-      // 	ge.getFeatures().appendChild(placemark[index]);
-      // 	placemark[index].setName("Click me please sir.");
-      // }
-      // placemark.forEach(addPlacemarkToPoint);
-
-
-      // placemark = ge.createPlacemark('');
-      // var point = ge.createPoint('');
-      // point.setLatitude(37);
-      // point.setLongitude(-122);
-      // placemark.setGeometry(point);
-
-      // //adding the placemark to the earth
-      // ge.getFeatures().appendChild(placemark);
-
-
-
-
-      //zooming in on the placemark we just made
-      // var la = ge.createLookAt('');
-      // la.set(43, -79,
-      //   0, // altitude
-      //   ge.ALTITUDE_RELATIVE_TO_GROUND,
-      //   0, // heading
-      //   0, // straight-down tilt
-      //   5000 // range (inverse of zoom)
-      //   );
-      // ge.getView().setAbstractView(la);
-
-      //giving the placemark a name and description (a balloon will automatically show on click)
-      // placemark.setName("Click me please sir.");
-
-      // google.earth.addEventListener(placemark, "click", function(event){
-      // 	event.preventDefault();
-
-      // 	var balloon = ge.createHtmlStringBalloon("");
-      // 	balloon.setFeature(event.getTarget());
-      // 	balloon.setMaxWidth(300);
-
-      // 	balloon.setContentString("HEY MAN");
-      // 	ge.setBalloon(balloon);
-      // });
-
-      //creating the world placemarks at the beginning
-      countries.forEach(createPlacemark);
+      // var cities = gon.cities;
       
-      createPlacemark2();
-
+      countries.forEach(createPlacemarkForCountry);
+      cities.forEach(createPlacemarkForCity);
     }
 
-    function createPlacemark(country){
+    function createPlacemarkForCountry(country){
     	var latitude = country.latitude;
 	    var longitude = country.longitude;
 	    if (latitude === null && longitude === null){
@@ -222,13 +104,40 @@ $(document).ready(function(){
 	    ge.getFeatures().appendChild(placemark);
 	  
 	    // Create style map for placemark
-	    var icon = ge.createIcon('');
-	    icon.setHref('http://maps.google.com/mapfiles/kml/shapes/triangle.png');
-	    var style = ge.createStyle('');
-	    style.getIconStyle().setIcon(icon);
-	    style.getIconStyle().setScale(5.0);
-	    placemark.setStyleSelector(style);
+	    // var icon = ge.createIcon('');
+	    // icon.setHref('http://maps.google.com/mapfiles/kml/shapes/triangle.png');
+	    // var style = ge.createStyle('');
+	    // style.getIconStyle().setIcon(icon);
+	    // style.getIconStyle().setScale(5.0);
+
+	    // placemark.setStyleSelector(style);
 	  
+
+	    // Create a style map.
+	    var styleMap = ge.createStyleMap('');
+
+	    // Create normal style for style map.
+	    var normalStyle = ge.createStyle('');
+	    var normalIcon = ge.createIcon('');
+	    normalIcon.setHref('http://maps.google.com/mapfiles/kml/shapes/triangle.png');
+	    normalStyle.getIconStyle().setIcon(normalIcon);
+	    normalStyle.getIconStyle().setScale(5.0);
+
+	    // Create highlight style for style map.
+	    var highlightStyle = ge.createStyle('');
+	    var highlightIcon = ge.createIcon('');
+	    highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/world.png');
+	    highlightStyle.getIconStyle().setIcon(highlightIcon);
+	    highlightStyle.getIconStyle().setScale(9.0);
+
+	    styleMap.setNormalStyle(normalStyle);
+	    styleMap.setHighlightStyle(highlightStyle);
+
+	    // Apply stylemap to a placemark.
+	    placemark.setStyleSelector(styleMap);
+
+
+
 	    // Create point
 	    var point = ge.createPoint('');
 
@@ -248,7 +157,7 @@ $(document).ready(function(){
 		    var options = { "format" : "300x250", 
 		    "queryList" : [
 		          {
-		            "title" : "GTA",
+		            "title" : "World News",
 		            "q" : country.name
 		          },
 		          {
@@ -265,62 +174,58 @@ $(document).ready(function(){
 
     }
 
+    function createPlacemarkForCity(city){
+    	var latitude = city.latitude;
+	    var longitude = city.longitude;
+	    if (latitude === null && longitude === null){
+	    	return;
+	    }
 
-    function createPlacemark2() {
-      var placemark = ge.createPlacemark('');
-      placemark.setName("Niagara Falls");
-      ge.getFeatures().appendChild(placemark);
-    
-      // Create style map for placemark
-      var icon = ge.createIcon('');
-      icon.setHref('http://maps.google.com/mapfiles/kml/shapes/triangle.png');
-      var style = ge.createStyle('');
-      style.getIconStyle().setIcon(icon);
-      placemark.setStyleSelector(style);
-    
-      // Create point
-      var point = ge.createPoint('');
-      point.setLatitude(43.096214);
-      point.setLongitude(-79.037739);
-      placemark.setGeometry(point);
+    	var placemark = ge.createPlacemark('');
+    	placemark.setName(city.name);
+	    ge.getFeatures().appendChild(placemark);
+	  
+	    // Create style map for placemark
+	    var icon = ge.createIcon('');
+	    icon.setHref('http://maps.google.com/mapfiles/kml/paddle/red-circle.png');
+	    var style = ge.createStyle('');
+	    style.getIconStyle().setIcon(icon);
+	    style.getIconStyle().setScale(1.0);
+	    placemark.setStyleSelector(style);
+	  
+	    // Create point
+	    var point = ge.createPoint('');
 
-      //testing out to see if we can get Toronto to populate the news section with Toronto news
-      google.earth.addEventListener(placemark, "click", function(event){
-      	//preventing the default balloon from popping up
-      	event.preventDefault();
+	    point.setLatitude(latitude);
+	    point.setLongitude(longitude);
+	    placemark.setGeometry(point);
 
-      	//testing out the time
-      	//var tp = ge.getTime().getTimePrimitive();
-      	//console.log(tp.getWhen().get());
+	    google.earth.addEventListener(placemark, "click", function(event){
+	    	//preventing the default balloon from popping up
+	    	event.preventDefault();
 
-  	    var options = { "format" : "300x250", 
-  	    "queryList" : [
-  	          {
-  	            "title" : "Niagara Falls",
-  	            "q" : "Niagara Falls"
-  	          },
-  	          {
-  	            "q" : "TLC"
-  	          }
-  	        ]
-  	        // ,"scoring" : "tp"
+	    	//testing out the time
+	    	//var tp = ge.getTime().getTimePrimitive();
+	    	//console.log(tp.getWhen().get());
 
-  			};
-  		var content = document.getElementById("content");
-  		var newsShow = new google.elements.NewsShow(content,options);
+		    var options = { "format" : "300x250", 
+		    "queryList" : [
+		          {
+		            "title" : "World News",
+		            "q" : city.name
+		          },
+		          {
+		            "q" : city.name
+		          }
+		        ]
+		        // ,"scoring" : "tp"
 
-  		
-      });
-    
-    }
+				};
+			var content = document.getElementById("content");
+			var newsShow = new google.elements.NewsShow(content,options);
 
+	    });
 
-    //for clicking the button
-    function buttonClick(){
-    	var balloon = ge.createFeatureBalloon('');
-    	balloon.setMaxWidth(300);
-    	balloon.setFeature(placemark);
-    	ge.setBalloon(balloon);
     }
 
     function failureCB(errorCode) {

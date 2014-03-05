@@ -11,10 +11,13 @@
 #map3d{
 	position:absolute;
 	width:100%;
-	height:70%;
+	height:80%;
 }
 
 #navbar{
 	position:relative;
 	float:left;
+}
+body{
+	background-color: black;
 }

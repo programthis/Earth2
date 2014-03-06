@@ -10,6 +10,7 @@
 
 #map3d{
 	position:absolute;
+	float:right;
 	width:100%;
 	height:80%;
 }
@@ -17,6 +18,12 @@
 #navbar{
 	position:relative;
 	float:left;
+}
+#newsfeed{
+	float:right;
+	width:1000px;
+	height:450px;
+	border: 10px solid black;
 }
 body{
 	background-color: black;

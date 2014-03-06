@@ -7,19 +7,21 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="earth.js"></script>
 		<script type="text/javascript" src="https://www.google.com/jsapi"> </script>
-
 		<script type="text/javascript">
 		    google.load("earth", "1", {"other_params":"sensor=true_or_false"});
     		google.load('search', '1');
     		google.load("elements", "1", {packages : ["newsshow"]});
     	</script>
+
+    	<!-- connected to the Bing API -->
+    	<script id="searchCallback" type="text/javascript" src=""></script>
 	</head>
 
 	<body>
 		<div id="branding"  style="float: left;"></div><br/>
 		<div id="sample-ui"></div>
 		
-		<div id="newsfeed"></div>
+		<!-- <div id="newsfeed"></div> -->
 		<div id="map3d"></div>
 		<div id="content"></div>
 	</body>

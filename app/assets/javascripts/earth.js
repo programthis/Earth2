@@ -1,6 +1,13 @@
 $(document).ready(function(){
 
-	var ge;
+	var = url 
+  var = title
+  for (var i=0; i< news.length; i++)
+  {
+    url = url[i]
+  }
+
+  var ge;
     var placemark;
     var newsSearch;
 

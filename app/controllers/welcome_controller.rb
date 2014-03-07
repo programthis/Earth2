@@ -4,10 +4,11 @@ class WelcomeController < ApplicationController
   def index
 
 	@countries = Country.all
-	@cities = City.all
-	@regions = Region.all
+	@capitals = Capital.all
+	# @regions = Region.all
 
 	gon.countries = @countries
+	# gon.capitals = @capitals
 
 	top_articles_json = open('http://api.feedzilla.com/v1/categories/26/articles.json').read
 	   gon.news = JSON.parse(top_articles_json)
@@ -19,7 +20,7 @@ class WelcomeController < ApplicationController
 	# puts "*********************************"
 	# puts rsp.results[0].title
 
-	# gon.cities = @cities
+	
 	# gon.regions = @regions
   end
 

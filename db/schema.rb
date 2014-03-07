@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140305031239) do
+ActiveRecord::Schema.define(version: 20140306191048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "capitals", force: true do |t|
+    t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cities", force: true do |t|
     t.integer "country_id",            null: false
@@ -65,6 +73,11 @@ ActiveRecord::Schema.define(version: 20140305031239) do
   end
 
   add_index "regions", ["name"], name: "index_regions_on_name", using: :btree
+
+  create_table "tickers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   add_foreign_key "cities", "countries", name: "cities_country_id_fk", dependent: :delete
   add_foreign_key "cities", "regions", name: "cities_region_id_fk", dependent: :delete

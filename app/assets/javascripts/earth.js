@@ -62,8 +62,7 @@ $(document).ready(function(){
       addSampleButton('Re-Centre', reCentre);
 
       var countries = gon.countries;
-      var cities = gon.cities;
-      Search();
+      var capitals = gon.capitals;
     }
 
     function initCB(instance) {
@@ -96,10 +95,10 @@ $(document).ready(function(){
 
       //creating the placemark for every country in the world
       var countries = gon.countries;
-      var cities = gon.cities;
+      var capitals = gon.capitals;
       
       countries.forEach(createPlacemarkForCountry);
-      // cities.forEach(createPlacemarkForCity);
+      capitals.forEach(createPlacemarkForCapital);
     }
 
     function createPlacemarkForCountry(country){
@@ -136,7 +135,6 @@ $(document).ready(function(){
 	    // Apply stylemap to a placemark.
 	    placemark.setStyleSelector(styleMap);
 
-
 	    // Create point
 	    var point = ge.createPoint('');
 
@@ -166,28 +164,76 @@ $(document).ready(function(){
 		        // ,"scoring" : "tp"
 
 				};
-			var content = document.getElementById("content");
-			var newsShow = new google.elements.NewsShow(content,options);
+  			var content = document.getElementById("content");
+  			var newsShow = new google.elements.NewsShow(content,options);
 
+        $.bingSearch({
+            query: country.name,
+            latitude: country.latitude,
+            longitude: country.longitude,
+            appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
+            // Optional (defaults to the Bing Search API Web Results Query).
+            // Additional information: This feature allows you to proxy through a server-side
+            //                         script in order to hide your API key, which is exposed to the
+            //                         world if you set it client-side in appKey. An example PHP
+            //                         script is included (searchproxy.php).
+            // Optional (defaults to 1): Page Number
+            pageNumber: 1,
+            urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
+            // Optional (defaults to 10): Page Size
+            pageSize: 3,
+            // Optional: Function is called after search results are retrieved, but before the interator is called
+            beforeSearchResults: function(data) {
+                // Use data.hasMore, data.resultBatchCount
+            },
+            // Optional: Function is called once per result in the current batch
+            searchResultIterator: function(data) {
+                // Use data.ID, data.Title, data.Description, data.Url, data.DisplayUrl, data.Metadata.Type (check for undefined)
+                console.log(data.Title);
+                console.log(data.Description);
+                console.log(data.Url);
+                var news = document.createElement("div");
+                news.setAttribute("class", "article");
+
+                //creating link and title for article
+                var newsItem = document.createElement("a");
+                newsItem.setAttribute("href", data.Url);
+                newsItem.setAttribute("target", "blank");
+                newsItem.innerHTML = data.Title
+
+                //creating description for article
+                var newsDescription = document.createElement("p");
+                newsDescription.innerHTML = data.Description;
+                news.appendChild(newsItem);
+                news.appendChild(newsDescription);
+
+                $("#newsfeed").prepend(news);
+            },
+            // Optional: Function is called after search results are retrieved and after all instances of the interator are called
+            afterSearchResults: function(data) {
+                // Use data.hasMore, data.resultBatchCount
+            },
+            // Optional: Called when there is an error retrieving results
+            fail: function(data) {
+                // data contains an error message
+                console.log('bing search fail!');
+            }
+
+
+        }); 
 	    });
 
     }
 
-    function createPlacemarkForCity(city){
-    	var latitude = city.latitude;
-	    var longitude = city.longitude;
+    function createPlacemarkForCapital(capital){
+    	var latitude = capital.latitude;
+	    var longitude = capital.longitude;
 	    if (latitude === null && longitude === null){
 	    	return;
 	    }
 
-	    if (city.capital === "no"){
-	    	return;
-	    }
-	    console.log(city.name);
-	    console.log(city.capital);
-
     	var placemark = ge.createPlacemark('');
-    	placemark.setName(city.name);
+    	placemark.setName(capital.name);
 	    ge.getFeatures().appendChild(placemark);
 	  
 	    // Create style map for placemark
@@ -195,7 +241,6 @@ $(document).ready(function(){
 	    icon.setHref('http://maps.google.com/mapfiles/kml/paddle/red-circle.png');
 	    var style = ge.createStyle('');
 	    style.getIconStyle().setIcon(icon);
-	    style.getIconStyle().setScale(3.0);
 	    placemark.setStyleSelector(style);
 	  
 	    // Create point
@@ -217,10 +262,10 @@ $(document).ready(function(){
 		    "queryList" : [
 		          {
 		            "title" : "World News",
-		            "q" : city.name
+		            "q" : capital.name
 		          },
 		          {
-		            "q" : city.name
+		            "q" : capital.name
 		          }
 		        ]
 		        // ,"scoring" : "tp"
@@ -234,149 +279,6 @@ $(document).ready(function(){
 
     function failureCB(errorCode) {
     }
-
-   var AppId = "7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU";
-   
-   function Search()
-   {
-       var requestStr = "http://api.bing.net/json.aspx?"
-       
-           // Common request fields (required)
-           + "AppId=" + AppId
-           + "&Query=Kyle"
-           + "&Sources=News"
-           
-           // Common request fields (optional)
-           + "&Version=2.0"
-           + "&Market=en-us"
-           + "&Options=EnableHighlighting"
-
-           // News-specific request fields (optional)
-           + "&News.Offset=0"
-           
-           // The following request fields are mutually exclusive.
-           // Uncomment the line corresponding to the request field you wish
-           // to use.
-           ////+ "&News.LocationOverride=US.WA"
-           ////+ "&News.Category=rt_Political"
-           + "&News.SortBy=Relevance"
-           
-           // JSON-specific request fields (optional)
-           + "&JsonType=callback"
-           + "&JsonCallback=SearchCompleted";
-
-          console.log(requestStr);
-        var requestScript = document.getElementById("searchCallback");
-        requestScript.src = requestStr;
-
-   }
-
-   function SearchCompleted(response)
-   {
-   	   alert("I was called");
-       var errors = response.SearchResponse.Errors;
-       if (errors != null)
-       {
-           // There are errors in the response. Display error details.
-           DisplayErrors(errors);
-       }
-       else
-       {
-           // There were no errors in the response. Display the
-           // News results.
-           DisplayResults(response);
-       }
-   }
-
-   function DisplayResults(response)
-   {
-       var output = document.getElementById("newsfeed");
-       var resultsHeader = document.createElement("h4");
-       var resultsList = document.createElement("ul");
-       output.appendChild(resultsHeader);
-       output.appendChild(resultsList);
-   
-       var results = response.SearchResponse.News.Results;
-       
-       // Display the results header.
-       resultsHeader.innerHTML = "Bing API Version "
-           + response.SearchResponse.Version
-           + "<br />News results for "
-           + response.SearchResponse.Query.SearchTerms
-           + "<br />Displaying "
-           + (response.SearchResponse.News.Offset + 1)
-           + " to "
-           + (response.SearchResponse.News.Offset + results.length)
-           + " of "
-           + response.SearchResponse.News.Total
-           + " results<br />";
-       
-       // Display the News results.
-       var resultsListItem = null;
-       var resultStr = "";
-       for (var i = 0; i < results.length; ++i)
-       {
-           resultsListItem = document.createElement("li");
-           resultsList.appendChild(resultsListItem);
-           resultStr = "<a href=\""
-               + results[i].Url
-               + "\">"
-               + results[i].Title
-               + "</a><br />"
-               + results[i].Source
-               + "<br />"
-               + results[i].Date
-               + "<br />"
-               + results[i].Snippet
-               + "<br /><br />";
-           console.log(resultStr);
-           // Replace highlighting characters with strong tags.
-           resultsListItem.innerHTML = ReplaceHighlightingCharacters(
-               resultStr,
-               "<strong>",
-               "</strong>");
-       }
-   }
-   
-   function ReplaceHighlightingCharacters(text, beginStr, endStr)
-   {
-       // Replace all occurrences of U+E000 (begin highlighting) with
-       // beginStr. Replace all occurrences of U+E001 (end highlighting)
-       // with endStr.
-       var regexBegin = new RegExp("\uE000", "g");
-       var regexEnd = new RegExp("\uE001", "g");
-             
-       return text.replace(regexBegin, beginStr).replace(regexEnd, endStr);
-   }
-
-   function DisplayErrors(errors)
-   {
-       var output = document.getElementById("newsfeed");
-       var errorsHeader = document.createElement("h4");
-       var errorsList = document.createElement("ul");
-       output.appendChild(errorsHeader);
-       output.appendChild(errorsList);
-       
-       // Iterate over the list of errors and display error details.
-       errorsHeader.innerHTML = "Errors:";
-       var errorsListItem = null;
-       for (var i = 0; i < errors.length; ++i)
-       {
-           errorsListItem = document.createElement("li");
-           errorsList.appendChild(errorsListItem);
-           errorsListItem.innerHTML = "";
-           for (var errorDetail in errors[i])
-           {
-               errorsListItem.innerHTML += errorDetail
-                   + ": "
-                   + errors[i][errorDetail]
-                   + "<br />";
-           }
-           
-           errorsListItem.innerHTML += "<br />";
-       }
-   }
-
 
     function showSky() {
     	// create the placemark
@@ -409,7 +311,6 @@ $(document).ready(function(){
   		var content = document.getElementById("content");
   		var newsShow = new google.elements.NewsShow(content,options);
 
-  		
       });
 
 

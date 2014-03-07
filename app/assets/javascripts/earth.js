@@ -137,7 +137,9 @@ $(document).ready(function(){
   			var newsShow = new google.elements.NewsShow(content,options);
 
         $.bingSearch({
-            query: 'ukraine',
+            query: country.name,
+            latitude: country.latitude,
+            longitude: country.longitude,
             appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
             // Optional (defaults to the Bing Search API Web Results Query).
             // Additional information: This feature allows you to proxy through a server-side
@@ -148,7 +150,7 @@ $(document).ready(function(){
             pageNumber: 1,
             urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
             // Optional (defaults to 10): Page Size
-            pageSize: 10,
+            pageSize: 1,
             // Optional: Function is called after search results are retrieved, but before the interator is called
             beforeSearchResults: function(data) {
                 // Use data.hasMore, data.resultBatchCount
@@ -157,6 +159,16 @@ $(document).ready(function(){
             searchResultIterator: function(data) {
                 // Use data.ID, data.Title, data.Description, data.Url, data.DisplayUrl, data.Metadata.Type (check for undefined)
                 console.log(data.Title);
+                console.log(data.Description);
+                console.log(data.Url);
+                var news = document.createElement("div");
+                news.setAttribute("class", "article");
+                var newsItem = document.createElement("a");
+                newsItem.setAttribute("href", data.Url);
+                newsItem.innerHTML = data.Title
+                var newsDescription = document.createElement("p");
+                newsDescription.innerHTML = data.Description;
+                document.getElementById("#newsfeed").appendChild(newsItem).appendChild(newsDescription);
             },
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called
             afterSearchResults: function(data) {
@@ -167,12 +179,13 @@ $(document).ready(function(){
                 // data contains an error message
                 console.log('bing search fail!');
             }
+
+
         }); 
 	    });
 
     }
 
- 
     function createPlacemarkForCapital(capital){
     	var latitude = capital.latitude;
 	    var longitude = capital.longitude;

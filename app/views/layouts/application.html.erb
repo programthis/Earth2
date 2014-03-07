@@ -4,6 +4,13 @@
   <%= include_gon %>
   <title>Earth2</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
+	<script type="text/javascript" src="https://www.google.com/jsapi"> </script>
+	<script type="text/javascript">
+	    google.load("earth", "1", {"other_params":"sensor=true_or_false"});
+		google.load('search', '1');
+		google.load("elements", "1", {packages : ["newsshow"]});
+	</script>
+	  
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>

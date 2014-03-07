@@ -2,10 +2,11 @@ class WelcomeController < ApplicationController
   def index
 
 	@countries = Country.all
-	@cities = City.all
-	@regions = Region.all
+	@capitals = Capital.all
+	# @regions = Region.all
 
 	gon.countries = @countries
+	# gon.capitals = @capitals
 
 	# using Bing API to get news based on country
 	# gon.bing = RBing.new("7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU")
@@ -14,7 +15,7 @@ class WelcomeController < ApplicationController
 	# puts "*********************************"
 	# puts rsp.results[0].title
 
-	# gon.cities = @cities
+	
 	# gon.regions = @regions
   end
 

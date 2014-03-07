@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.base64
+//= require jquery.bingsearch
+//= require earth
 //= require_tree .

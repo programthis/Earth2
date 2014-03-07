@@ -12,7 +12,7 @@
 	position:absolute;
 	float:right;
 	width:100%;
-	height:80%;
+	height:85%;
 }
 
 #navbar{
@@ -27,4 +27,38 @@
 }
 body{
 	background-color: black;
+}
+
+#ticker{
+     position: absolute;
+     bottom: 0px;
+     background-color: #C4C7C3;
+	height:30px;
+	vertical-align:middle;
+	line-height: 30px;
+}
+
+#ticker a{
+	color: white;
+	font-family: Lucidatypewriter;
+	font-weight: 600;
+	font-variant: small-caps;
+	text-decoration: none;
+	padding-right:50px;
+	font-size: 20px;
+}
+
+#tickerheader {
+	 position: absolute;
+     bottom: 30px;
+     background-color: #C4C7C3;
+     width:215px;
+	 height:30px;
+	 color: white;
+	 font-family: Lucidatypewriter;
+	 font-weight: bold;
+	 font-variant: small-caps;
+	 font-size: 25px;
+	 border-top-right-radius: 10px 5px;
+	 border-top-left-radius: 10px 5px;
 }

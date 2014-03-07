@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class WelcomeController < ApplicationController
   def index
 
@@ -6,6 +8,9 @@ class WelcomeController < ApplicationController
 	@regions = Region.all
 
 	gon.countries = @countries
+
+	top_articles_json = open('http://api.feedzilla.com/v1/categories/26/articles.json').read
+	   gon.news = JSON.parse(top_articles_json)
 
 	# using Bing API to get news based on country
 	# gon.bing = RBing.new("7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU")

@@ -1,11 +1,36 @@
 $(document).ready(function(){
 
-	var = url 
-  var = title
-  for (var i=0; i< news.length; i++)
-  {
-    url = url[i]
+  var news = gon.news;
+
+  var titles = [];
+  var urls = [];
+
+  for (var i =0;i < news.articles.length; i++){
+      titles[i] = news.articles[i].title;
+      urls[i] = news.articles[i].url;
   }
+
+  function urlFunction(){
+    for (var i =0;i < titles.length; i++){
+      var a=document.createElement("a");
+      var node=document.createTextNode(titles[i]);
+      a.setAttribute("href", urls[i]);
+       a.setAttribute("target", "blank");
+      console.log(a);
+      a.innerHTML = titles[i] + "    ";
+      document.getElementById('ticker').appendChild(a);
+    }
+  }
+
+  setTimeout(urlFunction, 3000);
+
+
+  //  for (var i =0;i < titles.length; i++){
+  //     var li=document.createElement("li");
+  //     var node=document.createTextNode(titles[i]);
+  //     var newli = li.appendChild(node) 
+  //     document.getElementById('ticker').appendChild(newli)
+  // }
 
   var ge;
     var placemark;

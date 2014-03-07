@@ -11,7 +11,7 @@
 #map3d{
 	position:absolute;
 	float:right;
-	width:100%;
+	width:20%;
 	height:80%;
 }
 
@@ -24,7 +24,8 @@
 	width:1000px;
 	height:450px;
 	border: 10px solid black;
+	overflow:scroll;
 }
 body{
-	background-color: black;
+	/*background-color: black;*/
 }

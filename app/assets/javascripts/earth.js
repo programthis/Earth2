@@ -150,7 +150,7 @@ $(document).ready(function(){
             pageNumber: 1,
             urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
             // Optional (defaults to 10): Page Size
-            pageSize: 1,
+            pageSize: 3,
             // Optional: Function is called after search results are retrieved, but before the interator is called
             beforeSearchResults: function(data) {
                 // Use data.hasMore, data.resultBatchCount
@@ -163,12 +163,20 @@ $(document).ready(function(){
                 console.log(data.Url);
                 var news = document.createElement("div");
                 news.setAttribute("class", "article");
+
+                //creating link and title for article
                 var newsItem = document.createElement("a");
                 newsItem.setAttribute("href", data.Url);
+                newsItem.setAttribute("target", "blank");
                 newsItem.innerHTML = data.Title
+
+                //creating description for article
                 var newsDescription = document.createElement("p");
                 newsDescription.innerHTML = data.Description;
-                document.getElementById("#newsfeed").appendChild(newsItem).appendChild(newsDescription);
+                news.appendChild(newsItem);
+                news.appendChild(newsDescription);
+
+                $("#newsfeed").prepend(news);
             },
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called
             afterSearchResults: function(data) {

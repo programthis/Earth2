@@ -37,13 +37,13 @@
 			background-color: #ffffff;
 			opacity:0.9;
 }
-#toggle 	{
+/*#toggle 	{
 			z-index: 3;
 			width: 10%;
 			height: 100%;
 			position: absolute;
 
-}
+}*/
 
 /*.menu {
 	position: fixed;
@@ -57,7 +57,7 @@
 }*/
 
 #toggleBtn 	{
-			z-index: 4;
+			z-index: 3;
 			width: 10%;
 			height: 10%;
 			margin-left: 0%;
@@ -71,7 +71,6 @@
 			z-index:5;
 			width: 90%;
 			height: 25%;
-			padding-bottom: 5%;
 			margin: 5%;
 }
 body{

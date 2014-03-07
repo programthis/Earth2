@@ -1,9 +1,9 @@
 
-  //   $("#toggleBtn").click(function(){
-  //   //  $(".menu").toggle("slide");
+    $("#toggleBtn").click(function(){
+     $(".menu").toggle("slide");
 
-  //   // });
-  //   });
+    });
+
 
 
   // $(document).on('page:change',function() {

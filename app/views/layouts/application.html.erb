@@ -4,12 +4,14 @@
   <%= include_gon %>
   <title>Earth2</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 	<script type="text/javascript" src="https://www.google.com/jsapi"> </script>
 	<script type="text/javascript">
 	    google.load("earth", "1", {"other_params":"sensor=true_or_false"});
 		google.load('search', '1');
 		google.load("elements", "1", {packages : ["newsshow"]});
 	</script>
+		<script type="text/javascript" src="welcome.js"></script>
 	  
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -21,14 +23,16 @@
 	<div id="content">
 	<div id="map3d"></div>
 	
-	
-<!-- 			<a href="#" id="toggleBtn">
+
+<!-- 		<a href="#" id="toggleBtn">
 				<span class="fa fa-bars"></span>
-			</a>  -->
+		</a>  -->
+
 	<div id="outer">
+
 			<div id="newsfeed">
-	<!-- 				<div id="toggle_button"><button type="button"><<</button>
-					</div> -->
+				<button type="toggleBtn"><img>-</button>
+
 					<div class="article"></div>
 					<div class="article"></div>
 					<div class="article"></div>

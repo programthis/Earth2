@@ -16,7 +16,6 @@ $(document).ready(function(){
       var node=document.createTextNode(titles[i]);
       a.setAttribute("href", urls[i]);
        a.setAttribute("target", "blank");
-      console.log(a);
       a.innerHTML = titles[i] + "    ";
       document.getElementById('ticker').appendChild(a);
     }

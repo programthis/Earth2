@@ -112,7 +112,6 @@ $(document).ready(function(){
 	    normalStyle.getIconStyle().setIcon(normalIcon);
 	    normalStyle.getIconStyle().setScale(5.0);
 
-
 	    // Create highlight style for style map.
 	    var highlightStyle = ge.createStyle('');
 	    var highlightIcon = ge.createIcon('');
@@ -265,13 +264,32 @@ $(document).ready(function(){
     	placemark.setName(capital.name);
 	    ge.getFeatures().appendChild(placemark);
 	  
-	    // Create style map for placemark
-	    var icon = ge.createIcon('');
-	    icon.setHref('http://maps.google.com/mapfiles/kml/paddle/red-circle.png');
-	    var style = ge.createStyle('');
-	    style.getIconStyle().setIcon(icon);
-	    placemark.setStyleSelector(style);
-	  
+      // Create a style map.
+      var styleMap = ge.createStyleMap('');
+
+      // Create normal style for style map.
+      var normalStyle = ge.createStyle('');
+      var normalIcon = ge.createIcon('');
+      normalIcon.setHref('http://maps.google.com/mapfiles/kml/shapes/placemark_circle_highlight.png');
+      normalStyle.getIconStyle().setIcon(normalIcon);
+      normalStyle.getIconStyle().setScale(3.0);
+
+      // Create highlight style for style map.
+      var highlightStyle = ge.createStyle('');
+      var highlightIcon = ge.createIcon('');
+      // highlightIcon.setHref("path/to/flags.png")
+      highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/apartment.png');
+      
+      highlightStyle.getIconStyle().setIcon(highlightIcon);
+      highlightStyle.getIconStyle().setScale(5.0);
+
+      styleMap.setNormalStyle(normalStyle);
+      styleMap.setHighlightStyle(highlightStyle);
+
+      // Apply stylemap to a placemark.
+      placemark.setStyleSelector(styleMap);
+
+
 	    // Create point
 	    var point = ge.createPoint('');
 

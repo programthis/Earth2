@@ -5,35 +5,29 @@ $(document).ready(function(){
   var titles = [];
   var urls = [];
 
-  for (var i =0; i < news.articles.length; i++){
+  for (var i =0; i < 5; i++){
       titles[i] = news.articles[i].title;
       urls[i] = news.articles[i].url;
   }
 
+  // what's this function for? seems to be slowing down the program a lot
   function urlFunction(){
-    for (var i =0;i < titles.length; i++){
-      var a=document.createElement("a");
-      var node=document.createTextNode(titles[i]);
+    var a;
+    var node;
+    for (var i =0; i < titles.length; i++){
+      a = document.createElement("a");
+      node=document.createTextNode(titles[i]);
       a.setAttribute("href", urls[i]);
-       a.setAttribute("target", "blank");
+      a.setAttribute("target", "blank");
       a.innerHTML = titles[i] + "    ";
       document.getElementById('ticker').appendChild(a);
     }
   }
-
   setTimeout(urlFunction, 3000);
 
 
-  //  for (var i =0;i < titles.length; i++){
-  //     var li=document.createElement("li");
-  //     var node=document.createTextNode(titles[i]);
-  //     var newli = li.appendChild(node) 
-  //     document.getElementById('ticker').appendChild(newli)
-  // }
-
   var ge;
-    var placemark;
-    var newsSearch;
+  var placemark;
 
 	function addSampleButton(caption, clickHandler) {
 	  var btn = document.createElement('input');
@@ -49,10 +43,6 @@ $(document).ready(function(){
 	  document.getElementById('sample-ui').appendChild(btn);
 	}
 	
-	function addSampleUIHtml(html) {
-	  document.getElementById('sample-ui').innerHTML += html;
-	}
-
     function init() {
       google.earth.createInstance('map3d', initCB, failureCB);
       addSampleButton('Look up in the sky, kid.', showSky);
@@ -151,62 +141,81 @@ $(document).ready(function(){
 	    	//var tp = ge.getTime().getTimePrimitive();
 	    	//console.log(tp.getWhen().get());
 
-        $.bingSearch({
-            query: country.name,
-            latitude: country.latitude,
-            longitude: country.longitude,
-
-            appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
-            // Optidefaults to the Bing Search API Web Results Query).
-            // Additional information: This feature allows you to proxy through a server-side
-            //                         script in order to hide your API key, which is exposed to the
-            //                         world if you set it client-side in appKey. An example PHP
-            //                         script is included (searchproxy.php).
-            // Optional (defaults to 1): Page Number
-            pageNumber: 1,
-            urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
-            // Optional (defaults to 10): Page Size
-            pageSize: 3,
-            // Optional: Function is called after search results are retrieved, but before the interator is called
-            beforeSearchResults: function(data) {
-                // Use data.hasMore, data.resultBatchCount
-            },
-            // Optional: Function is called once per result in the current batch
-            searchResultIterator: function(data) {
-                // Use data.ID, data.Title, data.Description, data.Url, data.DisplayUrl, data.Metadata.Type (check for undefined)
-                console.log(data.Title);
-                console.log(data.Description);
-                console.log(data.Url);
-                console.log(data.Latitude);
-                var news = document.createElement("div");
-                news.setAttribute("class", "article");
-
-                //creating link and title for article
-                var newsItem = document.createElement("a");
-                newsItem.setAttribute("href", data.Url);
-                newsItem.setAttribute("target", "blank");
-                newsItem.innerHTML = data.Title
-
-                //creating description for article
-                var newsDescription = document.createElement("p");
-                newsDescription.innerHTML = data.Description;
-                news.appendChild(newsItem);
-                news.appendChild(newsDescription);
-
-                $("#newsfeed").prepend(news);
-            },
-            // Optional: Function is called after search results are retrieved and after all instances of the interator are called
-            afterSearchResults: function(data) {
-                // Use data.hasMore, data.resultBatchCount
-            },
-            // Optional: Called when there is an error retrieving results
-            fail: function(data) {
-                // data contains an error message
-                console.log('bing search fail!');
-            }
+        $.ajax({
+          url: "http://www.panoramio.com/map/get_panoramas.php?",
+          type: "GET",
+          data: { 
+            set: "public",
+            from: 0,
+            to: 20,
+            minx: -180,
+            miny: -90,
+            maxx: 180,
+            maxy: 90,
+            size: "medium",
+            mapfilter: true
+          },
+          dataType: "jsonp",
+          success: function(response){
+            console.log("heeeey");
+            console.log(response.photos[0].photo_url);
+          }
+        })
 
 
-        }); 
+        // $.bingSearch({
+        //     query: country.name,
+        //     latitude: country.latitude,
+        //     longitude: country.longitude,
+
+        //     appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
+        //     // Optidefaults to the Bing Search API Web Results Query).
+        //     // Additional information: This feature allows you to proxy through a server-side
+        //     //                         script in order to hide your API key, which is exposed to the
+        //     //                         world if you set it client-side in appKey. An example PHP
+        //     //                         script is included (searchproxy.php).
+        //     // Optional (defaults to 1): Page Number
+        //     pageNumber: 1,
+        //     urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
+        //     // Optional (defaults to 10): Page Size
+        //     pageSize: 3,
+        //     // Optional: Function is called after search results are retrieved, but before the interator is called
+        //     beforeSearchResults: function(data) {
+        //         // Use data.hasMore, data.resultBatchCount
+        //     },
+        //     // Optional: Function is called once per result in the current batch
+        //     searchResultIterator: function(data) {
+        //         // Use data.ID, data.Title, data.Description, data.Url, data.DisplayUrl, data.Metadata.Type (check for undefined)
+        //         console.log(data.Title);
+        //         console.log(data.Description);
+        //         console.log(data.Url);
+        //         var news = document.createElement("div");
+        //         news.setAttribute("class", "article");
+
+        //         //creating link and title for article
+        //         var newsItem = document.createElement("a");
+        //         newsItem.setAttribute("href", data.Url);
+        //         newsItem.setAttribute("target", "blank");
+        //         newsItem.innerHTML = data.Title
+
+        //         //creating description for article
+        //         var newsDescription = document.createElement("p");
+        //         newsDescription.innerHTML = data.Description;
+        //         news.appendChild(newsItem);
+        //         news.appendChild(newsDescription);
+
+        //         $("#newsfeed").prepend(news);
+        //     },
+        //     // Optional: Function is called after search results are retrieved and after all instances of the interator are called
+        //     afterSearchResults: function(data) {
+        //         // Use data.hasMore, data.resultBatchCount
+        //     },
+        //     // Optional: Called when there is an error retrieving results
+        //     fail: function(data) {
+        //         // data contains an error message
+        //         console.log('bing search fail!');
+        //     }
+        // }); 
 	    });
 
     }

@@ -5,7 +5,7 @@ $(document).ready(function(){
   var titles = [];
   var urls = [];
 
-  for (var i =0; i < 5; i++){
+  for (var i =0; i < news.articles.length; i++){
       titles[i] = news.articles[i].title;
       urls[i] = news.articles[i].url;
   }
@@ -112,15 +112,25 @@ $(document).ready(function(){
 	    normalStyle.getIconStyle().setIcon(normalIcon);
 	    normalStyle.getIconStyle().setScale(5.0);
 
+
 	    // Create highlight style for style map.
-	    var highlightStyle = ge.createStyle('');
-	    var highlightIcon = ge.createIcon('');
-	    highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/world.png');
-	    highlightStyle.getIconStyle().setIcon(highlightIcon);
-	    highlightStyle.getIconStyle().setScale(15.0);
+	    // var highlightStyle = ge.createStyle('');
+	    // var highlightIcon = ge.createIcon('');
+	    // highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/world.png');
+      
+      //how it should look
+      // <img src="blank.gif" class="flag flag-cz" alt="Czech Republic" />
+
+      // highlightIcon.setAttribute("class", "flag flag-cz");
+      // highlightIcon.setAttribute("alt", "Czech Republic");
+      // highlightIcon.setAttribute("src", "blank.gif");
+
+
+	    // highlightStyle.getIconStyle().setIcon(highlightIcon);
+	    // highlightStyle.getIconStyle().setScale(15.0);
 
 	    styleMap.setNormalStyle(normalStyle);
-	    styleMap.setHighlightStyle(highlightStyle);
+	    // styleMap.setHighlightStyle(highlightStyle);
 
 	    // Apply stylemap to a placemark.
 	    placemark.setStyleSelector(styleMap);
@@ -132,6 +142,52 @@ $(document).ready(function(){
 	    point.setLongitude(longitude);
 	    placemark.setGeometry(point);
 
+
+
+      google.earth.addEventListener(placemark, "mouseover", function(event){
+        placemark.setAttribute("class", "flag flag-cz");
+        placemark.setAttribute("alt", "Czech Republic");
+        placemark.setAttribute("src", "blank.gif");
+
+
+      });
+
+
+
+
+      // google.earth.addEventListener(placemark, "mouseover", function(event){
+      //   //preventing the default balloon from popping up
+      //   event.preventDefault();
+      //   $.ajax({
+      //     url: "http://www.panoramio.com/map/get_panoramas.php?",
+      //     type: "GET",
+      //     data: { 
+      //       set: "public",
+      //       from: 0,
+      //       to: 1,
+      //       minx: country.longitude - 1,
+      //       miny: country.latitude - 1,
+      //       maxx: country.longitude + 1,
+      //       maxy: country.latitude + 1,
+      //       size: "medium",
+      //       mapfilter: true
+      //     },
+      //     dataType: "jsonp",
+      //     success: function(response){
+      //       console.log("heeeey");
+      //       console.log(response);
+
+      //       var highlightStyle = ge.createStyle('');
+      //       var highlightIcon = ge.createIcon('');
+      //       highlightIcon.setHref(response.photos[0].photo_file_url);
+      //       highlightStyle.getIconStyle().setIcon(highlightIcon);
+      //       highlightStyle.getIconStyle().setScale(10.0);
+      //       styleMap.setHighlightStyle(highlightStyle);
+      //     }
+      //   })
+
+      // });
+
 	    //testing out to see if we can get Toronto to populate the news section with Toronto news
 	    google.earth.addEventListener(placemark, "click", function(event){
 	    	//preventing the default balloon from popping up
@@ -141,26 +197,7 @@ $(document).ready(function(){
 	    	//var tp = ge.getTime().getTimePrimitive();
 	    	//console.log(tp.getWhen().get());
 
-        $.ajax({
-          url: "http://www.panoramio.com/map/get_panoramas.php?",
-          type: "GET",
-          data: { 
-            set: "public",
-            from: 0,
-            to: 20,
-            minx: -180,
-            miny: -90,
-            maxx: 180,
-            maxy: 90,
-            size: "medium",
-            mapfilter: true
-          },
-          dataType: "jsonp",
-          success: function(response){
-            console.log("heeeey");
-            console.log(response.photos[0].photo_url);
-          }
-        })
+
 
 
         // $.bingSearch({

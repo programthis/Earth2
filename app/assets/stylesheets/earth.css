@@ -32,9 +32,9 @@ body{
 }
 
 #ticker{
-     position: absolute;
-     bottom: 0px;
-     background-color: #C4C7C3;
+    position: absolute;
+    bottom: 0px;
+    background-color: #0B4C66;
 	height:30px;
 	vertical-align:middle;
 	line-height: 30px;
@@ -53,7 +53,7 @@ body{
 #tickerheader {
 	 position: absolute;
      bottom: 30px;
-     background-color: #C4C7C3;
+     background-color: #0B4C66;
      width:215px;
 	 height:30px;
 	 color: white;
@@ -63,4 +63,8 @@ body{
 	 font-size: 25px;
 	 border-top-right-radius: 10px 5px;
 	 border-top-left-radius: 10px 5px;
+}
+
+#tickerheader p{
+	margin-left: 7px;
 }

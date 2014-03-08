@@ -116,7 +116,7 @@ $(document).ready(function(){
 	    // Create highlight style for style map.
 	    var highlightStyle = ge.createStyle('');
 	    var highlightIcon = ge.createIcon('');
-      // highlightIcon.setHref("flags.png")
+      // highlightIcon.setHref("path/to/flags.png")
 	    highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/world.png');
       
 	    highlightStyle.getIconStyle().setIcon(highlightIcon);

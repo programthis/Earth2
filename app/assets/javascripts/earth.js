@@ -5,7 +5,7 @@ $(document).ready(function(){
   var titles = [];
   var urls = [];
 
-  for (var i =0;i < news.articles.length; i++){
+  for (var i =0; i < news.articles.length; i++){
       titles[i] = news.articles[i].title;
       urls[i] = news.articles[i].url;
   }
@@ -151,28 +151,13 @@ $(document).ready(function(){
 	    	//var tp = ge.getTime().getTimePrimitive();
 	    	//console.log(tp.getWhen().get());
 
-		    var options = { "format" : "300x250", 
-		    "queryList" : [
-		          {
-		            "title" : "World News",
-		            "q" : country.name
-		          },
-		          {
-		            "q" : country.name
-		          }
-		        ]
-		        // ,"scoring" : "tp"
-
-				};
-  			var content = document.getElementById("content");
-  			var newsShow = new google.elements.NewsShow(content,options);
-
         $.bingSearch({
             query: country.name,
             latitude: country.latitude,
             longitude: country.longitude,
+
             appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
-            // Optional (defaults to the Bing Search API Web Results Query).
+            // Optidefaults to the Bing Search API Web Results Query).
             // Additional information: This feature allows you to proxy through a server-side
             //                         script in order to hide your API key, which is exposed to the
             //                         world if you set it client-side in appKey. An example PHP
@@ -192,6 +177,7 @@ $(document).ready(function(){
                 console.log(data.Title);
                 console.log(data.Description);
                 console.log(data.Url);
+                console.log(data.Latitude);
                 var news = document.createElement("div");
                 news.setAttribute("class", "article");
 
@@ -258,23 +244,7 @@ $(document).ready(function(){
 	    	//var tp = ge.getTime().getTimePrimitive();
 	    	//console.log(tp.getWhen().get());
 
-		    var options = { "format" : "300x250", 
-		    "queryList" : [
-		          {
-		            "title" : "World News",
-		            "q" : capital.name
-		          },
-		          {
-		            "q" : capital.name
-		          }
-		        ]
-		        // ,"scoring" : "tp"
-
-				};
-			var content = document.getElementById("content");
-			var newsShow = new google.elements.NewsShow(content,options);
 	    });
-
     }
 
     function failureCB(errorCode) {

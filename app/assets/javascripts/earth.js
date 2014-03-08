@@ -114,23 +114,16 @@ $(document).ready(function(){
 
 
 	    // Create highlight style for style map.
-	    // var highlightStyle = ge.createStyle('');
-	    // var highlightIcon = ge.createIcon('');
-	    // highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/world.png');
+	    var highlightStyle = ge.createStyle('');
+	    var highlightIcon = ge.createIcon('');
+      // highlightIcon.setHref("flags.png")
+	    highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/world.png');
       
-      //how it should look
-      // <img src="blank.gif" class="flag flag-cz" alt="Czech Republic" />
-
-      // highlightIcon.setAttribute("class", "flag flag-cz");
-      // highlightIcon.setAttribute("alt", "Czech Republic");
-      // highlightIcon.setAttribute("src", "blank.gif");
-
-
-	    // highlightStyle.getIconStyle().setIcon(highlightIcon);
-	    // highlightStyle.getIconStyle().setScale(15.0);
+	    highlightStyle.getIconStyle().setIcon(highlightIcon);
+	    highlightStyle.getIconStyle().setScale(8.0);
 
 	    styleMap.setNormalStyle(normalStyle);
-	    // styleMap.setHighlightStyle(highlightStyle);
+	    styleMap.setHighlightStyle(highlightStyle);
 
 	    // Apply stylemap to a placemark.
 	    placemark.setStyleSelector(styleMap);
@@ -144,13 +137,17 @@ $(document).ready(function(){
 
 
 
-      google.earth.addEventListener(placemark, "mouseover", function(event){
-        placemark.setAttribute("class", "flag flag-cz");
-        placemark.setAttribute("alt", "Czech Republic");
-        placemark.setAttribute("src", "blank.gif");
-
-
-      });
+      // google.earth.addEventListener(placemark, "mouseover", function(event){
+      //   // placemark.setAttribute("class", "flag flag-cz");
+      //   // placemark.setAttribute("alt", "Czech Republic");
+      //   console.log(placemark);
+      //   placemark.setStyleSelector
+      //   placemark.css("background", "url(flags.png)");
+      //   placemark.css("background-position", "-16px 0");
+      //   // placemark.css("background", "blank.gif");
+      //   // placemark.setAttribute("src", "blank.gif");
+        
+      // });
 
 
 

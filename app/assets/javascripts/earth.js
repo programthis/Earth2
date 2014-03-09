@@ -505,4 +505,19 @@ $(document).ready(function(){
 
     google.setOnLoadCallback(init);
 
+// news feed:
+
+      $(".toggleBtn").click(function(){
+      $("#newsfeed").animate({ width: 'toggle' }, 800);
+        // alert("The slideToggle() method is finished!");
+      });
+
+
+      $(".toggleBtn2").click(function(){
+      $("#tickertape").animate({ height: 'toggle' }, 800);
+        // alert("The slideToggle() method is finished!");
+      });
+
+
+
 });

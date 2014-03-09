@@ -70,11 +70,20 @@ body{
 }
 
 #news_block{
+	padding: 4px;
+	font-weight: bold;
 	text-indent:10px;
 	top: 20px;
 	left: 920px;
 	width:200px;
 	height:200px;
-	border: 10px solid black;
+	border: 5px solid black;
 	position: absolute;
+	overflow: hidden;
+	/*background-color: grey;*/
+	background: rgba(54, 25, 25, .5);
+}
+
+#news_block_description{
+	font-weight: normal;
 }

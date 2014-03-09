@@ -22,23 +22,24 @@
 	float:left;
 }
 
-#outer 		{
-			z-index: 1;
-			width: 25%;
-			height: 80%;
-			position: fixed;
-			border-bottom-right-radius: 10px;
+#outer {
+	z-index: 1;
+	width: 25%;
+	height: 80%;
+	position: fixed;
+	border-bottom-right-radius: 10px;
 }
 
 #newsfeed {
-			z-index: 2;
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			border-bottom-right-radius: 10px;
-			box-shadow: 5px 10px 10px black;
-			background-color: #ffffff;
-			opacity:0.9;
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	border-bottom-right-radius: 10px;
+	box-shadow: 5px 10px 10px black;
+	background-color: #ffffff;
+	opacity:0.9;
+	overflow: scroll;
 }
 body{
 	background-color: black;

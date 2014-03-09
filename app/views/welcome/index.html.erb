@@ -1,8 +1,32 @@
 <div id="branding"  style="float: left;"></div><br/>
 <div id="sample-ui"></div>
 
-<div id="newsfeed"></div>
+<div>
+	<%= form_for new_user_path(@user) do |f| %>
+		<div class="field">
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</div>
+		<div class="field">
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+		</div>
+		<div class="field">
+			<%= f.label :password %>
+			<%= f.text_field :password %>
+		</div>
+		<div class="field">
+			<%= f.label :password_confirmation %>
+			<%= f.text_field :password_confirmation %>
+		</div>
+		<div class="actions">
+			<%= f.submit :name %>
+		</div>
+	<% end %>
+
+</div>
+<!-- <div id="newsfeed"></div>
 <div id="map3d"></div>
-<div id="content"></div>
+<div id="content"></div> -->
 <marquee id="ticker" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"></marquee>
 <div id="tickerheader"><p>From The Soapbox</p></div>

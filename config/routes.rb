@@ -1,5 +1,6 @@
 Earth2::Application.routes.draw do
 
+  resources :user
   resources :welcome
   root to: "welcome#index"
 

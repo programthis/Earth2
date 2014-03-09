@@ -56,13 +56,12 @@
 	z-index: 1;
 }*/
 
-#toggleBtn 	{
+.toggleBtn 	{
 			z-index: 3;
 			width: 10%;
 			height: 10%;
 			margin-left: 0%;
-			position: fixed;
-			top: 100;
+			top: 5px;
 			left: 5px;
 			font-size: 2em;
 }

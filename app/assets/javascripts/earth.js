@@ -326,4 +326,20 @@ $(document).ready(function(){
 
     google.setOnLoadCallback(init);
 
+      $("button").click(function(){
+      $("#newsfeed").toggle("slide");
+        // alert("The slideToggle() method is finished!");
+      });
+      // $("button").click(function(){
+      // $("#newsfeed").slideToggle("slow");
+      //   // alert("The slideToggle() method is finished!");
+      // });
+
+
+
+
+
+
+
+
 });

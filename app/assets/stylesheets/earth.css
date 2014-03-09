@@ -37,33 +37,23 @@
 			background-color: #ffffff;
 			opacity:0.9;
 }
-/*#toggle 	{
-			z-index: 3;
-			width: 10%;
-			height: 100%;
-			position: absolute;
 
-}*/
-
-/*.menu {
-	position: fixed;
-	top: 100px;
-	left: 0px;
-	width: 25%;
-	border: 1px solid;
-	height: 100%;
-	display: block;
-	z-index: 1;
-}*/
+button {
+			border: none;
+			background-color: white;
+}
 
 .toggleBtn 	{
-			z-index: 3;
+			z-index: 10;
 			width: 10%;
-			height: 10%;
+			height: 5%;
 			margin-left: 0%;
-			top: 5px;
-			left: 5px;
-			font-size: 2em;
+/*			top: 5px;
+			left: 5px;*/
+			font-size: 1em;
+			position: absolute;
+			background-color: #ffffff;
+			opacity:0.9;
 }
 
 .article 	{

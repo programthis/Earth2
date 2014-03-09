@@ -326,19 +326,12 @@ $(document).ready(function(){
 
     google.setOnLoadCallback(init);
 
-      $("button").click(function(){
-      $("#newsfeed").toggle("slide");
+// news feed:
+ 
+      $(".toggleBtn").click(function(){
+      $("#newsfeed").animate({ width: 'toggle' }, 800);
         // alert("The slideToggle() method is finished!");
       });
-      // $("button").click(function(){
-      // $("#newsfeed").slideToggle("slow");
-      //   // alert("The slideToggle() method is finished!");
-      // });
-
-
-
-
-
 
 
 

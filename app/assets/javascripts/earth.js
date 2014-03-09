@@ -95,8 +95,6 @@ $(document).ready(function(){
   //   });
   // },3000);
   
-
-  // what's this function for? seems to be slowing down the program a lot
   function urlFunction(){
     var a;
     var node;
@@ -509,12 +507,6 @@ $(document).ready(function(){
 
       $(".toggleBtn").click(function(){
       $("#newsfeed").animate({ width: 'toggle' }, 800);
-        // alert("The slideToggle() method is finished!");
-      });
-
-
-      $(".toggleBtn2").click(function(){
-      $("#tickertape").animate({ height: 'toggle' }, 800);
         // alert("The slideToggle() method is finished!");
       });
 

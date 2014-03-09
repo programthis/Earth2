@@ -94,10 +94,7 @@ $(document).ready(function(){
   //       }
   //   });
   // },3000);
-
-
-
-
+  
 
   // what's this function for? seems to be slowing down the program a lot
   function urlFunction(){

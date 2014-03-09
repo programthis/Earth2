@@ -193,7 +193,21 @@ $(document).ready(function(){
 	    	//var tp = ge.getTime().getTimePrimitive();
 	    	//console.log(tp.getWhen().get());
 
-
+        //removing the news block every time the user clicks on a new country/city
+        var removingNewsFromEarth = document.getElementById("map3d");
+        var elementToRemove = document.getElementById("news_block");
+        if (elementToRemove){
+          removingNewsFromEarth.removeChild(elementToRemove);
+        }
+        
+        $("<div>",{
+          id: "news_block",
+          rel: "external",
+          text: "Go to Google!",
+          click: function(){
+            window.open("http://cnn.com", "_blank");
+          }
+        }).appendTo("#map3d");
 
 
         // $.bingSearch({

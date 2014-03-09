@@ -10,6 +10,95 @@ $(document).ready(function(){
       urls[i] = news.articles[i].url;
   }
 
+  //searching for breaking news in an interval of 3 minutes
+  var interval = 0;
+  var breakingNewsLat = 0;
+  var breakingNewsLong = 0;
+  // interval = setInterval(function(){
+
+  //   breakingNewsLat = 90 + (-90 - 90) * Math.random();
+  //   breakingNewsLong = 180 + (-180 - 180) * Math.random();
+
+  //   var geocoder;
+  //   initializeGeo();
+  //   codeLatLng();
+
+  //   function initializeGeo(){
+  //     geocoder = new google.maps.Geocoder();
+  //   }
+
+  //   function codeLatLng(){
+  //     var latlng = new google.maps.LatLng(breakingNewsLat, breakingNewsLong);
+  //     geocoder.geocode({
+  //       "latLng": latlng
+  //     }, function(results){
+  //       console.log(results);
+  //     });
+  //   }
+
+
+  //   console.log(breakingNewsLat);
+  //   console.log(breakingNewsLong);
+
+  //   $.bingSearch({
+  //       query: " ",
+  //       latitude: breakingNewsLat,
+  //       longitude: breakingNewsLong,
+  //       appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
+  //       // Optidefaults to the Bing Search API Web Results Query).
+  //       // Additional information: This feature allows you to proxy through a server-side
+  //       //                         script in order to hide your API key, which is exposed to the
+  //       //                         world if you set it client-side in appKey. An example PHP
+  //       //                         script is included (searchproxy.php).
+  //       // Optional (defaults to 1): Page Number
+  //       pageNumber: 1,
+  //       urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
+  //       // Optional (defaults to 10): Page Size
+  //       pageSize: 1,
+  //       // Optional: Function is called after search results are retrieved, but before the interator is called
+  //       beforeSearchResults: function(data) {
+  //           // Use data.hasMore, data.resultBatchCount
+  //       },
+  //       // Optional: Function is called once per result in the current batch
+  //       searchResultIterator: function(data) {
+  //           // Use data.ID, data.Title, data.Description, data.Url, data.DisplayUrl, data.Metadata.Type (check for undefined)
+  //           console.log(data.Title);
+  //           console.log(data.Description);
+  //           console.log(data.Url);
+  //           var news = document.createElement("div");
+  //           news.setAttribute("class", "article");
+
+  //           // //creating link and title for article
+  //           // var newsItem = document.createElement("a");
+  //           // newsItem.setAttribute("href", data.Url);
+  //           // newsItem.setAttribute("target", "blank");
+  //           // newsItem.innerHTML = data.Title
+
+  //           // //creating description for article
+  //           // var newsDescription = document.createElement("p");
+  //           // newsDescription.innerHTML = data.Description;
+  //           // news.appendChild(newsItem);
+  //           // news.appendChild(newsDescription);
+
+            
+
+  //       },
+  //       // Optional: Function is called after search results are retrieved and after all instances of the interator are called
+  //       afterSearchResults: function(data) {
+  //           // Use data.hasMore, data.resultBatchCount
+  //       },
+  //       // Optional: Called when there is an error retrieving results
+  //       fail: function(data) {
+  //           // data contains an error message
+  //           console.log('bing search fail!');
+  //       }
+  //   });
+  // },3000);
+
+
+
+
+
   // what's this function for? seems to be slowing down the program a lot
   function urlFunction(){
     var a;

@@ -193,6 +193,14 @@ $(document).ready(function(){
 	    	//var tp = ge.getTime().getTimePrimitive();
 	    	//console.log(tp.getWhen().get());
 
+
+        //changing the altitude of the placemark when it is clicked
+        point.setAltitudeMode(ge.ALTITUDE_ABSOLUTE);
+        point.setAltitude(800000);
+        placemark.setGeometry(point);
+
+
+
         //removing the news block every time the user clicks on a new country/city
         var removingNewsFromEarth = document.getElementById("map3d");
         var elementToRemove = document.getElementById("news_block");

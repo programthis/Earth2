@@ -70,6 +70,7 @@ body{
 }
 
 #news_block{
+	color: white;
 	padding: 4px;
 	font-weight: bold;
 	text-indent:10px;

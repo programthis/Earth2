@@ -1,14 +1,14 @@
 $(document).ready(function(){
 
-  var news = gon.news;
+  // var news = gon.news;
 
-  var titles = [];
-  var urls = [];
+  // var titles = [];
+  // var urls = [];
 
-  for (var i =0; i < news.articles.length; i++){
-      titles[i] = news.articles[i].title;
-      urls[i] = news.articles[i].url;
-  }
+  // for (var i =0; i < news.articles.length; i++){
+  //     titles[i] = news.articles[i].title;
+  //     urls[i] = news.articles[i].url;
+  // }
 
   //searching for breaking news in an interval of 3 minutes
   var interval = 0;
@@ -95,19 +95,19 @@ $(document).ready(function(){
   //   });
   // },3000);
   
-  function urlFunction(){
-    var a;
-    var node;
-    for (var i =0; i < titles.length; i++){
-      a = document.createElement("a");
-      node=document.createTextNode(titles[i]);
-      a.setAttribute("href", urls[i]);
-      a.setAttribute("target", "blank");
-      a.innerHTML = titles[i] + "    ";
-      document.getElementById('ticker').appendChild(a);
-    }
-  }
-  setTimeout(urlFunction, 3000);
+  // function urlFunction(){
+  //   var a;
+  //   var node;
+  //   for (var i =0; i < titles.length; i++){
+  //     a = document.createElement("a");
+  //     node=document.createTextNode(titles[i]);
+  //     a.setAttribute("href", urls[i]);
+  //     a.setAttribute("target", "blank");
+  //     a.innerHTML = titles[i] + "    ";
+  //     document.getElementById('ticker').appendChild(a);
+  //   }
+  // }
+  // setTimeout(urlFunction, 3000);
 
 
   var ge;
@@ -323,18 +323,23 @@ $(document).ready(function(){
                 news.setAttribute("class", "article");
 
                 //creating link and title for article
+                // news feed
+
                 var newsItem = document.createElement("a");
                 newsItem.setAttribute("href", data.Url);
                 newsItem.setAttribute("target", "blank");
                 newsItem.innerHTML = data.Title
+                news.appendChild(newsItem);
 
                 //creating description for article
-                var newsDescription = document.createElement("p");
-                newsDescription.innerHTML = data.Description;
-                news.appendChild(newsItem);
-                news.appendChild(newsDescription);
+                // var newsDescription = document.createElement("p");
+                // newsDescription.innerHTML = data.Description;
+                
+                // news.appendChild(newsDescription);
 
                 $("#newsfeed").prepend(news);
+
+                // feature box
 
                 $("<div>",{
                   id: "news_block",
@@ -507,10 +512,9 @@ $(document).ready(function(){
 // news feed:
 
       $(".toggleBtn").click(function(){
+      $( ".article" ).fadeOut( "fast" );
       $("#newsfeed").animate({ width: 'toggle' }, 800);
         // alert("The slideToggle() method is finished!");
       });
-
-
 
 });

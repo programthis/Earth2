@@ -133,7 +133,7 @@ body{
 
 a {
 			font-family: Arial;
-			color: obvious_conflict;
+			color: white;
 			text-decoration: none;
 }
 
@@ -148,7 +148,6 @@ a {
 			width: 90%;
 			height: 10%;
 			margin: 5%;
-			overflow: scroll;
 }
 
 #lower {

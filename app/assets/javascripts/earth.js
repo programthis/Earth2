@@ -379,7 +379,7 @@ $(document).ready(function(){
 
 
       // google.earth.addEventListener(placemark, "mouseover", function(event){
-      //   // placemark.setAttribute("class", "flag flag-cz");
+      //   // placemark.setAttribute("class", "flag.flag-cz");
       //   // placemark.setAttribute("alt", "Czech Republic");
       //   console.log(placemark);
       //   placemark.setStyleSelector

@@ -95,20 +95,22 @@ $(document).ready(function(){
   //   });
   // },3000);
   
-  // function urlFunction(){
-  //   var a;
-  //   var node;
-  //   for (var i =0; i < titles.length; i++){
-  //     a = document.createElement("a");
-  //     node=document.createTextNode(titles[i]);
-  //     a.setAttribute("href", urls[i]);
-  //     a.setAttribute("target", "blank");
-  //     a.innerHTML = titles[i] + "    ";
-  //     document.getElementById('ticker').appendChild(a);
-  //   }
-  // }
-  // setTimeout(urlFunction, 3000);
+  function urlFunction(){
+    var a;
+    var node;
+    for (var i =0; i < titles.length; i++){
+      a = document.createElement("a");
+      node=document.createTextNode(titles[i]);
+      a.setAttribute("href", urls[i]);
+      a.setAttribute("target", "blank");
+      a.innerHTML = titles[i] + "    ";
+      document.getElementById('ticker').appendChild(a);
+    }
+  }
 
+  // setInterval(function(){urlFunction}, 300000);
+
+ setTimeout(urlFunction, 300);
 
   var ge;
   var placemark;

@@ -5,7 +5,6 @@
   
   <title>Earth2</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 	<script type="text/javascript" src="https://www.google.com/jsapi"> </script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script type="text/javascript">
@@ -27,17 +26,16 @@
 	<div id="map3d"></div>
 
 	<div id="outer">
-		<button class="toggleBtn">=</button>
+
 		<div id="newsfeed">
-					<div class="article"></div>
-					<div class="article"></div>
+					<button class="toggleBtn">x</button>
 					<div class="article"></div>
 		</div>
 	</div>
 
 		<div id="lower">
 			<!-- <div id="tickertape"></div> -->
-			<div id="tickerheader"><p>From The Soapbox</p></div>
+<!-- 			<div id="tickerheader"><p>From The Soapbox</p></div> -->
 			<marquee id="ticker" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"></marquee>
 
 		</div>

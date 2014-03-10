@@ -473,18 +473,23 @@ $(document).ready(function(){
                 news.setAttribute("class", "article");
 
                 //creating link and title for article
+                // news feed
+
                 var newsItem = document.createElement("a");
                 newsItem.setAttribute("href", data.Url);
                 newsItem.setAttribute("target", "blank");
                 newsItem.innerHTML = data.Title
+                news.appendChild(newsItem);
 
                 //creating description for article
-                var newsDescription = document.createElement("p");
-                newsDescription.innerHTML = data.Description;
-                news.appendChild(newsItem);
-                news.appendChild(newsDescription);
+                // var newsDescription = document.createElement("p");
+                // newsDescription.innerHTML = data.Description;
+                
+                // news.appendChild(newsDescription);
 
                 $("#newsfeed").prepend(news);
+
+                // feature box
 
                 $("<div>",{
                   id: "news_block",
@@ -656,10 +661,9 @@ $(document).ready(function(){
 // news feed:
 
       $(".toggleBtn").click(function(){
+      $( ".article" ).fadeOut( "fast" );
       $("#newsfeed").animate({ width: 'toggle' }, 800);
         // alert("The slideToggle() method is finished!");
       });
-
-
 
 });

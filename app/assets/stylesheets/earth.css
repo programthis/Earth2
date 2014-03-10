@@ -116,16 +116,19 @@ body{
 }
 
 
-
 .toggleBtn 	{
 			z-index: 1;
-/*			width: 10%;
+			width: 10%;
 			height: 5%;
-			margin-left: 0%;
+			margin-left: 90%;
+			border: 0;
 			font-size: 1em;
+			color: white;
+			font-family: Arial, sans-serif;
+  		font-weight:200;
+   		-webkit-font-smoothing:antialiased;
 			position: absolute;
-			background-color: none;
-			opacity:0.9;*/
+			background: rgba(54, 25, 25, .0);
 }
 
 a {

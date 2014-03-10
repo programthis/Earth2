@@ -1,8 +1,8 @@
 Earth2::Application.routes.draw do
-
-  resources :user
+  resources :users
   resources :welcome
   root to: "welcome#index"
+  resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

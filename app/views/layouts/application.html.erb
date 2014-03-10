@@ -18,8 +18,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<%= if current_user
+			"Logged In"
+		end  %>
+
 <div id="branding"  style="float: left;"></div><br/>
-<div id="sample-ui"></div>
+<!-- <div id="sample-ui"></div>
 
 	<div id="content">
 
@@ -32,7 +36,7 @@
 					<div class="article"></div>
 					<div class="article"></div>
 		</div>
-	</div>
+	</div> -->
 
 		<div id="lower">
 			<!-- <div id="tickertape"></div> -->
@@ -47,3 +51,4 @@
 
 </body>
 </html>
+

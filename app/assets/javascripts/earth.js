@@ -320,7 +320,7 @@ $(document).ready(function(){
         ge.ALTITUDE_RELATIVE_TO_GROUND,
         0, // heading
         0, // straight-down tilt
-        8000000 // range (inverse of zoom)
+        20000000 // range (inverse of zoom)
         );
       ge.getView().setAbstractView(la);
 
@@ -434,12 +434,6 @@ $(document).ready(function(){
 	    	//testing out the time
 	    	//var tp = ge.getTime().getTimePrimitive();
 	    	//console.log(tp.getWhen().get());
-
-
-        //changing the altitude of the placemark when it is clicked
-        point.setAltitudeMode(ge.ALTITUDE_ABSOLUTE);
-        point.setAltitude(800000);
-        placemark.setGeometry(point);
 
 
         //removing the news block every time the user clicks on a new country/city

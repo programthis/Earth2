@@ -10,16 +10,19 @@ $(document).ready(function(){
   //     urls[i] = news.articles[i].url;
   // }
 
-  //searching for breaking news in an interval of 3 minutes
+  //searching for breaking news in an interval of every 3 minutes
   var interval = 0;
   var breakingNewsLat = 0;
   var breakingNewsLong = 0;
+  var locationForReverse;
+
   // interval = setInterval(function(){
 
   //   breakingNewsLat = 90 + (-90 - 90) * Math.random();
   //   breakingNewsLong = 180 + (-180 - 180) * Math.random();
 
   //   var geocoder;
+    
   //   initializeGeo();
   //   codeLatLng();
 
@@ -32,68 +35,222 @@ $(document).ready(function(){
   //     geocoder.geocode({
   //       "latLng": latlng
   //     }, function(results){
-  //       console.log(results);
+  //       locationForReverse = results[0].formatted_address;
   //     });
   //   }
+  //   console.log(locationForReverse);
+  //   if (locationForReverse){
+  //     console.log("location for reverse exists!");
+  //     $.bingSearch({
+  //         query: locationForReverse,
+  //         latitude: breakingNewsLat,
+  //         longitude: breakingNewsLong,
+  //         appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
+  //         // Optidefaults to the Bing Search API Web Results Query).
+  //         // Additional information: This feature allows you to proxy through a server-side
+  //         //                         script in order to hide your API key, which is exposed to the
+  //         //                         world if you set it client-side in appKey. An example PHP
+  //         //                         script is included (searchproxy.php).
+  //         // Optional (defaults to 1): Page Number
+  //         pageNumber: 1,
+  //         urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
+  //         // Optional (defaults to 10): Page Size
+  //         pageSize: 1,
+  //         // Optional: Function is called after search results are retrieved, but before the interator is called
+  //         beforeSearchResults: function(data) {
+  //             // Use data.hasMore, data.resultBatchCount
+  //         },
+  //         // Optional: Function is called once per result in the current batch
+  //         searchResultIterator: function(data) {
+  //             // Use data.ID, data.Title, data.Description, data.Url, data.DisplayUrl, data.Metadata.Type (check for undefined)
+  //             console.log(data.Title);
+  //             console.log(data.Description);
+  //             console.log(data.Url);
+  //             var news = document.createElement("div");
+  //             news.setAttribute("class", "article");
 
+  //             // //creating link and title for article
+  //             // var newsItem = document.createElement("a");
+  //             // newsItem.setAttribute("href", data.Url);
+  //             // newsItem.setAttribute("target", "blank");
+  //             // newsItem.innerHTML = data.Title
 
-  //   console.log(breakingNewsLat);
-  //   console.log(breakingNewsLong);
+  //             // //creating description for article
+  //             // var newsDescription = document.createElement("p");
+  //             // newsDescription.innerHTML = data.Description;
+  //             // news.appendChild(newsItem);
+  //             // news.appendChild(newsDescription);
 
-  //   $.bingSearch({
-  //       query: " ",
-  //       latitude: breakingNewsLat,
-  //       longitude: breakingNewsLong,
-  //       appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
-  //       // Optidefaults to the Bing Search API Web Results Query).
-  //       // Additional information: This feature allows you to proxy through a server-side
-  //       //                         script in order to hide your API key, which is exposed to the
-  //       //                         world if you set it client-side in appKey. An example PHP
-  //       //                         script is included (searchproxy.php).
-  //       // Optional (defaults to 1): Page Number
-  //       pageNumber: 1,
-  //       urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
-  //       // Optional (defaults to 10): Page Size
-  //       pageSize: 1,
-  //       // Optional: Function is called after search results are retrieved, but before the interator is called
-  //       beforeSearchResults: function(data) {
-  //           // Use data.hasMore, data.resultBatchCount
-  //       },
-  //       // Optional: Function is called once per result in the current batch
-  //       searchResultIterator: function(data) {
-  //           // Use data.ID, data.Title, data.Description, data.Url, data.DisplayUrl, data.Metadata.Type (check for undefined)
-  //           console.log(data.Title);
-  //           console.log(data.Description);
-  //           console.log(data.Url);
-  //           var news = document.createElement("div");
-  //           news.setAttribute("class", "article");
-
-  //           // //creating link and title for article
-  //           // var newsItem = document.createElement("a");
-  //           // newsItem.setAttribute("href", data.Url);
-  //           // newsItem.setAttribute("target", "blank");
-  //           // newsItem.innerHTML = data.Title
-
-  //           // //creating description for article
-  //           // var newsDescription = document.createElement("p");
-  //           // newsDescription.innerHTML = data.Description;
-  //           // news.appendChild(newsItem);
-  //           // news.appendChild(newsDescription);
-
-            
-
-  //       },
-  //       // Optional: Function is called after search results are retrieved and after all instances of the interator are called
-  //       afterSearchResults: function(data) {
-  //           // Use data.hasMore, data.resultBatchCount
-  //       },
-  //       // Optional: Called when there is an error retrieving results
-  //       fail: function(data) {
-  //           // data contains an error message
-  //           console.log('bing search fail!');
-  //       }
-  //   });
+  //         },
+  //         // Optional: Function is called after search results are retrieved and after all instances of the interator are called
+  //         afterSearchResults: function(data) {
+  //             // Use data.hasMore, data.resultBatchCount
+  //         },
+  //         // Optional: Called when there is an error retrieving results
+  //         fail: function(data) {
+  //             // data contains an error message
+  //             console.log('bing search fail!');
+  //         }
+  //     });
+  //     createPlacemarkForBreakingNews(locationForReverse, breakingNewsLat,breakingNewsLong);
+  //   }
   // },3000);
+
+  //     function createPlacemarkForBreakingNews(breakingNewsCountry, breakingNewsLat, breakingNewsLong){
+        
+  //       console.log("Creating placemark for breaking news...");
+  //       console.log(breakingNewsCountry);
+  //       console.log(breakingNewsLat);
+  //       console.log(breakingNewsLong);
+
+  //       var placemark = ge.createPlacemark('');
+  //       ge.getFeatures().appendChild(placemark);
+          
+  //       // Create a style map.
+  //       var styleMap = ge.createStyleMap('');
+
+  //       // Create normal style for style map.
+  //       var normalStyle = ge.createStyle('');
+  //       var normalIcon = ge.createIcon('');
+  //       normalIcon.setHref('http://google-maps-icons.googlecode.com/files/accident.png');
+  //       normalStyle.getIconStyle().setIcon(normalIcon);
+  //       normalStyle.getIconStyle().setScale(5.0);
+
+  //       // Create highlight style for style map.
+  //       var highlightStyle = ge.createStyle('');
+  //       var highlightIcon = ge.createIcon('');
+  //       // highlightIcon.setHref("path/to/flags.png", "-16px 0");
+
+  //       highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/airport.png');
+        
+  //       highlightStyle.getIconStyle().setIcon(highlightIcon);
+  //       highlightStyle.getIconStyle().setScale(8.0);
+
+  //       styleMap.setNormalStyle(normalStyle);
+  //       styleMap.setHighlightStyle(highlightStyle);
+
+  //       // Apply stylemap to a placemark.
+  //       placemark.setStyleSelector(styleMap);
+
+  //       // Create point
+  //       var point = ge.createPoint('');
+
+  //       point.setLatitude(breakingNewsLat);
+  //       point.setLongitude(breakingNewsLong);
+
+  //       point.setAltitudeMode(ge.ALTITUDE_ABSOLUTE);
+  //       point.setAltitude(800000);
+  //       placemark.setGeometry(point);
+
+  //       google.earth.addEventListener(placemark, "click", function(event){
+  //         //preventing the default balloon from popping up
+  //         event.preventDefault();
+
+  //         //testing out the time
+  //         //var tp = ge.getTime().getTimePrimitive();
+  //         //console.log(tp.getWhen().get());
+
+  //         //removing the news block every time the user clicks on a new country/city
+  //         var removingNewsFromEarth = document.getElementById("map3d");
+  //         var elementToRemove = document.getElementById("news_block");
+  //         if (elementToRemove){
+  //           removingNewsFromEarth.removeChild(elementToRemove);
+  //         }
+          
+  //         $.bingSearch({
+  //             query: breakingNewsCountry,
+  //             latitude: breakingNewsLat,
+  //             longitude: breakingNewsLong,
+
+  //             appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
+  //             // Optidefaults to the Bing Search API Web Results Query).
+  //             // Additional information: This feature allows you to proxy through a server-side
+  //             //                         script in order to hide your API key, which is exposed to the
+  //             //                         world if you set it client-side in appKey. An example PHP
+  //             //                         script is included (searchproxy.php).
+  //             // Optional (defaults to 1): Page Number
+  //             pageNumber: 1,
+  //             urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
+  //             // Optional (defaults to 10): Page Size
+  //             pageSize: 1,
+  //             // Optional: Function is called after search results are retrieved, but before the interator is called
+  //             beforeSearchResults: function(data) {
+  //                 // Use data.hasMore, data.resultBatchCount
+  //             },
+  //             // Optional: Function is called once per result in the current batch
+  //             searchResultIterator: function(data) {
+  //                 // Use data.ID, data.Title, data.Description, data.Url, data.DisplayUrl, data.Metadata.Type (check for undefined)
+  //                 console.log(data.Title);
+  //                 console.log(data.Description);
+  //                 console.log(data.Url);
+  //                 var news = document.createElement("div");
+  //                 news.setAttribute("class", "article");
+
+  //                 //creating link and title for article
+  //                 var newsItem = document.createElement("a");
+  //                 newsItem.setAttribute("href", data.Url);
+  //                 newsItem.setAttribute("target", "blank");
+  //                 newsItem.innerHTML = data.Title
+
+  //                 //creating description for article
+  //                 var newsDescription = document.createElement("p");
+  //                 newsDescription.innerHTML = data.Description;
+  //                 news.appendChild(newsItem);
+  //                 news.appendChild(newsDescription);
+
+  //                 $("#newsfeed").prepend(news);
+
+  //                 $("<div>",{
+  //                   id: "news_block",
+  //                   rel: "external",
+  //                   text: data.Title,
+  //                   click: function(){
+  //                     window.open(data.Url, "_blank");
+  //                   }
+  //                 }).appendTo("#map3d");
+
+  //                 $("<div>",{
+  //                   id: "news_block_description",
+  //                   rel: "external",
+  //                   text: data.Description,
+  //                   click: function(){
+  //                     window.open(data.Url, "_blank");
+  //                   }
+  //                 }).appendTo("#news_block");
+
+  //             },
+  //             // Optional: Function is called after search results are retrieved and after all instances of the interator are called
+  //             afterSearchResults: function(data) {
+  //                 // Use data.hasMore, data.resultBatchCount
+  //             },
+  //             // Optional: Called when there is an error retrieving results
+  //             fail: function(data) {
+  //                 // data contains an error message
+  //                 console.log('bing search fail!');
+  //             }
+  //         }); 
+  //       });
+
+  //     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   // function urlFunction(){
   //   var a;
@@ -163,7 +320,7 @@ $(document).ready(function(){
         ge.ALTITUDE_RELATIVE_TO_GROUND,
         0, // heading
         0, // straight-down tilt
-        8000000 // range (inverse of zoom)
+        20000000 // range (inverse of zoom)
         );
       ge.getView().setAbstractView(la);
 
@@ -222,7 +379,7 @@ $(document).ready(function(){
 
 
       // google.earth.addEventListener(placemark, "mouseover", function(event){
-      //   // placemark.setAttribute("class", "flag flag-cz");
+      //   // placemark.setAttribute("class", "flag.flag-cz");
       //   // placemark.setAttribute("alt", "Czech Republic");
       //   console.log(placemark);
       //   placemark.setStyleSelector
@@ -277,13 +434,6 @@ $(document).ready(function(){
 	    	//testing out the time
 	    	//var tp = ge.getTime().getTimePrimitive();
 	    	//console.log(tp.getWhen().get());
-
-
-        //changing the altitude of the placemark when it is clicked
-        point.setAltitudeMode(ge.ALTITUDE_ABSOLUTE);
-        point.setAltitude(800000);
-        placemark.setGeometry(point);
-
 
 
         //removing the news block every time the user clicks on a new country/city
@@ -443,7 +593,6 @@ $(document).ready(function(){
 
     	// add the placemark to the earth DOM
     	ge.getFeatures().appendChild(placemark);
-
 
       google.earth.addEventListener(placemark, "click", function(event){
       	//preventing the default balloon from popping up

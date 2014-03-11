@@ -2,17 +2,45 @@
 <html>
 <head>
   <%= include_gon %>
+  
   <title>Earth2</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 	<script type="text/javascript" src="https://www.google.com/jsapi"> </script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script src="http://ajax.google.apis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
 	<script type="text/javascript">
 	    google.load("earth", "1", {"other_params":"sensor=true_or_false"});
 		google.load('search', '1');
 		google.load("elements", "1", {packages : ["newsshow"]});
 	</script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+	<script type="text/javascript">
+	console.log("18");
+	$("#sign_up_form").dialog({
+		autoOpen: false,
+		height: 300,
+		width: 300,
+		modal: true, 
+		buttons: {
+				"Create Account": function() {
+				// $(this).dialog("close");
+			},
+			Cancel: function() {
+				$(this).dialog("close");
+			}
+		}
+
+	});
+	console.log("34")
+	</script>
+
+		<script>
+			$("#create_user").button().click(function() {
+				$("#sign_up_form").dialog("open");
+			});
+			console.log("39");
+		</script>
 
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -21,26 +49,55 @@
 	<%= if current_user
 			"Logged In"
 		end  %>
+	<div class = "li_su_button">
+		<%= link_to "Sign Up", new_user_path %>
+		<%= link_to "Log In", new_session_path %>
+	<div>
+	<button id="create_user">Create New User</button>
 
-<div id="branding"  style="float: left;"></div><br/>
-<div id="sample-ui"></div>
+	<div id="sign_up_form"> 
+			<% form_for users_path do |f| %>
+		<div class="field">
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</div>
+		<div class="field">
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+		</div>
+		<div class="field">
+			<%= f.label :password %>
+			<%= f.text_field :password %>
+		</div>
+		<div class="field">
+			<%= f.label :password_confirmation %>
+			<%= f.text_field :password_confirmation %>
+		</div>
+		<div class="actions">
+			<%= f.submit :name %>
+		</div>
+	<% end %>
+
+	</div>
+
+	<div id="branding"  style="float: left;"></div><br/>
+	<div id="sample-ui"></div>
 
 	<div id="content">
 
 	<div id="map3d"></div>
 
 	<div id="outer">
-		<button class="toggleBtn">=</button>
+
 		<div id="newsfeed">
-					<div class="article"></div>
-					<div class="article"></div>
+					<button class="toggleBtn">x</button>
 					<div class="article"></div>
 		</div>
 	</div>
 
 		<div id="lower">
 			<!-- <div id="tickertape"></div> -->
-			<div id="tickerheader"><p>From The Soapbox</p></div>
+<!-- 			<div id="tickerheader"><p>From The Soapbox</p></div> -->
 			<marquee id="ticker" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"></marquee>
 
 		</div>

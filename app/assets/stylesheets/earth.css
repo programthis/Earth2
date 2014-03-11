@@ -172,3 +172,8 @@ a {
 			z-index: 8;
 			position: fixed;
 }
+
+.li_su_button{
+		float: top;
+		color: white;
+}

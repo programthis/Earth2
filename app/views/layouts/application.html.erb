@@ -46,7 +46,69 @@
 
 			</div>
 
+			<script type="text/javascript">
+			console.log("18");
+			$("#sign_up_form").dialog({
+				autoOpen: false,
+				height: 300,
+				width: 300,
+				modal: true, 
+				buttons: {
+						"Create Account": function() {
+						// $(this).dialog("close");
+					},
+					Cancel: function() {
+						$(this).dialog("close");
+					}
+				}
+
+			});
+			console.log("34")
+			</script>
+
+			<script>
+				$("#create_user").button().click(function() {
+					$("#sign_up_form").dialog("open");
+				});
+				console.log("39");
+			</script>
+
+			<%= if current_user
+					"Logged In"
+				end  %>
+			<div class = "li_su_button">
+				<%= link_to "Sign Up", new_user_path %>
+				<%= link_to "Log In", new_session_path %>
+			<div>
+			<button id="create_user">Create New User</button>
+
+			<div id="sign_up_form"> 
+				<% form_for users_path do |f| %>
+					<div class="field">
+						<%= f.label :name %>
+						<%= f.text_field :name %>
+					</div>
+					<div class="field">
+						<%= f.label :email %>
+						<%= f.text_field :email %>
+					</div>
+					<div class="field">
+						<%= f.label :password %>
+						<%= f.text_field :password %>
+					</div>
+					<div class="field">
+						<%= f.label :password_confirmation %>
+						<%= f.text_field :password_confirmation %>
+					</div>
+					<div class="actions">
+						<%= f.submit :name %>
+					</div>
+				<% end %>
+
+			</div>
+
 		<%= yield %>
 
 		</body>
 </html>
+

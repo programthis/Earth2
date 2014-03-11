@@ -24,6 +24,7 @@ $(document).ready(function(){
   }
   setInterval(urlFunction(), 180000);
 
+
   //searching for breaking news in an interval of every 3 minutes
   var interval = 0;
   var countries = gon.countries;
@@ -154,7 +155,6 @@ $(document).ready(function(){
           if (elementToRemove){
             removingNewsFromEarth.removeChild(elementToRemove);
           }
-          
           $.bingSearch({
               query: breakingNewsCountry,
               latitude: breakingNewsLat,
@@ -229,7 +229,6 @@ $(document).ready(function(){
         });
 
       }
-
 
   var ge;
   var placemark;

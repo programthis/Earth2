@@ -40,7 +40,6 @@ $(document).ready(function(){
     console.log(breakingNewsLat);
     console.log(breakingNewsLong);
 
-    console.log("location for reverse exists!");
     $.bingSearch({
         query: countryName,
         latitude: breakingNewsLat,
@@ -212,10 +211,9 @@ $(document).ready(function(){
                     id: "news_block_description",
                     rel: "external",
                     text: data.Description,
-                    click: function(){
-                      window.open(data.Url, "_blank");
-                    }
                   }).appendTo("#news_block");
+
+                  $("#news_block").draggable();
 
               },
               // Optional: Function is called after search results are retrieved and after all instances of the interator are called
@@ -467,11 +465,12 @@ $(document).ready(function(){
                   id: "news_block_description",
                   rel: "external",
                   text: data.Description,
-                  click: function(){
-                    window.open(data.Url, "_blank");
-                  }
                 }).appendTo("#news_block");
+                $("#news_block").css({
+                  "position": "none"
+                });
 
+                $("#news_block").draggable();
             },
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called
             afterSearchResults: function(data) {
@@ -608,10 +607,9 @@ $(document).ready(function(){
                   id: "news_block_description",
                   rel: "external",
                   text: data.Description,
-                  click: function(){
-                    window.open(data.Url, "_blank");
-                  }
                 }).appendTo("#news_block");
+
+                $("#news_block").draggable();
 
             },
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called

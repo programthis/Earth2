@@ -39,9 +39,10 @@
 	height: 100%;
 	position: absolute;
 	border-radius: 3%;
+	overflow: hidden;
 	box-shadow: 5px 10px 20px black;
 	background: rgba(54, 25, 25, .7);
-	overflow: scroll;
+	overflow: auto;
 }
 
 body{
@@ -102,7 +103,7 @@ body{
 	border-radius: 5%;
 	box-shadow: 5px 10px 20px black;
 	background: rgba(54, 25, 25, .9);
-	overflow: scroll;
+	overflow: auto;
 }
 
 #news_block_description{

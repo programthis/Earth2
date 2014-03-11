@@ -666,4 +666,10 @@ $(document).ready(function(){
         // alert("The slideToggle() method is finished!");
       });
 
+      // $(".hide_feature_box").click(function(){
+      // $( "#news_block" ).fadeOut( "fast" );
+      // $("#newsfeed").animate({ width: 'toggle' }, 800);
+        // alert("The slideToggle() method is finished!");
+      // });
+
 });

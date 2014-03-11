@@ -3,6 +3,19 @@
 	padding:0;
 }
 
+#branding {
+	font-family: Arial;
+	font-size: 3em;
+	font-weight: 500;
+	color: white;
+	height: 10%;
+	margin-left: 80%;
+}
+	
+
+
+
+
 #content{
 	width: 100%;
 	height: 100%;
@@ -12,9 +25,10 @@
 
 #map3d{
 	position:absolute;
+	top: 5%;
 	float:right;
 	width:100%;
-	height:90%;
+	height:85%;
 }
 
 #navbar {
@@ -32,8 +46,8 @@
 }
 
 #newsfeed {
-	margin-left: 8%;
-	margin-top: 5%;
+	margin-left: 12%;
+	margin-top: 15%;
 	z-index: 2;
 	width: 100%;
 	height: 100%;
@@ -41,11 +55,12 @@
 	border-radius: 3%;
 	box-shadow: 5px 10px 20px black;
 	background: rgba(54, 25, 25, .7);
-	overflow: scroll;
+	overflow: auto;
 }
 
 body{
 	background-color: black;
+	height: 100%;
 }
 
 #ticker{
@@ -98,11 +113,11 @@ body{
 	width:20%;
 	height:40%;
 	position: absolute;
-	overflow: hidden;
+/*	overflow: hidden;*/
 	border-radius: 5%;
 	box-shadow: 5px 10px 20px black;
 	background: rgba(54, 25, 25, .9);
-	overflow: scroll;
+	overflow: auto;
 }
 
 #news_block_description{
@@ -131,13 +146,33 @@ body{
 			background: rgba(54, 25, 25, .0);
 }
 
+.hide_feature_box {
+			z-index: 1;
+			width: 10%;
+			height: 5%;
+			margin-left: 90%;
+			border: 0;
+			font-size: 1em;
+			color: white;
+			font-family: Arial, sans-serif;
+  		font-weight:200;
+   		-webkit-font-smoothing:antialiased;
+			position: absolute;
+			background: rgba(54, 25, 25, .7);
+}
+
 a {
 			font-family: Arial;
 			color: white;
 			text-decoration: none;
 }
 
+.article a:hover {
+				 color: red;
+}
+
 .article 	{
+
 			font-family: Arial;
 			font-size: 1.1em;
 			font-weight: 800;

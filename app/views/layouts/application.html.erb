@@ -17,15 +17,14 @@
 
 	  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 	  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>		
-	  
-
+	   
 	</head>
 		<body>
 			<div id="branding">earth2</div>
 			<br/>
 			<div id="sample-ui"></div>
 
-			<div id="content">
+			<!-- <div id="content">
 
 					<div id="map3d"></div>
 
@@ -38,7 +37,7 @@
 
 							</div>
 
-			</div>
+			</div> -->
 
 					<div id="lower">
 						<marquee id="ticker" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"></marquee>
@@ -46,32 +45,7 @@
 
 			</div>
 
-			<script type="text/javascript">
-			console.log("18");
-			$("#sign_up_form").dialog({
-				autoOpen: false,
-				height: 300,
-				width: 300,
-				modal: true, 
-				buttons: {
-						"Create Account": function() {
-						// $(this).dialog("close");
-					},
-					Cancel: function() {
-						$(this).dialog("close");
-					}
-				}
 
-			});
-			console.log("34")
-			</script>
-
-			<script>
-				$("#create_user").button().click(function() {
-					$("#sign_up_form").dialog("open");
-				});
-				console.log("39");
-			</script>
 
 			<%= if current_user
 					"Logged In"
@@ -83,7 +57,7 @@
 			<button id="create_user">Create New User</button>
 
 			<div id="sign_up_form"> 
-				<% form_for users_path do |f| %>
+				<%= form_for users_path do |f| %>
 					<div class="field">
 						<%= f.label :name %>
 						<%= f.text_field :name %>
@@ -101,7 +75,7 @@
 						<%= f.text_field :password_confirmation %>
 					</div>
 					<div class="actions">
-						<%= f.submit :name %>
+						<%= f.submit "Sign up!" %>
 					</div>
 				<% end %>
 

@@ -6,9 +6,7 @@
 	  <title>Earth2</title>
 	  <%= stylesheet_link_tag    "application", media: "all" %>
 		<script type="text/javascript" src="https://www.google.com/jsapi"> </script>
-		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+		
 		<script type="text/javascript">
 		    google.load("earth", "1", {"other_params":"sensor=true_or_false"});
 			google.load('search', '1');
@@ -16,6 +14,10 @@
 		</script>
 
 	  <%= javascript_include_tag "application" %>
+
+	  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+	  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>		
+	  
 
 	</head>
 		<body>

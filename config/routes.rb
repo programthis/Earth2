@@ -2,6 +2,9 @@ Earth2::Application.routes.draw do
   resources :users
   resources :welcome
   resources :sessions
+  resources :newsfeeds
+
+  get "newsfeeds_path" => "newsfeeds#create", as: "newsfeeds/create"
 
   root to: "welcome#index"
   

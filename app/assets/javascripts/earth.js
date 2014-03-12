@@ -370,20 +370,31 @@ $(document).ready(function(){
                 $("<div>",{
                   id: "news_block",
                   rel: "external",
-                  text: data.Title,
-                  click: function(){
-                    window.open(data.Url, "_blank");
-                  }
+                  text: data.Title
                 }).appendTo("#map3d");
 
                 $("<div>",{
                   id: "news_block_description",
                   rel: "external",
                   text: data.Description,
+                  click: function(){
+                    window.open(data.Url, "_blank");
+                  }
                 }).appendTo("#news_block");
-                $("#news_block").css({
-                  "position": "none"
-                });
+                
+                $("<button>",{
+                  id: "country_subscribe",
+                  text: "Subcribe",
+                  click: function(){
+                    $.ajax({
+                      type: "POST",
+                      url: "newsfeeds/path",
+                      data: country.name,
+                      contentType: "application/json",
+                      dataType: "json"
+                    });
+                  }
+                }).appendTo("#news_block");
 
                 $("#news_block").draggable();
             },

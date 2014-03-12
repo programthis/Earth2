@@ -15,4 +15,8 @@
 //= require jquery.base64
 //= require jquery.bingsearch
 //= require earth
+//= require navbar
+//= require ticker
+//= require newsfeed
+
 //= require_tree .

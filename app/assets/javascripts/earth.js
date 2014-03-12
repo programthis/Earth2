@@ -1,63 +1,14 @@
 $(document).ready(function(){
 
-  var news = gon.news;
-
-  var titles = [];
-  var urls = [];
-
-  for (var i =0; i < news.articles.length; i++){
-      titles[i] = news.articles[i].title;
-      urls[i] = news.articles[i].url;
-  }
-
-  function urlFunction(){
-    var a;
-    var node;
-    for (var i =0; i < titles.length; i++){
-      a = document.createElement("a");
-      node=document.createTextNode(titles[i]);
-      a.setAttribute("href", urls[i]);
-      a.setAttribute("target", "blank");
-      a.innerHTML = titles[i] + "    ";
-      document.getElementById('ticker').appendChild(a);
-    }
-  }
-  setInterval(urlFunction(), 180000);
-
-
-  function createUser(){
-    $("#sign_up_form").dialog({
-      autoOpen: false,
-      height: 300,
-      width: 300,
-      modal: true, 
-      close: function(){
-
-      }
-    });
-    $("#sign_up_form").dialog("open");
-  }
-
-  function loginUser(){
-    $("#login_form").dialog({
-      autoOpen: false,
-      height: 300,
-      width: 300,
-      modal: true, 
-      close: function(){
-      }
-    });
-
-    $("#login_user").click(function(){
-      $("#login_form").dialog("open");
-    });
-  }
-
-  //searching for breaking news in an interval of every 3 minutes
+  
   var interval = 0;
   var countries = gon.countries;
+  var capitals = gon.capitals;
   var numCountries = countries.length;
+  var ge;
+  var placemark;
 
+  //searching for breaking news in an interval of every 3 minutes
   interval = setInterval(function(){
 
     var randomCountry = Math.floor((Math.random()*numCountries)+0);
@@ -123,7 +74,7 @@ $(document).ready(function(){
     createPlacemarkForBreakingNews(countryName, breakingNewsLat,breakingNewsLong);
   },180000);
 
-      function createPlacemarkForBreakingNews(breakingNewsCountry, breakingNewsLat, breakingNewsLong){
+    function createPlacemarkForBreakingNews(breakingNewsCountry, breakingNewsLat, breakingNewsLong){
         
         console.log("Creating placemark for breaking news...");
         console.log(breakingNewsCountry);
@@ -173,10 +124,6 @@ $(document).ready(function(){
           //preventing the default balloon from popping up
           event.preventDefault();
 
-          //testing out the time
-          //var tp = ge.getTime().getTimePrimitive();
-          //console.log(tp.getWhen().get());
-
           //removing the news block every time the user clicks on a new country/city
           var removingNewsFromEarth = document.getElementById("map3d");
           var elementToRemove = document.getElementById("news_block");
@@ -217,12 +164,7 @@ $(document).ready(function(){
                   newsItem.setAttribute("href", data.Url);
                   newsItem.setAttribute("target", "blank");
                   newsItem.innerHTML = data.Title
-
-                  // //creating description for article
-                  // var newsDescription = document.createElement("p");
-                  // newsDescription.innerHTML = data.Description;
                   news.appendChild(newsItem);
-                  // news.appendChild(newsDescription);
 
                   $("#newsfeed").prepend(news);
 
@@ -255,37 +197,29 @@ $(document).ready(function(){
               }
           }); 
         });
-
       }
 
-  var ge;
-  var placemark;
+    function addSampleButton(caption, clickHandler) {
+      var btn = document.createElement('input');
+      btn.type = 'button';
+      btn.value = caption;
+      
+      if (btn.attachEvent)
+        btn.attachEvent('onclick', clickHandler);
+      else
+        btn.addEventListener('click', clickHandler, false);
 
-	function addSampleButton(caption, clickHandler) {
-	  var btn = document.createElement('input');
-	  btn.type = 'button';
-	  btn.value = caption;
-	  
-	  if (btn.attachEvent)
-	    btn.attachEvent('onclick', clickHandler);
-	  else
-	    btn.addEventListener('click', clickHandler, false);
+      // add the button to the Sample UI
+      document.getElementById('sample-ui').appendChild(btn);
+    }
 
-	  // add the button to the Sample UI
-	  document.getElementById('sample-ui').appendChild(btn);
-	}
-	
     function init() {
+      
       google.earth.createInstance('map3d', initCB, failureCB);
       addSampleButton('Look up in the sky, kid.', showSky);
       addSampleButton('Homeward Bound', showEarth);
       addSampleButton('Re-Centre', reCentre);
-      addSampleButton('Sign Up', createUser);
-      addSampleButton('Login', loginUser);
 
-
-      var countries = gon.countries;
-      var capitals = gon.capitals;
     }
 
     function initCB(instance) {
@@ -316,12 +250,10 @@ $(document).ready(function(){
         );
       ge.getView().setAbstractView(la);
 
-      //creating the placemark for every country in the world
-      var countries = gon.countries;
-      var capitals = gon.capitals;
-      
       countries.forEach(createPlacemarkForCountry);
       capitals.forEach(createPlacemarkForCapital);
+      
+
     }
 
     function createPlacemarkForCountry(country){
@@ -382,50 +314,9 @@ $(document).ready(function(){
         
       // });
 
-
-
-
-      // google.earth.addEventListener(placemark, "mouseover", function(event){
-      //   //preventing the default balloon from popping up
-      //   event.preventDefault();
-      //   $.ajax({
-      //     url: "http://www.panoramio.com/map/get_panoramas.php?",
-      //     type: "GET",
-      //     data: { 
-      //       set: "public",
-      //       from: 0,
-      //       to: 1,
-      //       minx: country.longitude - 1,
-      //       miny: country.latitude - 1,
-      //       maxx: country.longitude + 1,
-      //       maxy: country.latitude + 1,
-      //       size: "medium",
-      //       mapfilter: true
-      //     },
-      //     dataType: "jsonp",
-      //     success: function(response){
-      //       console.log("heeeey");
-      //       console.log(response);
-
-      //       var highlightStyle = ge.createStyle('');
-      //       var highlightIcon = ge.createIcon('');
-      //       highlightIcon.setHref(response.photos[0].photo_file_url);
-      //       highlightStyle.getIconStyle().setIcon(highlightIcon);
-      //       highlightStyle.getIconStyle().setScale(10.0);
-      //       styleMap.setHighlightStyle(highlightStyle);
-      //     }
-      //   })
-
-      // });
-
 	    google.earth.addEventListener(placemark, "click", function(event){
 	    	//preventing the default balloon from popping up
 	    	event.preventDefault();
-
-	    	//testing out the time
-	    	//var tp = ge.getTime().getTimePrimitive();
-	    	//console.log(tp.getWhen().get());
-
 
         //removing the news block every time the user clicks on a new country/city
         var removingNewsFromEarth = document.getElementById("map3d");
@@ -471,12 +362,6 @@ $(document).ready(function(){
                 newsItem.setAttribute("target", "blank");
                 newsItem.innerHTML = data.Title
                 news.appendChild(newsItem);
-
-                //creating description for article
-                // var newsDescription = document.createElement("p");
-                // newsDescription.innerHTML = data.Description;
-                
-                // news.appendChild(newsDescription);
 
                 $("#newsfeed").prepend(news);
 
@@ -564,11 +449,6 @@ $(document).ready(function(){
         //preventing the default balloon from popping up
         event.preventDefault();
 
-        //testing out the time
-        //var tp = ge.getTime().getTimePrimitive();
-        //console.log(tp.getWhen().get());
-
-
         //removing the news block every time the user clicks on a new country/city
         var removingNewsFromEarth = document.getElementById("map3d");
         var elementToRemove = document.getElementById("news_block");
@@ -614,12 +494,6 @@ $(document).ready(function(){
                 newsItem.innerHTML = data.Title
                 news.appendChild(newsItem);
 
-                //creating description for article
-                // var newsDescription = document.createElement("p");
-                // newsDescription.innerHTML = data.Description;
-                
-                // news.appendChild(newsDescription);
-
                 $("#newsfeed").prepend(news);
 
                 // feature box
@@ -658,82 +532,75 @@ $(document).ready(function(){
     function failureCB(errorCode) {
     }
 
-    function showSky() {
-    	// create the placemark
-    	placemark = ge.createPlacemark('');
-    	placemark.setName("CLICK HERE FOR ALIEN NEWS");
-    	var point = ge.createPoint('');
-    	point.setLatitude(41);
-    	point.setLongitude(-169);
-    	placemark.setGeometry(point);
+      function showSky() {
+        // create the placemark
+        placemark = ge.createPlacemark('');
+        placemark.setName("CLICK HERE FOR ALIEN NEWS");
+        var point = ge.createPoint('');
+        point.setLatitude(41);
+        point.setLongitude(-169);
+        placemark.setGeometry(point);
 
-    	// add the placemark to the earth DOM
-    	ge.getFeatures().appendChild(placemark);
+        // add the placemark to the earth DOM
+        ge.getFeatures().appendChild(placemark);
 
-      google.earth.addEventListener(placemark, "click", function(event){
-      	//preventing the default balloon from popping up
-      	event.preventDefault();
+        google.earth.addEventListener(placemark, "click", function(event){
+          //preventing the default balloon from popping up
+          event.preventDefault();
 
-  	    var options = { "format" : "300x250", 
-  	    "queryList" : [
-  	          {
-  	            "title" : "OUTER SPACE",
-  	            "q" : "Andromeda Galaxy"
-  	          },
-  	          {
-  	            "q" : "Nasa"
-  	          }
-  	        ]
-  			};
-  		var content = document.getElementById("content");
-  		var newsShow = new google.elements.NewsShow(content,options);
+          var options = { "format" : "300x250", 
+          "queryList" : [
+                {
+                  "title" : "OUTER SPACE",
+                  "q" : "Andromeda Galaxy"
+                },
+                {
+                  "q" : "Nasa"
+                }
+              ]
+          };
+        var content = document.getElementById("content");
+        var newsShow = new google.elements.NewsShow(content,options);
 
-      });
+        });
 
 
-      ge.getOptions().setMapType(ge.MAP_TYPE_SKY);
+        ge.getOptions().setMapType(ge.MAP_TYPE_SKY);
 
-      setTimeout(function() {
-        // Zoom in on a nebula.
-        var oldFlyToSpeed = ge.getOptions().getFlyToSpeed();
-        ge.getOptions().setFlyToSpeed(.2);  // Slow down the camera flyTo speed.
-        var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-        lookAt.set(41.28509187215, -169.2448684551622, 0,
-                   ge.ALTITUDE_RELATIVE_TO_GROUND, 262.87, 0, 162401);
-        // Also try:
-        //   lookAt.set(-59.65189337195337, -18.799770300376053, 0,
-        //              ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 36817);
-        ge.getView().setAbstractView(lookAt);
-        ge.getOptions().setFlyToSpeed(oldFlyToSpeed);
-      }, 1000);  // Start the zoom-in after one second.
-    }
+        setTimeout(function() {
+          // Zoom in on a nebula.
+          var oldFlyToSpeed = ge.getOptions().getFlyToSpeed();
+          ge.getOptions().setFlyToSpeed(.2);  // Slow down the camera flyTo speed.
+          var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+          lookAt.set(41.28509187215, -169.2448684551622, 0,
+                     ge.ALTITUDE_RELATIVE_TO_GROUND, 262.87, 0, 162401);
+          // Also try:
+          //   lookAt.set(-59.65189337195337, -18.799770300376053, 0,
+          //              ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 36817);
+          ge.getView().setAbstractView(lookAt);
+          ge.getOptions().setFlyToSpeed(oldFlyToSpeed);
+        }, 1000);  // Start the zoom-in after one second.
+      }
 
-    function showEarth() {
-      ge.getOptions().setMapType(ge.MAP_TYPE_EARTH);
-    }
+      function showEarth() {
+        ge.getOptions().setMapType(ge.MAP_TYPE_EARTH);
+      }
 
-    function reCentre() {
-      //making it so the earth look at the "non-western" side of the world upon load
-      var la = ge.createLookAt('');
-      la.set(48, 31,
-        0, // altitude
-        ge.ALTITUDE_RELATIVE_TO_GROUND,
-        0, // heading
-        0, // straight-down tilt
-        8000000 // range (inverse of zoom)
-        );
-      ge.getView().setAbstractView(la);
-    }
+      function reCentre() {
+        //making it so the earth look at the "non-western" side of the world upon load
+        var la = ge.createLookAt('');
+        la.set(48, 31,
+          0, // altitude
+          ge.ALTITUDE_RELATIVE_TO_GROUND,
+          0, // heading
+          0, // straight-down tilt
+          8000000 // range (inverse of zoom)
+          );
+        ge.getView().setAbstractView(la);
+      }
 
     google.setOnLoadCallback(init);
 
-// news feed:
-
-      $(".toggleBtn").click(function(){
-      $( ".article" ).fadeOut( "fast" );
-      $("#newsfeed").animate({ width: 'toggle' }, 800);
-        // alert("The slideToggle() method is finished!");
-      });
 
       // $(".hide_feature_box").click(function(){
       // $( "#news_block" ).fadeOut( "fast" );

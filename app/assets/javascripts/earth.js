@@ -24,22 +24,34 @@ $(document).ready(function(){
   }
   setInterval(urlFunction(), 180000);
 
-  //creating click listener for sign in button
-  $("#sign_up_form").dialog({
-    autoOpen: false,
-    height: 300,
-    width: 300,
-    modal: true, 
-    close: function(){
 
-    }
-  });
+  function createUser(){
+    $("#sign_up_form").dialog({
+      autoOpen: false,
+      height: 300,
+      width: 300,
+      modal: true, 
+      close: function(){
 
-  $("#create_user").click(function(){
+      }
+    });
     $("#sign_up_form").dialog("open");
-  });
+  }
 
+  function loginUser(){
+    $("#login_form").dialog({
+      autoOpen: false,
+      height: 300,
+      width: 300,
+      modal: true, 
+      close: function(){
+      }
+    });
 
+    $("#login_user").click(function(){
+      $("#login_form").dialog("open");
+    });
+  }
 
   //searching for breaking news in an interval of every 3 minutes
   var interval = 0;
@@ -268,6 +280,9 @@ $(document).ready(function(){
       addSampleButton('Look up in the sky, kid.', showSky);
       addSampleButton('Homeward Bound', showEarth);
       addSampleButton('Re-Centre', reCentre);
+      addSampleButton('Sign Up', createUser);
+      addSampleButton('Login', loginUser);
+
 
       var countries = gon.countries;
       var capitals = gon.capitals;

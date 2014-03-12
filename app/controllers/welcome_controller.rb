@@ -5,6 +5,8 @@ class WelcomeController < ApplicationController
 
 	@countries = Country.all
 	@capitals = Capital.all
+	@user = User.new
+
 	# @regions = Region.all
 
 	gon.countries = @countries
@@ -16,4 +18,5 @@ class WelcomeController < ApplicationController
 	   gon.news = JSON.parse(top_articles_json)	
 	# gon.regions = @regions
   end
+
 end

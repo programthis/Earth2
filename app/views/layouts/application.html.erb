@@ -24,7 +24,7 @@
 			<br/>
 			<div id="sample-ui"></div>
 
-			<!-- <div id="content">
+			<div id="content">
 
 					<div id="map3d"></div>
 
@@ -37,7 +37,7 @@
 
 							</div>
 
-			</div> -->
+			</div>
 
 					<div id="lower">
 						<marquee id="ticker" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"></marquee>
@@ -46,41 +46,51 @@
 			</div>
 
 
+			<% if current_user %>
+				<p>Logged in as <%= current_user.name %>.</p>
+			<% else %>
 
-			<%= if current_user
-					"Logged In"
-				end  %>
-			<div class = "li_su_button">
-				<%= link_to "Sign Up", new_user_path %>
-				<%= link_to "Log In", new_session_path %>
-			<div>
-			<button id="create_user">Create New User</button>
+				<div id="sign_up_form" >
+					<%= form_for(@user) do |f| %>
+						<div class="field">
+							<%= f.label :name %>
+							<%= f.text_field :name %>
+						</div>
+						<div class="field">
+							<%= f.label :email %>
+							<%= f.text_field :email %>
+						</div>
+						<div class="field">
+							<%= f.label :password %>
+							<%= f.text_field :password %>
+						</div>
+						<div class="field">
+							<%= f.label :password_confirmation %>
+							<%= f.password_field :password_confirmation %>
+						</div>
+						<div class="actions">
+							<%= f.submit "Sign up!" %>
+						</div>
+					<% end %>
+				</div>
 
-			<div id="sign_up_form"> 
-				<%= form_for users_path do |f| %>
-					<div class="field">
-						<%= f.label :name %>
-						<%= f.text_field :name %>
-					</div>
-					<div class="field">
-						<%= f.label :email %>
-						<%= f.text_field :email %>
-					</div>
-					<div class="field">
-						<%= f.label :password %>
-						<%= f.text_field :password %>
-					</div>
-					<div class="field">
-						<%= f.label :password_confirmation %>
-						<%= f.text_field :password_confirmation %>
-					</div>
-					<div class="actions">
-						<%= f.submit "Sign up!" %>
-					</div>
-				<% end %>
-
-			</div>
-
+				<div id="login_form" >
+					<%= form_tag sessions_path do |f| %>
+						<div class="field">
+							<%= label_tag :email %>
+							<%= text_field_tag :email %>
+						</div>
+						<div class="field">
+							<%= label_tag :password %>
+							<%= password_field_tag :password %>
+						</div>
+						<div class="actions">
+							<%= submit_tag "Log in!" %>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+			
 		<%= yield %>
 
 		</body>

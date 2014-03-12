@@ -381,16 +381,17 @@ $(document).ready(function(){
                     window.open(data.Url, "_blank");
                   }
                 }).appendTo("#news_block");
-                
                 $("<button>",{
                   id: "country_subscribe",
-                  text: "Subcribe",
+                  text: "Subscribe",
                   click: function(){
                     $.ajax({
                       type: "POST",
-                      url: "newsfeeds/path",
-                      data: country.name,
-                      contentType: "application/json",
+                      url: "/newsfeeds",
+                      data: {
+                        "country_id": country.id
+                      },
+                      // contentType: "application/json",
                       dataType: "json"
                     });
                   }

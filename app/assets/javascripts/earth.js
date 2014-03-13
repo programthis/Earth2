@@ -141,6 +141,7 @@ $(document).ready(function(){
                     }
                   }).appendTo("#news_block");
 
+
                   $("<div>",{
                     id: "news_block_description",
                     rel: "external",

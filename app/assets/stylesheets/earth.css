@@ -49,6 +49,7 @@
 #nav_bar {
 	margin-top: 10%;
 	text-align: left;
+
 	z-index: 2;
 	width: 15%;
 	height: 85%;
@@ -65,6 +66,10 @@
 	width: 15%;
 	position: inline-block;
 }
+
+/*.fa-2x {
+  font-size: 2em;
+}*/
 
 #newsfeed {
 	margin-left: 15%;
@@ -112,30 +117,33 @@ body{
 	font-weight: 600;
 		-webkit-font-smoothing:antialiased;
 	color: white;
-	/*padding: 2%;*/
-	/*padding-bottom: 2%;*/
+	padding: 2%;
+	padding-bottom: 2%;
+	padding-top: 0;
 	top: 3%;
 	left: 70%;
 	width:20%;
-	height:40%;
+	height: 40%;
 	position: absolute;
 	border-radius: 5%;
 	box-shadow: 5px 10px 20px black;
 	background: rgba(54, 25, 25, .9);
 	overflow: auto;
+
 }
 
 #hide_feature_box {
 	top: 3%;
 	left:60%;
 	height: 10%;
-	width: 8%;
+	width: 10%;
 	border-radius: 100%;
 	border: none;
 	background-color: black;
 	font-family: Arial;
 	font-size: .5em;
 	color: white;
+	margin-bottom: 5%;
 }
 
 #news_block_description{
@@ -144,8 +152,23 @@ body{
    -webkit-font-smoothing:antialiased;
 	font-size: 0.9em;
 	color: white;
+/*	padding-left: 5%;
+	padding-right: 5%;*/
 	line-height: 20%
 	color: white;
+	margin-top: 5%;
+
+}
+
+#country_subscribe {
+	margin-top: 5%;
+	background-color: black;
+	border: none;
+	color: white;
+	font-size: .75em;
+	border-radius: 15%;
+	height: 11%;
+	width: 33%;
 }
 
 .toggleBtn 	{

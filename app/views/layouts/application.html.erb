@@ -22,28 +22,35 @@
 		<body>
 			<div id="branding">earth2</div>
 			<br/>
-			<div id="sample-ui"></div>
-
-			<div id="content">
-
-					<div id="map3d"></div>
-
-							<div id="outer">
-
-									<div id="newsfeed">
-											<button class="toggleBtn">x</button>
-											<div class="article"></div>
-									</div>
-
-							</div>
-
+			<div id="sample-ui">
+				<div id="navbar">
+					<% if current_user %>
+						<%= button_to "Logout", session_path("current"), method: :delete %>
+					<% else %>
+						<button id = "signup_btn">Sign up</button>
+						<button id = "login_btn">Login</button>
+					<% end %>
+				</div>
 			</div>
 
+			<div id="content">
+				
+				<div id="map3d"></div>
 
+					<div id="outer">
 
-					<div id="lower">
-						<marquee id="ticker" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"></marquee>
+						<div id="newsfeed">
+							<button class="toggleBtn">x</button>
+							<div class="article"></div>
+						</div>
+
 					</div>
+
+				</div>
+
+				<div id="lower">
+					<marquee id="ticker" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"></marquee>
+				</div>
 
 			</div>
 

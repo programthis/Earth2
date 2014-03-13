@@ -7,9 +7,17 @@ class NewsfeedsController < ApplicationController
 		end
 		country = Country.find(params[:country_id])
 		newsfeed.countries << country_id
-		if newsfeed.save
-			redirect_to root_path
-		end
+		newsfeed.save
+
+		# respond_to do |format|
+		# 	if newsfeed.save
+		# 		format.html {redirect_to root_path, notice: "You have now subscribed!"}
+		# 		format.js {}
+		# 	else
+		# 		format.html {render :index, notice: "The subscription failed."}
+		# 		format.js {}
+		# 	end
+		# end
 	end
 
 end

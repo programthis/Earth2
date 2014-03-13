@@ -72,7 +72,7 @@ $(document).ready(function(){
         }
     });
     createPlacemarkForBreakingNews(countryName, breakingNewsLat,breakingNewsLong);
-  },180000);
+  },1800000000000);
 
     function createPlacemarkForBreakingNews(breakingNewsCountry, breakingNewsLat, breakingNewsLong){
         

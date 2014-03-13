@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
   	session.destroy
-  	redirect_to restaurants_path, notice: "Congrats, you've logged out!"
+  	redirect_to root_path, notice: "Congrats, you've logged out!"
   end
 end

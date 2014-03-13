@@ -363,10 +363,11 @@ $(document).ready(function(){
                 newsItem.innerHTML = data.Title
                 news.appendChild(newsItem);
 
+                var newsPath = gon.newsfeed_path;
+
                 $("#newsfeed").prepend(news);
 
                 // feature box
-
                 $("<div>",{
                   id: "news_block",
                   rel: "external",
@@ -387,7 +388,7 @@ $(document).ready(function(){
                   click: function(){
                     $.ajax({
                       type: "POST",
-                      url: "/newsfeeds",
+                      url: newsPath,
                       data: {
                         "country_id": country.id
                       },

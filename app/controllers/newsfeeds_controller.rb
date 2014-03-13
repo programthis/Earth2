@@ -6,7 +6,7 @@ class NewsfeedsController < ApplicationController
 			newsfeed = current_user.build_newsfeed
 		end
 		country = Country.find(params[:country_id])
-		newsfeed.countries << country_id
+		newsfeed.countries << country
 		newsfeed.save
 
 		# respond_to do |format|

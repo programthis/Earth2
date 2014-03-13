@@ -12,7 +12,7 @@ class WelcomeController < ApplicationController
 	gon.countries = @countries
 	gon.capitals = @capitals
 
-	# gon.poop = url_for( newsfeeds_path, method: :post )
+	gon.newsfeed_path = url_for(newsfeeds_path)
 
 	# gon.flags = asset_path("flags.png")
 

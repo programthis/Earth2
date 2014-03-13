@@ -13,7 +13,7 @@ $(document).ready(function(){
 		console.log(newsfeedCountry);
 
 		populateNewsfeed(newsfeedCountry,newsfeedLatitude, newsfeedLongitude);
-	},500000);
+	},5000000);
 
 	function populateNewsfeed(newsfeedCountry,newsfeedLatitude,newsfeedLongitude){
 

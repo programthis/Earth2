@@ -4,30 +4,32 @@
 }
 
 #branding {
+	z-index: 10;
 	font-family: Arial;
+	 -webkit-font-smoothing:antialiased;
 	font-size: 3em;
 	font-weight: 500;
 	color: white;
-	height: 0%;
-	margin-left: 85%;
-	bottom: 0;
+	height: 10%;
+	margin-left: 88%;
+	position: absolute;
+	top: 2%;
 }
 	
 #content{
 	width: 100%;
-	height: 90%;
+	height: 87%;
 	background-color: black;
 	position: fixed;
 }
 
 #map3d{
 	position:absolute;
-	top: 2%;
+	top: 4%;
 	bottom: 10%;
 	float:right;
 	width:100%;
 	height:90%;
-
 }
 
 #navbar {
@@ -37,21 +39,44 @@
 
 #outer {
 	z-index: 1;
-	width: 25%;
+	width: 30%;
 	height: 80%;
 	position: fixed;
 	border-radius: 2%;
 	background-color: none;
 }
 
-#newsfeed {
-	margin-left: 10%;
-	margin-top: 15%;
+#nav_bar {
+	margin-top: 10%;
+	text-align: left;
 	z-index: 2;
-	width: 100%;
+	width: 15%;
 	height: 85%;
 	position: absolute;
-	border-radius: 3%;
+	padding-top: 4%;
+	box-shadow: 5px 10px 20px black;
+	background: rgba(54, 25, 25, .7);
+	overflow: auto;
+}
+
+#nav_buttons {
+	top: 0;
+	height: 15%;
+	width: 15%;
+	position: inline-block;
+}
+
+#newsfeed {
+	margin-left: 15%;
+	margin-top: 10%;
+	z-index: 2;
+	width: 80%;
+	height: 85%;
+	position: absolute;
+	padding-top: 4%;
+	padding: 2%;
+	border-top-right-radius: 3%;
+	border-bottom-right-radius: 3%;
 	overflow: hidden;
 	box-shadow: 5px 10px 20px black;
 	background: rgba(54, 25, 25, .7);
@@ -60,7 +85,7 @@
 
 body{
 	background-color: black;
-	height: 40%;
+	height: 43%;
 }
 
 #ticker{
@@ -87,7 +112,8 @@ body{
 	font-weight: 600;
 		-webkit-font-smoothing:antialiased;
 	color: white;
-	padding: 1%;
+	padding: 2%;
+	padding-bottom: 2%;
 	top: 3%;
 	left: 70%;
 	width:20%;
@@ -99,16 +125,27 @@ body{
 	overflow: auto;
 }
 
+#hide_feature_box {
+	height: 10%;
+	width: 8%;
+	border-radius: 100%;
+	border: none;
+	background-color: black;
+	font-family: Arial;
+	font-size: .5em;
+	color: white;
+}
+
 #news_block_description{
 	font-family: Arial, sans-serif;
   font-weight:200;
    -webkit-font-smoothing:antialiased;
 	font-size: 0.9em;
+	text-align: justify;
 	color: white;
 	line-height: 20%
 	color: white;
 }
-
 
 .toggleBtn 	{
 			z-index: 1;
@@ -125,21 +162,6 @@ body{
 			background: rgba(54, 25, 25, .0);
 }
 
-.hide_feature_box {
-			z-index: 1;
-			width: 10%;
-			height: 5%;
-			margin-left: 90%;
-			border: 0;
-			font-size: 1em;
-			color: white;
-			font-family: Arial, sans-serif;
-  		font-weight:200;
-   		-webkit-font-smoothing:antialiased;
-			position: absolute;
-			background: rgba(54, 25, 25, .7);
-}
-
 a {
 			font-family: Arial;
 			color: white;
@@ -151,7 +173,7 @@ a {
 }
 
 .article 	{
-
+			padding-top: 2%;
 			font-family: Arial;
 			font-size: 1.1em;
 			font-weight: 800;

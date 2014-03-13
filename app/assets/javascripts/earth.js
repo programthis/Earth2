@@ -347,7 +347,18 @@ $(document).ready(function(){
                 }).appendTo("#news_block");
 
                 $("#news_block").draggable();
+
+// still needs hide function and position
+
+                $("<button>",{
+                  id: "hide_feature_box",
+                  text: "X",
+                  click: function(){
+                  alert("The slideToggle() method is finished!");
+                  }
+                }).prependTo("#news_block");
             },
+
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called
             afterSearchResults: function(data) {
                 // Use data.hasMore, data.resultBatchCount
@@ -468,6 +479,7 @@ $(document).ready(function(){
                   }
                 }).appendTo("#map3d");
 
+
                 $("<div>",{
                   id: "news_block_description",
                   rel: "external",
@@ -477,6 +489,15 @@ $(document).ready(function(){
                 $("#news_block").draggable();
 
             },
+
+
+
+                // $( "#feature_button" ).click(function() {
+                // $( "#news_block" ).fadeOut( "slow" );
+                // });
+
+               
+
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called
             afterSearchResults: function(data) {
                 // Use data.hasMore, data.resultBatchCount
@@ -566,7 +587,7 @@ $(document).ready(function(){
       // $(".hide_feature_box").click(function(){
       // $( "#news_block" ).fadeOut( "fast" );
       // $("#newsfeed").animate({ width: 'toggle' }, 800);
-        // alert("The slideToggle() method is finished!");
+      //   alert("The slideToggle() method is finished!");
       // });
 
 });

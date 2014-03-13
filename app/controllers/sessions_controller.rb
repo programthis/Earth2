@@ -10,9 +10,6 @@ class SessionsController < ApplicationController
   	end
   end
 
-  def new
-  end
-
   def destroy
   	session.destroy
   	redirect_to root_path, notice: "Congrats, you've logged out!"

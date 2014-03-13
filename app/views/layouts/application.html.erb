@@ -25,7 +25,7 @@
 			<div id="sample-ui">
 				<div id="navbar">
 					<% if current_user %>
-						<%= button_to "Logout", session_path("current"), method: :delete %>
+						<%= button_to "Logout (#{current_user.name})", session_path("current"), method: :delete %>
 					<% else %>
 						<button id = "signup_btn">Sign up</button>
 						<button id = "login_btn">Login</button>

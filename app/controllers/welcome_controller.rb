@@ -11,7 +11,6 @@ class WelcomeController < ApplicationController
 		@newsfeed = Newsfeed.find(current_user)
 		gon.newsfeed = @newsfeed.countries
 	end
-	# @regions = Region.all
 
 	gon.countries = @countries
 	gon.capitals = @capitals
@@ -22,7 +21,6 @@ class WelcomeController < ApplicationController
 
 		top_articles_json = open('http://api.feedzilla.com/v1/categories/26/articles.json').read
 		   gon.news = JSON.parse(top_articles_json)	
-# gon.regions = @regions
   	end
 
 end

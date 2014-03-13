@@ -183,7 +183,7 @@ $(document).ready(function(){
       addSampleButton('Look up in the sky, kid.', showSky);
       addSampleButton('Homeward Bound', showEarth);
       addSampleButton('Re-Centre', reCentre);
-
+      $("#newsfeed").hide();
     }
 
     function initCB(instance) {

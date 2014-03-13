@@ -322,12 +322,13 @@ $(document).ready(function(){
                 var newsItem = document.createElement("a");
                 newsItem.setAttribute("href", data.Url);
                 newsItem.setAttribute("target", "blank");
-                newsItem.innerHTML = data.Title
+                newsItem.innerHTML = data.Title;
                 news.appendChild(newsItem);
+
 
                 var newsPath = gon.newsfeed_path;
 
-                $("#newsfeed").prepend(news);
+                $("#newsfeed").hide().prepend(news).fadeIn("slow");
 
                 // feature box
                 $("<div>",{
@@ -346,7 +347,7 @@ $(document).ready(function(){
                 $("<div>", {
                   id: "news_title",
                   text: data.Title
-                }).appendTo("#news_block");
+                }).appendTo("#news_block").hide().fadeIn("slow");
 
                 $("<div>",{
                   id: "news_block_description",
@@ -355,7 +356,7 @@ $(document).ready(function(){
                   click: function(){
                     window.open(data.Url, "_blank");
                   }
-                }).appendTo("#news_block");
+                }).appendTo("#news_block").hide().fadeIn("slow");
 
                 $("<button>",{
                   id: "country_subscribe",

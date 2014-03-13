@@ -1,19 +1,23 @@
 $(document).ready(function(){
 	var interval;
 	var countries = gon.newsfeed;
+	var numCountries = countries.length;
+	var subscribeCounter = 0;
 
 	interval = setInterval(function(){
 		var numCountries = countries.length;
 		console.log(numCountries);
-		var randomCountry = Math.floor((Math.random()*numCountries)+0);
-		var newsfeedCountry = countries[randomCountry].name;
-		var newsfeedLatitude = countries[randomCountry].latitude;
-		var newsfeedLongitude = countries[randomCountry].longitude;
+		var newsfeedCountry = countries[subscribeCounter].name;
+		var newsfeedLatitude = countries[subscribeCounter].latitude;
+		var newsfeedLongitude = countries[subscribeCounter].longitude;
 
 		console.log(newsfeedCountry);
-
+		subscribeCounter++;
+		if (subscribeCounter === numCountries){
+			subscribeCounter = 0;
+		}
 		populateNewsfeed(newsfeedCountry,newsfeedLatitude, newsfeedLongitude);
-	},500000);
+	},1800000);
 
 	function populateNewsfeed(newsfeedCountry,newsfeedLatitude,newsfeedLongitude){
 

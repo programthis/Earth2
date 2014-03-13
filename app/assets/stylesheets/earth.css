@@ -59,11 +59,10 @@
 	overflow: auto;
 }
 
-#nav_buttons {
-	top: 0;
-	height: 15%;
-	width: 15%;
-	position: inline-block;
+.nav_buttons {
+	height: 17%;
+	width: 100%;
+	background-color: black;
 }
 
 #newsfeed {
@@ -148,7 +147,7 @@ body{
 }
 
 .toggleBtn 	{
-			z-index: 1;
+			z-index: 12;
 			width: 10%;
 			height: 5%;
 			margin-left: 90%;

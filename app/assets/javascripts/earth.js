@@ -540,14 +540,7 @@ $(document).ready(function(){
 
             },
 
-
-
-                // $( "#feature_button" ).click(function() {
-                // $( "#news_block" ).fadeOut( "slow" );
-                // });
-
                
-
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called
             afterSearchResults: function(data) {
                 // Use data.hasMore, data.resultBatchCount

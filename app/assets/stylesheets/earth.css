@@ -112,8 +112,8 @@ body{
 	font-weight: 600;
 		-webkit-font-smoothing:antialiased;
 	color: white;
-	padding: 2%;
-	padding-bottom: 2%;
+	/*padding: 2%;*/
+	/*padding-bottom: 2%;*/
 	top: 3%;
 	left: 70%;
 	width:20%;
@@ -126,6 +126,8 @@ body{
 }
 
 #hide_feature_box {
+	top: 3%;
+	left:60%;
 	height: 10%;
 	width: 8%;
 	border-radius: 100%;
@@ -138,10 +140,9 @@ body{
 
 #news_block_description{
 	font-family: Arial, sans-serif;
-  font-weight:200;
+  	font-weight:200;
    -webkit-font-smoothing:antialiased;
 	font-size: 0.9em;
-	text-align: justify;
 	color: white;
 	line-height: 20%
 	color: white;

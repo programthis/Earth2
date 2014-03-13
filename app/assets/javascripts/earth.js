@@ -118,14 +118,28 @@ $(document).ready(function(){
 
                   $("#newsfeed").prepend(news);
 
+                  // feature box
                   $("<div>",{
                     id: "news_block",
+                    rel: "external"
+                  }).appendTo("#map3d");
+
+                  $("<button>",{
+                    id: "hide_feature_box",
+                    text: "X",
+                    click: function(){
+                      $("#news_block").animate({height: "toggle"}, 800);
+                    }
+                  }).appendTo("#news_block");
+
+                  $("<div>",{
+                    id: "news_block_title",
                     rel: "external",
                     text: data.Title,
                     click: function(){
                       window.open(data.Url, "_blank");
                     }
-                  }).appendTo("#map3d");
+                  }).appendTo("#news_block");
 
                   $("<div>",{
                     id: "news_block_description",
@@ -318,9 +332,21 @@ $(document).ready(function(){
                 // feature box
                 $("<div>",{
                   id: "news_block",
-                  rel: "external",
-                  text: data.Title
+                  rel: "external"
                 }).appendTo("#map3d");
+
+                $("<button>",{
+                  id: "hide_feature_box",
+                  text: "X",
+                  click: function(){
+                    $("#news_block").animate({height: "toggle"}, 800);
+                  }
+                }).appendTo("#news_block");
+
+                $("<div>", {
+                  id: "news_title",
+                  text: data.Title
+                }).appendTo("#news_block");
 
                 $("<div>",{
                   id: "news_block_description",
@@ -330,6 +356,7 @@ $(document).ready(function(){
                     window.open(data.Url, "_blank");
                   }
                 }).appendTo("#news_block");
+
                 $("<button>",{
                   id: "country_subscribe",
                   text: "Subscribe",
@@ -347,16 +374,6 @@ $(document).ready(function(){
                 }).appendTo("#news_block");
 
                 $("#news_block").draggable();
-
-// still needs hide function and position
-
-                $("<button>",{
-                  id: "hide_feature_box",
-                  text: "X",
-                  click: function(){
-                  alert("The slideToggle() method is finished!");
-                  }
-                }).prependTo("#news_block");
             },
 
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called
@@ -472,12 +489,25 @@ $(document).ready(function(){
 
                 $("<div>",{
                   id: "news_block",
+                  rel: "external"
+                }).appendTo("#map3d");
+
+                $("<button>",{
+                  id: "hide_feature_box",
+                  text: "X",
+                  click: function(){
+                    $("#news_block").animate({height: "toggle"}, 800);
+                  }
+                }).prependTo("#news_block");
+
+                $("<div>",{
+                  id: "news_block_title",
                   rel: "external",
                   text: data.Title,
                   click: function(){
                     window.open(data.Url, "_blank");
                   }
-                }).appendTo("#map3d");
+                }).appendTo("#news_block");
 
 
                 $("<div>",{

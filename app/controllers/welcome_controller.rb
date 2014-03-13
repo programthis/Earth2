@@ -7,19 +7,21 @@ class WelcomeController < ApplicationController
 	@capitals = Capital.all
 	@user = User.new
 
-	@newsfeed = Newsfeed.find(current_user)
-
+	if (current_user)
+		@newsfeed = Newsfeed.find(current_user)
+		gon.newsfeed = @newsfeed.countries
+	end
 	# @regions = Region.all
 
 	gon.countries = @countries
 	gon.capitals = @capitals
 	gon.newsfeed_path = url_for(newsfeeds_path)
-	gon.newsfeed = @newsfeed.countries
+	
 
 	# gon.flags = asset_path("flags.png")
 
-		# top_articles_json = open('http://api.feedzilla.com/v1/categories/26/articles.json').read
-		#    gon.news = JSON.parse(top_articles_json)	
+		top_articles_json = open('http://api.feedzilla.com/v1/categories/26/articles.json').read
+		   gon.news = JSON.parse(top_articles_json)	
 # gon.regions = @regions
   	end
 

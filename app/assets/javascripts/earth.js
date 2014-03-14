@@ -2,26 +2,39 @@ $(document).ready(function(){
 
   
   var interval = 0;
-  var countries = gon.countries;
-  var capitals = gon.capitals;
-  var numCountries = countries.length;
+  
   var ge;
   var placemark;
+  var countries;
+  var capitals;
+
+  $.ajax({
+    type: "GET",
+    url: "/countries",
+    dataType: "json"
+  }).done(function(response){
+    countries = response;
+  });
+
+  $.ajax({
+    type: "GET",
+    url: "/capitals",
+    dataType: "json"
+  }).done(function(response){
+    capitals = response;
+  });
+
 
   //searching for breaking news in an interval of every 3 minutes
   interval = setInterval(function(){
 
+    var numCountries = countries.length;
     var randomCountry = Math.floor((Math.random()*numCountries)+0);
     var countryName = countries[randomCountry].name;
     var breakingNewsLat = countries[randomCountry].latitude;
     var breakingNewsLong = countries[randomCountry].longitude;
-
-    console.log("TEST STARTS HERE");
-    console.log(randomCountry);
-    console.log(breakingNewsLat);
-    console.log(breakingNewsLong);
-
     createPlacemarkForBreakingNews(countryName, breakingNewsLat,breakingNewsLong);
+    
   },1800000000000);
 
     function createPlacemarkForBreakingNews(breakingNewsCountry, breakingNewsLat, breakingNewsLong){
@@ -178,7 +191,6 @@ $(document).ready(function(){
     }
 
     function init() {
-      
       google.earth.createInstance('map3d', initCB, failureCB);
       addSampleButton('Look up in the sky, kid.', showSky);
       addSampleButton('Homeward Bound', showEarth);
@@ -213,6 +225,7 @@ $(document).ready(function(){
         );
       ge.getView().setAbstractView(la);
 
+      
       countries.forEach(createPlacemarkForCountry);
       capitals.forEach(createPlacemarkForCapital);
       

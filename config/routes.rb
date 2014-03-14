@@ -3,7 +3,9 @@ Earth2::Application.routes.draw do
   resources :users
   resources :welcome
   resources :sessions
-  
+  resources :countries, only: :index
+  resources :capitals, only: :index
+
   resources :newsfeeds, only: :create
 
 

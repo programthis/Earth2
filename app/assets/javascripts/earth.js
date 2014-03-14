@@ -129,7 +129,8 @@ $(document).ready(function(){
                   newsItem.innerHTML = data.Title
                   news.appendChild(newsItem);
 
-                  $("#newsfeed").prepend(news);
+                  $("#inner_newsfeed").hide().prepend(news).fadeIn("slow");
+                  $("#newsfeed").show();
 
                   // feature box
                   $("<div>",{
@@ -339,7 +340,8 @@ $(document).ready(function(){
 
                 var newsPath = gon.newsfeed_path;
 
-                $("#newsfeed").hide().prepend(news).fadeIn("slow");
+                $("#inner_newsfeed").hide().prepend(news).fadeIn("slow");
+                $("#newsfeed").show();
 
                 // feature box
                 $("<div>",{
@@ -495,7 +497,8 @@ $(document).ready(function(){
                 newsItem.innerHTML = data.Title
                 news.appendChild(newsItem);
 
-                $("#newsfeed").prepend(news);
+                $("#inner_newsfeed").hide().prepend(news).fadeIn("slow");
+                $("#newsfeed").show();
 
                 // feature box
 

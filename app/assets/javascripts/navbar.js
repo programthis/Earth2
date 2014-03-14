@@ -28,7 +28,8 @@ $(document).ready(function(){
 		  autoOpen: false,
 		  height: 300,
 		  width: 300,
-		  modal: true, 
+		  modal: true,
+		  dialogClass: "success-dialog",
 		  close: function(){
 		  }
 		});

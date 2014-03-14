@@ -43,8 +43,14 @@
 
 						<div id="nav_bar">
 							<!-- making it so you can't see the login and sign up buttons if you are logged in -->
-							<% if current_user %>
 
+							<div id="toggleBtn" class="nav_buttons">
+								<i class="fa fa-bars fa-3x earth-actions"></i>
+							</div>
+							<% if current_user %>
+								<%= link_to session_path("current"), method: :delete do %>
+									<i class = "fa fa-sign-out fa-3x earth-actions"></i>
+								<% end %>
 							<% else %>
 								<div id="login_btn" class="nav_buttons">
 									<i class="fa fa-sign-in fa-3x earth-actions"></i>
@@ -54,10 +60,7 @@
 								</div>
 							<% end %>
 
-							<div id="toggleBtn" class="nav_buttons">
-								<i class="fa fa-bars fa-3x earth-actions"></i>
-							</div>
-							
+
 							<div id="button-show-sky" class="nav_buttons">
 								<i class="fa fa-eye fa-3x"></i>
 							</div>

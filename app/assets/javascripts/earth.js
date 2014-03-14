@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-  
   var interval = 0;
   
   var ge;
@@ -23,7 +22,6 @@ $(document).ready(function(){
   }).done(function(response){
     capitals = response;
   });
-
 
   //searching for breaking news in an interval of every 3 minutes
   interval = setInterval(function(){
@@ -440,7 +438,6 @@ $(document).ready(function(){
       // Apply stylemap to a placemark.
       placemark.setStyleSelector(styleMap);
 
-
 	    // Create point
 	    var point = ge.createPoint('');
 
@@ -559,72 +556,177 @@ $(document).ready(function(){
     function failureCB(errorCode) {
     }
 
-      function showSky() {
-        // create the placemark
-        placemark = ge.createPlacemark('');
-        placemark.setName("CLICK HERE FOR ALIEN NEWS");
-        var point = ge.createPoint('');
-        point.setLatitude(41);
-        point.setLongitude(-169);
-        placemark.setGeometry(point);
+    function showSky() {
+      // create the placemark
+      placemark = ge.createPlacemark('');
+      placemark.setName("CLICK HERE FOR ALIEN NEWS");
+      var point = ge.createPoint('');
+      point.setLatitude(41);
+      point.setLongitude(-169);
+      
+      // Create a style map.
+      var styleMap = ge.createStyleMap('');
 
-        // add the placemark to the earth DOM
-        ge.getFeatures().appendChild(placemark);
+      // Create normal style for style map.
+      var normalStyle = ge.createStyle('');
+      var normalIcon = ge.createIcon('');
+      normalIcon.setHref('http://m.c.lnkd.licdn.com/mpr/pub/image-5r4ffO2pmmdGmC0PH20ZRh2fvK9Qp1KuAppZCbnpvxilkLX4Ar4ZCG-kdxfQ8yy9Ch0/jenna-quint.jpg');
+      normalStyle.getIconStyle().setIcon(normalIcon);
+      normalStyle.getIconStyle().setScale(3.0);
 
-        google.earth.addEventListener(placemark, "click", function(event){
-          //preventing the default balloon from popping up
-          event.preventDefault();
+      styleMap.setNormalStyle(normalStyle);
 
-          var options = { "format" : "300x250", 
-          "queryList" : [
-                {
-                  "title" : "OUTER SPACE",
-                  "q" : "Andromeda Galaxy"
-                },
-                {
-                  "q" : "Nasa"
-                }
-              ]
-          };
-        var content = document.getElementById("content");
-        var newsShow = new google.elements.NewsShow(content,options);
+      // Apply stylemap to a placemark.
+      placemark.setStyleSelector(styleMap);
 
-        });
+      placemark.setGeometry(point);
+
+      // add the placemark to the earth DOM
+      ge.getFeatures().appendChild(placemark);
+
+      google.earth.addEventListener(placemark, "click", function(event){
+        //preventing the default balloon from popping up
+        event.preventDefault();
+
+        //removing the news block every time the user clicks on a new country/city
+        var removingNewsFromEarth = document.getElementById("map3d");
+        var elementToRemove = document.getElementById("news_block");
+        if (elementToRemove){
+          removingNewsFromEarth.removeChild(elementToRemove);
+        }
+
+        $.bingSearch({
+            query: "UFO",
+            latitude: 41,
+            longitude: -169,
+
+            appKey: '7DkdEuUKwIAzix/CqNuIqXdJ1joqegBN+BmPUQ3NHZU',
+            // Optidefaults to the Bing Search API Web Results Query).
+            // Additional information: This feature allows you to proxy through a server-side
+            //                         script in order to hide your API key, which is exposed to the
+            //                         world if you set it client-side in appKey. An example PHP
+            //                         script is included (searchproxy.php).
+            // Optional (defaults to 1): Page Number
+            pageNumber: 1,
+            urlBase: 'https://api.datamarket.azure.com/Bing/Search/v1/News',
+            // Optional (defaults to 10): Page Size
+            pageSize: 1,
+            // Optional: Function is called after search results are retrieved, but before the interator is called
+            beforeSearchResults: function(data) {
+                // Use data.hasMore, data.resultBatchCount
+            },
+            // Optional: Function is called once per result in the current batch
+            searchResultIterator: function(data) {
+                // Use data.ID, data.Title, data.Description, data.Url, data.DisplayUrl, data.Metadata.Type (check for undefined)
+                console.log(data.Title);
+                console.log(data.Description);
+                console.log(data.Url);
+                var news = document.createElement("div");
+                news.setAttribute("class", "article");
+
+                //creating link and title for article
+                // news feed
+
+                var newsItem = document.createElement("a");
+                newsItem.setAttribute("href", data.Url);
+                newsItem.setAttribute("target", "blank");
+                newsItem.innerHTML = data.Title
+                news.appendChild(newsItem);
+
+                $("#inner_newsfeed").hide().prepend(news).fadeIn("slow");
+                $("#newsfeed").show();
+
+                // feature box
+
+                $("<div>",{
+                  id: "news_block",
+                  rel: "external"
+                }).appendTo("#map3d");
+
+                $("<button>",{
+                  id: "hide_feature_box",
+                  text: "X",
+                  click: function(){
+                    $("#news_block").animate({height: "toggle"}, 800);
+                  }
+                }).prependTo("#news_block");
+
+                $("<div>",{
+                  id: "news_block_title",
+                  rel: "external",
+                  text: data.Title,
+                  click: function(){
+                    window.open(data.Url, "_blank");
+                  }
+                }).appendTo("#news_block");
 
 
-        ge.getOptions().setMapType(ge.MAP_TYPE_SKY);
+                $("<div>",{
+                  id: "news_block_description",
+                  rel: "external",
+                  text: data.Description,
+                }).appendTo("#news_block");
 
-        setTimeout(function() {
-          // Zoom in on a nebula.
-          var oldFlyToSpeed = ge.getOptions().getFlyToSpeed();
-          ge.getOptions().setFlyToSpeed(.2);  // Slow down the camera flyTo speed.
-          var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
-          lookAt.set(41.28509187215, -169.2448684551622, 0,
-                     ge.ALTITUDE_RELATIVE_TO_GROUND, 262.87, 0, 162401);
-          // Also try:
-          //   lookAt.set(-59.65189337195337, -18.799770300376053, 0,
-          //              ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 36817);
-          ge.getView().setAbstractView(lookAt);
-          ge.getOptions().setFlyToSpeed(oldFlyToSpeed);
-        }, 1000);  // Start the zoom-in after one second.
-      }
+                $("#news_block").draggable();
 
-      function showEarth() {
-        ge.getOptions().setMapType(ge.MAP_TYPE_EARTH);
-      }
+            },
 
-      function reCentre() {
-        //making it so the earth look at the "non-western" side of the world upon load
-        var la = ge.createLookAt('');
-        la.set(48, 31,
-          0, // altitude
-          ge.ALTITUDE_RELATIVE_TO_GROUND,
-          0, // heading
-          0, // straight-down tilt
-          8000000 // range (inverse of zoom)
-          );
-        ge.getView().setAbstractView(la);
-      }
+
+
+                // $( "#feature_button" ).click(function() {
+                // $( "#news_block" ).fadeOut( "slow" );
+                // });
+
+               
+
+            // Optional: Function is called after search results are retrieved and after all instances of the interator are called
+            afterSearchResults: function(data) {
+                // Use data.hasMore, data.resultBatchCount
+            },
+            // Optional: Called when there is an error retrieving results
+            fail: function(data) {
+                // data contains an error message
+                console.log('bing search fail!');
+            }
+        }); 
+      
+
+      });
+
+
+      ge.getOptions().setMapType(ge.MAP_TYPE_SKY);
+
+      setTimeout(function() {
+        // Zoom in on a nebula.
+        var oldFlyToSpeed = ge.getOptions().getFlyToSpeed();
+        ge.getOptions().setFlyToSpeed(.2);  // Slow down the camera flyTo speed.
+        var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
+        lookAt.set(41.28509187215, -169.2448684551622, 0,
+                   ge.ALTITUDE_RELATIVE_TO_GROUND, 262.87, 0, 162401);
+        // Also try:
+        //   lookAt.set(-59.65189337195337, -18.799770300376053, 0,
+        //              ge.ALTITUDE_RELATIVE_TO_GROUND, 0, 0, 36817);
+        ge.getView().setAbstractView(lookAt);
+        ge.getOptions().setFlyToSpeed(oldFlyToSpeed);
+      }, 1000);  // Start the zoom-in after one second.
+    }
+
+    function showEarth() {
+      ge.getOptions().setMapType(ge.MAP_TYPE_EARTH);
+    }
+
+    function reCentre() {
+      //making it so the earth look at the "non-western" side of the world upon load
+      var la = ge.createLookAt('');
+      la.set(48, 31,
+        0, // altitude
+        ge.ALTITUDE_RELATIVE_TO_GROUND,
+        0, // heading
+        0, // straight-down tilt
+        8000000 // range (inverse of zoom)
+        );
+      ge.getView().setAbstractView(la);
+    }
 
     google.setOnLoadCallback(init);
 

@@ -137,8 +137,8 @@ body{
 #hide_feature_box {
 	top: 3%;
 /*	left: 60%;
-*/	height: 10%;
-	width: 10%;
+*/	height: 21px;
+	width: 21px;
 	border-radius: 100%;
 	border: none;
 	background-color: black;

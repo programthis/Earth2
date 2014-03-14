@@ -26,15 +26,10 @@
 #map3d{
 	position:absolute;
 	top: 4%;
-	bottom: 10%;
+/*	bottom: 10%;*/
 	float:right;
 	width:100%;
-	height:90%;
-}
-
-#navbar {
-	position:relative;
-	float:left;
+	height:96%;
 }
 
 #outer {
@@ -48,22 +43,30 @@
 
 #nav_bar {
 	margin-top: 10%;
-	text-align: left;
+	text-align: center;
 	z-index: 2;
 	width: 15%;
 	height: 85%;
 	position: absolute;
 	padding-top: 4%;
 	box-shadow: 5px 10px 20px black;
-	background: rgba(54, 25, 25, .7);
+	background: rgba(54, 25, 25, .9);
 	overflow: auto;
 }
 
-#nav_buttons {
-	top: 0;
-	height: 15%;
-	width: 15%;
-	position: inline-block;
+.nav_buttons {
+/*	top: 0;*/
+	padding-bottom: 25%;
+
+}
+
+.fa a:hover {
+	color: red;
+}
+
+.earth-actions {
+	display: block;
+	text-align: center;
 }
 
 #newsfeed {
@@ -112,30 +115,33 @@ body{
 	font-weight: 600;
 		-webkit-font-smoothing:antialiased;
 	color: white;
-	/*padding: 2%;*/
-	/*padding-bottom: 2%;*/
+	padding: 2%;
+	padding-bottom: 2%;
+	padding-top: 0;
 	top: 3%;
 	left: 70%;
 	width:20%;
-	height:40%;
+	height: auto;
 	position: absolute;
 	border-radius: 5%;
 	box-shadow: 5px 10px 20px black;
 	background: rgba(54, 25, 25, .9);
 	overflow: auto;
+
 }
 
 #hide_feature_box {
 	top: 3%;
 	left:60%;
 	height: 10%;
-	width: 8%;
+	width: 10%;
 	border-radius: 100%;
 	border: none;
 	background-color: black;
 	font-family: Arial;
 	font-size: .5em;
 	color: white;
+	margin-bottom: 5%;
 }
 
 #news_block_description{
@@ -144,23 +150,23 @@ body{
    -webkit-font-smoothing:antialiased;
 	font-size: 0.9em;
 	color: white;
+/*	padding-left: 5%;
+	padding-right: 5%;*/
 	line-height: 20%
 	color: white;
+	margin-top: 5%;
+
 }
 
-.toggleBtn 	{
-			z-index: 1;
-			width: 10%;
-			height: 5%;
-			margin-left: 90%;
-			border: 0;
-			font-size: 1em;
-			color: white;
-			font-family: Arial, sans-serif;
-  		font-weight:200;
-   		-webkit-font-smoothing:antialiased;
-			position: absolute;
-			background: rgba(54, 25, 25, .0);
+#country_subscribe {
+	margin-top: 5%;
+	background-color: black;
+	border: none;
+	color: white;
+	font-size: .75em;
+	border-radius: 15%;
+	height: 11%;
+	width: 33%;
 }
 
 a {
@@ -175,6 +181,7 @@ a {
 
 .article 	{
 			padding-top: 2%;
+ 			padding-bottom:9%;
 			font-family: Arial;
 			font-size: 1.1em;
 			font-weight: 800;

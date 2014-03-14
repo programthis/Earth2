@@ -17,6 +17,7 @@
 
 	  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 	  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>		
+	  <!--  <link rel="stylesheet" href="Earth2/app/assets/stylesheets/font-awesome/css/font-awesome.min.css"> -->
 	   <%= csrf_meta_tags %>
 	</head>
 		<body>
@@ -29,8 +30,7 @@
 					<% if current_user %>
 						<%= button_to "Logout (#{current_user.name})", session_path("current"), method: :delete %>
 					<% else %>
-						<button id = "signup_btn">Sign up</button>
-						<button id = "login_btn">Login</button>
+
 					<% end %>
 				</div>
 			</div>
@@ -42,12 +42,33 @@
 					<div id="outer">
 
 						<div id="nav_bar">
-							<div id="nav_buttons"></div>
-							<div id="nav_buttons"></div>
-							<div id="nav_buttons"></div>
-							<div id="nav_buttons"></div>
-							<div id="nav_buttons"></div>
+							<!-- making it so you can't see the login and sign up buttons if you are logged in -->
+							<% if current_user %>
+
+							<% else %>
+								<div id="login_btn" class="nav_buttons">
+									<i class="fa fa-sign-in fa-3x earth-actions"></i>
+								</div>
+								<div id="signup_btn" class="nav_buttons">
+									<i class="fa fa-user fa-3x earth-actions"></i>
+								</div>
+							<% end %>
+
+							<div id="toggleBtn" class="nav_buttons">
+								<i class="fa fa-bars fa-3x earth-actions"></i>
+							</div>
+							
+							<div id="button-show-sky" class="nav_buttons">
+								<i class="fa fa-eye fa-3x"></i>
+							</div>
+							<div id="button-show-earth" class="nav_buttons">
+								<i class="fa fa-globe fa-3x earth-actions"></i>
+							</div>
+							<div id="button-center" class="nav_buttons">
+								<i class="fa fa-crosshairs fa-3x earth-actions"></i>
+							</div>
 						</div>
+
 						<div id="newsfeed">
 							<div class="article"></div>
 						</div>

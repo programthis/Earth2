@@ -154,6 +154,7 @@ $(document).ready(function(){
                     }
                   }).appendTo("#news_block");
 
+
                   $("<div>",{
                     id: "news_block_description",
                     rel: "external",
@@ -192,9 +193,6 @@ $(document).ready(function(){
 
     function init() {
       google.earth.createInstance('map3d', initCB, failureCB);
-      addSampleButton('Look up in the sky, kid.', showSky);
-      addSampleButton('Homeward Bound', showEarth);
-      addSampleButton('Re-Centre', reCentre);
       $("#newsfeed").hide();
     }
 
@@ -627,11 +625,26 @@ $(document).ready(function(){
 
     google.setOnLoadCallback(init);
 
+    $("#button-show-sky").click( function(eventObject) {
+      showSky();
+    });
 
-      // $(".hide_feature_box").click(function(){
-      // $( "#news_block" ).fadeOut( "fast" );
-      // $("#newsfeed").animate({ width: 'toggle' }, 800);
-      //   alert("The slideToggle() method is finished!");
-      // });
+    $("#button-show-earth").click( function(eventObject) {
+      showEarth();
+    });
+
+    $("#button-center").click( function(eventObject) {
+      reCentre();
+    })
+
+    // $(document).ready(function(){
+      $("#toggleBtn").click(function(){
+      $( ".article" ).fadeOut( "fast" );
+      $("#newsfeed").animate({ width: 'toggle' }, 800);
+     // alert("The slideToggle() method is finished!");
+  });
+// });
+
+    
 
 });

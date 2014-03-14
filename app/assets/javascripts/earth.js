@@ -33,7 +33,7 @@ $(document).ready(function(){
     var breakingNewsLong = countries[randomCountry].longitude;
     createPlacemarkForBreakingNews(countryName, breakingNewsLat,breakingNewsLong);
     
-  },1800000000000);
+  },180000);
 
     function createPlacemarkForBreakingNews(breakingNewsCountry, breakingNewsLat, breakingNewsLong){
         

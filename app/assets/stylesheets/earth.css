@@ -63,6 +63,17 @@
 				background-clip: text;
 }
 
+/*#logout {
+	padding-bottom: 25%;
+	background-color: black;
+	color:transparent;
+	text-shadow: 2px 2px 1px rgba(220, 220, 220, 0.2);
+		-webkit-background-clip: text;
+			-moz-background-clip: text;
+				background-clip: text;
+}*/
+
+
 
 .fa:hover {
 	color: white;

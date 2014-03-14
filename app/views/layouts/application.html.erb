@@ -43,13 +43,15 @@
 
 						<div id="nav_bar">
 							<!-- making it so you can't see the login and sign up buttons if you are logged in -->
-							<% if current_user %>
-
-							<% else %>
-
+							
 							<div id="toggleBtn" class="nav_buttons" title="Show newsfeed">
 								<i class="fa fa-bars fa-2x earth-actions"></i>
 							</div>
+							<% if current_user %>
+							
+									<div id="logout_button" class="nav_buttons" title="Sign out">
+										<i class="fa fa-sign-out fa-3x earth-actions"></i>
+							<% else %>
 								<div id="signup_btn" class="nav_buttons" title="Sign up">
 									<i class="fa fa-user fa-3x earth-actions"></i>
 								</div>
@@ -57,10 +59,8 @@
 									<i class="fa fa-sign-in fa-3x earth-actions"></i>
 								</div>
 
-								<div id="logout_button" class="nav_buttons" title="Sign out">
-									<i class="fa fa-sign-out fa-3x earth-actions"></i>
-
 							<% end %>
+
 
 							<div id="button-show-sky" class="nav_buttons" title="Look up in the sky, kid">
 								<i class="fa fa-rocket fa-3x earth-actions"></i>
@@ -92,7 +92,6 @@
 			<% if current_user %>
 				<p>Logged in as <%= current_user.name %>.</p>
 			<% else %>
-
 				<div id="sign_up_form" >
 					<%= form_for(@user) do |f| %>
 						<div class="field">

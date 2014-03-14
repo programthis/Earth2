@@ -17,7 +17,7 @@
 
 	  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
 	  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>		
-	  <!--  <link rel="stylesheet" href="Earth2/app/assets/stylesheets/font-awesome/css/font-awesome.min.css"> -->
+
 	   <%= csrf_meta_tags %>
 	</head>
 		<body>
@@ -46,25 +46,30 @@
 							<% if current_user %>
 
 							<% else %>
-								<div id="login_btn" class="nav_buttons">
-									<i class="fa fa-sign-in fa-3x earth-actions"></i>
-								</div>
-								<div id="signup_btn" class="nav_buttons">
+
+							<div id="toggleBtn" class="nav_buttons" title="Show newsfeed">
+								<i class="fa fa-bars fa-2x earth-actions"></i>
+							</div>
+								<div id="signup_btn" class="nav_buttons" title="Sign up">
 									<i class="fa fa-user fa-3x earth-actions"></i>
 								</div>
+								<div id="login_btn" class="nav_buttons" title="Log in">
+									<i class="fa fa-sign-in fa-3x earth-actions"></i>
+								</div>
+
+
+								<div id="logout_button" class="nav_buttons" title="Sign out">
+									<i class="fa fa-sign-out fa-3x earth-actions"></i>
 							<% end %>
 
-							<div id="toggleBtn" class="nav_buttons">
-								<i class="fa fa-bars fa-3x earth-actions"></i>
-							</div>
 							
-							<div id="button-show-sky" class="nav_buttons">
-								<i class="fa fa-eye fa-3x"></i>
+							<div id="button-show-sky" class="nav_buttons" title="Look up in the sky, kid">
+								<i class="fa fa-rocket fa-3x earth-actions"></i>
 							</div>
-							<div id="button-show-earth" class="nav_buttons">
+							<div id="button-show-earth" class="nav_buttons" title="Homeward bound">
 								<i class="fa fa-globe fa-3x earth-actions"></i>
 							</div>
-							<div id="button-center" class="nav_buttons">
+							<div id="button-center" class="nav_buttons" title="Center earth">
 								<i class="fa fa-crosshairs fa-3x earth-actions"></i>
 							</div>
 						</div>

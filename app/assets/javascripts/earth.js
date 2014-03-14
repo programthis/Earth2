@@ -645,7 +645,7 @@ $(document).ready(function(){
         $( ".article" ).fadeToggle( "fast" );
         $("#newsfeed").animate({ width: 'toggle' 
       }, 800);
-     // alert("The slideToggle() method is finished!");
+     alert("The slideToggle() method is finished!");
   });
 // });
 

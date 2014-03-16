@@ -5,7 +5,7 @@ The premise behind Earth2 was to create a platform for news websites from all ar
 
 In this way, all users can access news sites from countries and capitals based specifically on latitude and longitude (using the BING api). We started out by using Google's News Show API but it has since been deprecated so we decided against it.
 
-Currently, users can create accounts and subscribe to countries they wish to receive news from (the newsfeed will auto-populate).
+Currently, users can create accounts and subscribe to countries they wish to receive news from (the newsfeed will auto-populate). They can also get news just by clicking on placemarks attached to countries and capitals to bring up the feature news box.
 
 Breaking news currently works but is limited in the amount of times it can be updated (due to the limited number of Bing API requests that can be made per month).
 

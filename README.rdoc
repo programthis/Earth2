@@ -1,7 +1,7 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+EARTH2 is currently in open BETA.
+The premise behind Earth2 was to create a platform for news websites from all around the world (not just Western media sources)
 
 Things you may want to cover:
 

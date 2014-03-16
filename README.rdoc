@@ -1,6 +1,6 @@
 == README
 
-EARTH2 is currently in open BETA.
+Earth2 is currently in open BETA.
 The premise behind Earth2 was to create a platform for news websites from all around the world (not just Western media sources).
 
 In this way, all users can access news sites from countries and capitals based specifically on latitude and longitude (using the BING api). We started out by using Google's News Show API but it has since been deprecated so we decided against it.

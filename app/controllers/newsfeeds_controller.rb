@@ -9,6 +9,11 @@ class NewsfeedsController < ApplicationController
 		newsfeed.countries << country
 		newsfeed.save
 
+		if (current_user)
+			@newsfeed = Newsfeed.find(current_user)
+			gon.newsfeed = @newsfeed.countries
+		end
+
 		# respond_to do |format|
 		# 	if newsfeed.save
 		# 		format.html {redirect_to root_path, notice: "You have now subscribed!"}

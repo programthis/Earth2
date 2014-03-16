@@ -3,11 +3,6 @@ require 'open-uri'
 class WelcomeController < ApplicationController
   def index
 	@user = User.new
-
-	if (current_user)
-		@newsfeed = Newsfeed.find(current_user)
-		gon.newsfeed = @newsfeed.countries
-	end
 	
 	gon.newsfeed_path = url_for(newsfeeds_path)
 	

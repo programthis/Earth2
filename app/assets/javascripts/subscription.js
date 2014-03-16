@@ -17,7 +17,7 @@ $(document).ready(function(){
 			subscribeCounter = 0;
 		}
 		populateNewsfeed(newsfeedCountry,newsfeedLatitude, newsfeedLongitude);
-	},1800000);
+	},1000000);
 
 	function populateNewsfeed(newsfeedCountry,newsfeedLatitude,newsfeedLongitude){
 

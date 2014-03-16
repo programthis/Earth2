@@ -1,28 +1,12 @@
 == README
 
 EARTH2 is currently in open BETA.
-The premise behind Earth2 was to create a platform for news websites from all around the world (not just Western media sources)
+The premise behind Earth2 was to create a platform for news websites from all around the world (not just Western media sources).
 
-Things you may want to cover:
+In this way, all users can access news sites from countries and capitals based specifically on latitude and longitude (using the BING api). We started out by using Google's News Show API but it has since been deprecated so we decided against it.
 
-* Ruby version
+Currently, users can create accounts and subscribe to countries they wish to receive news from (the newsfeed will auto-populate).
 
-* System dependencies
+Breaking news currently works but is limited in the amount of times it can be updated (due to the limited number of Bing API requests that can be made per month).
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Earth2 was created by Kyle Bachan, Jenna Quint, and Beth Mackin.

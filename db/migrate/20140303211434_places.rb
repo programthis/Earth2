@@ -53,9 +53,9 @@ class Places < ActiveRecord::Migration
  
     #change encoding to the one used into files
     execute "set client_encoding to 'latin1'"
-    execute "COPY countries FROM STDIN'#{Rails.root}/db/migrate/Countries.txt' DELIMITER ',' CSV HEADER;"
-    execute "COPY regions FROM STDIN'#{Rails.root}/db/migrate/Regions.txt' DELIMITER ',' CSV HEADER;"
-    execute "COPY cities FROM STDIN'#{Rails.root}/db/migrate/Cities.txt' DELIMITER ',' CSV HEADER;"
+    execute "COPY countries '#{Rails.root}/db/migrate/Countries.txt' FROM STDIN DELIMITER ',' CSV HEADER;"
+    execute "COPY regions '#{Rails.root}/db/migrate/Regions.txt' FROM STDIN DELIMITER ',' CSV HEADER;"
+    execute "COPY cities '#{Rails.root}/db/migrate/Cities.txt' FROM STDIN DELIMITER ',' CSV HEADER;"
     #change encoding back to UTF8
     execute "set client_encoding to 'UTF8'"
  

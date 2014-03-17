@@ -54,7 +54,7 @@ class Places < ActiveRecord::Migration
     #change encoding to the one used into files
     execute "set client_encoding to 'latin1'"
     execute "COPY countries FROM STDIN DELIMITER ',' CSV HEADER;"
-    execute "COPY regions FROM STDIN DELIMITER ',' CSV HEADER;"
+    # execute "COPY regions FROM STDIN DELIMITER ',' CSV HEADER;"
     execute "COPY cities FROM STDIN DELIMITER ',' CSV HEADER;"
     #change encoding back to UTF8
     execute "set client_encoding to 'UTF8'"

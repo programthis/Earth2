@@ -40,6 +40,7 @@ gem "geocoder"
 
 gem 'rbing', :git => "git://github.com/travisp/rbing.git", :branch => "features/azure"
 
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'

@@ -1,7 +1,14 @@
 $(document).ready(function(){
 	var interval;
-	var countries = gon.newsfeed;
-	var numCountries = countries.length;
+	if (gon.newsfeed){
+		var countries = gon.newsfeed;
+		var numCountries = countries.length;
+	}
+	else{
+		var countries;
+		var numCountries;
+	}
+	
 	var subscribeCounter = 0;
 
 	interval = setInterval(function(){

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140312210553) do
+ActiveRecord::Schema.define(version: 20140319022408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,20 +23,6 @@ ActiveRecord::Schema.define(version: 20140312210553) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "cities", force: true do |t|
-    t.integer "country_id",            null: false
-    t.integer "region_id",             null: false
-    t.string  "name",       limit: 45, null: false
-    t.float   "latitude",              null: false
-    t.float   "longitude",             null: false
-    t.string  "timezone",   limit: 10, null: false
-    t.integer "dma_id"
-    t.string  "code",       limit: 4
-    t.string  "capital"
-  end
-
-  add_index "cities", ["name"], name: "index_cities_on_name", using: :btree
 
   create_table "countries", force: true do |t|
     t.string  "name",                 limit: 50, null: false
@@ -97,9 +83,6 @@ ActiveRecord::Schema.define(version: 20140312210553) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_foreign_key "cities", "countries", name: "cities_country_id_fk", dependent: :delete
-  add_foreign_key "cities", "regions", name: "cities_region_id_fk", dependent: :delete
 
   add_foreign_key "regions", "countries", name: "regions_country_id_fk", dependent: :delete
 

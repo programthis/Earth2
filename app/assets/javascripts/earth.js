@@ -272,20 +272,6 @@ $(document).ready(function(){
 	    point.setLongitude(longitude);
 	    placemark.setGeometry(point);
 
-
-
-      // google.earth.addEventListener(placemark, "mouseover", function(event){
-      //   // placemark.setAttribute("class", "flag.flag-cz");
-      //   // placemark.setAttribute("alt", "Czech Republic");
-      //   console.log(placemark);
-      //   placemark.setStyleSelector
-      //   placemark.css("background", "url(flags.png)");
-      //   placemark.css("background-position", "-16px 0");
-      //   // placemark.css("background", "blank.gif");
-      //   // placemark.setAttribute("src", "blank.gif");
-        
-      // });
-
 	    google.earth.addEventListener(placemark, "click", function(event){
 	    	//preventing the default balloon from popping up
 	    	event.preventDefault();
@@ -533,13 +519,6 @@ $(document).ready(function(){
             },
 
 
-
-                // $( "#feature_button" ).click(function() {
-                // $( "#news_block" ).fadeOut( "slow" );
-                // });
-
-               
-
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called
             afterSearchResults: function(data) {
                 // Use data.hasMore, data.resultBatchCount
@@ -670,13 +649,6 @@ $(document).ready(function(){
                 $("#news_block").draggable();
 
             },
-
-
-
-                // $( "#feature_button" ).click(function() {
-                // $( "#news_block" ).fadeOut( "slow" );
-                // });
-
                
 
             // Optional: Function is called after search results are retrieved and after all instances of the interator are called

@@ -252,10 +252,16 @@ $(document).ready(function(){
 	    // Create highlight style for style map.
 	    var highlightStyle = ge.createStyle('');
 	    var highlightIcon = ge.createIcon('');
-      // highlightIcon.setHref("path/to/flags.png", "-16px 0");
 
 	    highlightIcon.setHref('http://google-maps-icons.googlecode.com/files/world.png');
       
+      // highlightIcon.setHref('http://i.imgur.com/wHkuksL.png');
+      // highlightIcon.setW(1);
+      // highlightIcon.setH(1);
+
+      // highlightIcon.setX(-96);
+      // highlightIcon.setY(0);
+
 	    highlightStyle.getIconStyle().setIcon(highlightIcon);
 	    highlightStyle.getIconStyle().setScale(8.0);
 

@@ -41,29 +41,29 @@
 							<!-- making it so you can't see the login and sign up buttons if you are logged in -->
 
 							<div id="toggleBtn" class="nav_buttons" title="Show Newsfeed">
-								<i class="fa fa-bars fa-3x earth-actions"></i>
+								<i class="fa fa-bars fa-2x earth-actions"></i>
 							</div>
 							<% if current_user %>
 								<%= link_to session_path("current"), method: :delete do %>
-									<i class = "fa fa-sign-out fa-3x earth-actions" title="Log out"></i>
+									<i class = "fa fa-sign-out fa-2x earth-actions" title="Log out"></i>
 								<% end %>
 							<% else %>
 								<div id="login_btn" class="nav_buttons" title="Log in">
-									<i class="fa fa-sign-in fa-3x earth-actions"></i>
+									<i class="fa fa-sign-in fa-2x earth-actions"></i>
 								</div>
 								<div id="signup_btn" class="nav_buttons" title="Sign up">
-									<i class="fa fa-user fa-3x earth-actions"></i>
+									<i class="fa fa-user fa-2x earth-actions"></i>
 								</div>
 							<% end %>
 
 							<div id="button-show-sky" class="nav_buttons" title="Outer Space">
-								<i class="fa fa-rocket fa-3x earth-actions"></i>
+								<i class="fa fa-rocket fa-2x earth-actions"></i>
 							</div>
 							<div id="button-show-earth" class="nav_buttons" title="Return to Earth">
-								<i class="fa fa-globe fa-3x earth-actions"></i>
+								<i class="fa fa-globe fa-2x earth-actions"></i>
 							</div>
 							<div id="button-center" class="nav_buttons" title="Re-Centre Earth">
-								<i class="fa fa-crosshairs fa-3x earth-actions"></i>
+								<i class="fa fa-crosshairs fa-2x earth-actions"></i>
 							</div>
 						</div>
 

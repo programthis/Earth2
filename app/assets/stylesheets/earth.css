@@ -42,7 +42,7 @@
 }
 
 #nav_bar {
-	margin-top: 15%;
+	margin-top: 16%;
 	text-align: center;
 	z-index: 2;
 	width: 15%;
@@ -50,7 +50,7 @@
 	position: absolute;
 	padding-top: 4%;
 	box-shadow: 5px 10px 20px black;
-	background: rgba(54, 25, 25, .9);
+	background: rgba(46,91,132, .9);
 	overflow: auto;
 }
 
@@ -71,7 +71,7 @@
 	opacity: 0.4;
 }
 .fa{
-	padding-bottom: 25%;
+	padding-bottom: 45%;
 	background-color: black;
 	color: transparent;
 	text-shadow: 2px 2px 1px rgba(220,220,220, 0.2);
@@ -87,7 +87,7 @@
 
 #newsfeed {
 	margin-left: 15%;
-	margin-top: 15%;
+	margin-top: 16%;
 	z-index: 2;
 	width: 80%;
 	height: 85%;
@@ -98,7 +98,7 @@
 	border-bottom-right-radius: 3%;
 	overflow: hidden;
 	box-shadow: 5px 10px 20px black;
-	background: rgba(54, 25, 25, .7);
+	background: rgba(46,91,132, .7);
 	overflow: auto;
 }
 
@@ -109,8 +109,7 @@ body{
 
 #ticker{
   position: absolute;
-  bottom: 0px;
-	background: rgba(54, 25, 25, .5);
+  bottom: 7px;
   opacity:0.9;
 	height:30%;
 	line-height: 30px;
@@ -141,7 +140,7 @@ body{
 	position: absolute;
 	border-radius: 5%;
 	box-shadow: 5px 10px 20px black;
-	background: rgba(54, 25, 25, .9);
+	background: rgba(46,91,132, .9);
 	overflow: auto;
 }
 
@@ -183,14 +182,18 @@ body{
 	width: 33%;
 }
 
+#country_subscribe:hover {
+	background-color: #99CC33;
+}
+
 a {
-			font-family: Arial;
-			color: white;
-			text-decoration: none;
+	font-family: Arial;
+	color: white;
+	text-decoration: none;
 }
 
 .article a:hover {
-	color: #5F5985;
+	color: #99CC33;
 }
 
 .article 	{

@@ -147,6 +147,7 @@ body{
 #hide_feature_box {
 	top: 3%;
 	left:60%;
+	margin-left:250px;
 	height: 21px;
 	width: 21px;
 	border-radius: 100%;
@@ -156,6 +157,10 @@ body{
 	font-size: .5em;
 	color: white;
 	margin-bottom: 5%;
+}
+
+#hide_feature_box:hover {
+	background-color: #99CC33;
 }
 
 #news_block_description{
@@ -173,6 +178,7 @@ body{
 
 #country_subscribe {
 	margin-top: 5%;
+	margin-left:77px;
 	background-color: black;
 	border: none;
 	color: white;

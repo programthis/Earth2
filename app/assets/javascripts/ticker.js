@@ -1,13 +1,13 @@
 $(document).ready(function(){
 	
-	var news = gon.news;
+	var articles = gon.news;
 
 	var titles = [];
 	var urls = [];
 
-	for (var i =0; i < news.articles.length; i++){
-	    titles[i] = news.articles[i].title;
-	    urls[i] = news.articles[i].url;
+	for (var i = 0; i < articles.length; i++){
+	    titles[i] = articles[i].webTitle;
+	    urls[i] = articles[i].webUrl;
 	}
 
 	function urlFunction(){

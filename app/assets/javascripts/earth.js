@@ -721,13 +721,6 @@ $(document).ready(function(){
     });
 
     $("#toggleBtn").click(function(){
-      if ($(this).attr("title") === "Show Newsfeed"){
-        $(this).attr("title", "Hide Newsfeed");
-      }
-      else{
-        $(this).attr("title", "Show Newsfeed");
-      }
-
       $( ".article" ).fadeToggle( "fast" );
       $("#newsfeed").animate({ width: 'toggle' 
     }, 800);

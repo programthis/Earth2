@@ -63,6 +63,10 @@
 	background-clip: text;
 }
 
+.nav_buttons:first-child{
+	margin-top: 30px;
+}
+
 .fa:hover {
 	color: white;
 	opacity: 0.4;

@@ -1,135 +1,114 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	  <%= include_gon %>
-	  
-	  <title>Earth2</title>
-	  <%= stylesheet_link_tag    "application", media: "all" %>
-		<script type="text/javascript" src="https://www.google.com/jsapi"> </script>
-		
-		<script type="text/javascript">
-		    google.load("earth", "1", {"other_params":"sensor=true_or_false"});
-			google.load('search', '1');
-			google.load("elements", "1", {packages : ["newsshow"]});
-		</script>
+    <head>
+        <%= include_gon %>
+        <title>Earth2</title>
+        <%= stylesheet_link_tag    "application", media: "all" %>
+        <script type="text/javascript" src="https://www.google.com/jsapi"> </script>
+        <script type="text/javascript">
+            google.load("earth", "1", {"other_params":"sensor=true_or_false"});
+            google.load('search', '1');
+            google.load("elements", "1", {packages : ["newsshow"]});
+        </script>
 
-	  <%= javascript_include_tag "application" %>
+        <%= javascript_include_tag "application" %>
 
-	  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-	  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>		
-	  <!--  <link rel="stylesheet" href="Earth2/app/assets/stylesheets/font-awesome/css/font-awesome.min.css"> -->
-	   <%= csrf_meta_tags %>
+        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+        <%= csrf_meta_tags %>
 	</head>
-		<body>
+	<body>
+        <div id="branding">earth2</div>
+        <br/>
+        <div id="sample-ui">
+            <div id="navbar">
+            </div>
+        </div>
+		<div id="content">
+			<div id="map3d"></div>
+				<div id="outer">
+					<div id="nav_bar">
+						<!-- making it so you can't see the login and sign up buttons if you are logged in -->
 
-			<div id="branding">earth2</div>
-
-			<br/>
-			<div id="sample-ui">
-				<div id="navbar">
-					
-				</div>
-			</div>
-
-			<div id="content">
-				
-				<div id="map3d"></div>
-
-					<div id="outer">
-
-						<div id="nav_bar">
-							<!-- making it so you can't see the login and sign up buttons if you are logged in -->
-
-							<div id="toggleBtn" class="nav_buttons" title="Show Newsfeed">
-								<i class="fa fa-bars fa-2x earth-actions"></i>
-							</div>
-							<% if current_user %>
-								<%= link_to session_path("current"), method: :delete do %>
-									<i class = "fa fa-sign-out fa-2x earth-actions" title="Log out"></i>
-								<% end %>
-							<% else %>
-								<div id="login_btn" class="nav_buttons" title="Log in">
-									<i class="fa fa-sign-in fa-2x earth-actions"></i>
-								</div>
-								<div id="signup_btn" class="nav_buttons" title="Sign up">
-									<i class="fa fa-user fa-2x earth-actions"></i>
-								</div>
+						<div id="toggleBtn" class="nav_buttons" title="Show Newsfeed">
+							<i class="fa fa-bars fa-2x earth-actions"></i>
+						</div>
+						<% if current_user %>
+							<%= link_to session_path("current"), method: :delete do %>
+								<i class = "fa fa-sign-out fa-2x earth-actions" title="Log out"></i>
 							<% end %>
-
-							<div id="button-show-sky" class="nav_buttons" title="Outer Space">
-								<i class="fa fa-rocket fa-2x earth-actions"></i>
+						<% else %>
+							<div id="login_btn" class="nav_buttons" title="Log in">
+                                <i class="fa fa-sign-in fa-2x earth-actions"></i>
 							</div>
-							<div id="button-show-earth" class="nav_buttons" title="Return to Earth">
-								<i class="fa fa-globe fa-2x earth-actions"></i>
+							<div id="signup_btn" class="nav_buttons" title="Sign up">
+                                <i class="fa fa-user fa-2x earth-actions"></i>
 							</div>
-							<div id="button-center" class="nav_buttons" title="Re-Centre Earth">
-								<i class="fa fa-crosshairs fa-2x earth-actions"></i>
-							</div>
+						<% end %>
+						<div id="button-show-sky" class="nav_buttons" title="Outer Space">
+                            <i class="fa fa-rocket fa-2x earth-actions"></i>
 						</div>
-
-						<div id="newsfeed">
-							<div id = "inner_newsfeed">
-								<div class="article"></div>
-							</div>
+						<div id="button-show-earth" class="nav_buttons" title="Return to Earth">
+                            <i class="fa fa-globe fa-2x earth-actions"></i>
 						</div>
-
+						<div id="button-center" class="nav_buttons" title="Re-Centre Earth">
+                            <i class="fa fa-crosshairs fa-2x earth-actions"></i>
+						</div>
 					</div>
-
+					<div id="newsfeed">
+                        <div id = "inner_newsfeed">
+                            <div class="article"></div>
+                        </div>
+					</div>
 				</div>
-
-				<div id="lower">
-					<marquee id="ticker" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"></marquee>
-				</div>
-
 			</div>
-
-			<% if current_user %>
-				<p>Logged in as <%= current_user.name %>.</p>
-			<% else %>
-
-				<div id="sign_up_form" >
-					<%= form_for(@user) do |f| %>
-						<div class="field">
-							<%= f.label :name %>
-							<%= f.text_field :name %>
-						</div>
-						<div class="field">
-							<%= f.label :email %>
-							<%= f.text_field :email %>
-						</div>
-						<div class="field">
-							<%= f.label :password %>
-							<%= f.password_field :password %>
-						</div>
-						<div class="field">
-							<%= f.label :password_confirmation %>
-							<%= f.password_field :password_confirmation %>
-						</div>
-						<div class="actions">
-							<%= f.submit "Sign up!" %>
-						</div>
-					<% end %>
-				</div>
-
-				<div id="login_form" >
-					<%= form_tag sessions_path do |f| %>
-						<div class="field">
-							<%= label_tag :email %>
-							<%= text_field_tag :email %>
-						</div>
-						<div class="field">
-							<%= label_tag :password %>
-							<%= password_field_tag :password %>
-						</div>
-						<div class="actions">
-							<%= submit_tag "Log in!" %>
-						</div>
-					<% end %>
-				</div>
-			<% end %>
-			
-		<%= yield %>
-
-		</body>
+			<div id="lower">
+                <marquee id="ticker" behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();"></marquee>
+			</div>
+		</div>
+		<% if current_user %>
+			<p>Logged in as <%= current_user.name %>.</p>
+		<% else %>
+			<div id="sign_up_form" >
+				<%= form_for(@user) do |f| %>
+					<div class="field">
+						<%= f.label :name %>
+						<%= f.text_field :name %>
+					</div>
+					<div class="field">
+						<%= f.label :email %>
+						<%= f.text_field :email %>
+					</div>
+					<div class="field">
+						<%= f.label :password %>
+						<%= f.password_field :password %>
+					</div>
+					<div class="field">
+						<%= f.label :password_confirmation %>
+						<%= f.password_field :password_confirmation %>
+					</div>
+					<div class="actions">
+						<%= f.submit "Sign up!" %>
+					</div>
+				<% end %>
+			</div>
+			<div id="login_form" >
+				<%= form_tag sessions_path do |f| %>
+					<div class="field">
+						<%= label_tag :email %>
+						<%= text_field_tag :email %>
+					</div>
+					<div class="field">
+						<%= label_tag :password %>
+						<%= password_field_tag :password %>
+					</div>
+					<div class="actions">
+						<%= submit_tag "Log in!" %>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+        <%= yield %>
+	</body>
 </html>
 

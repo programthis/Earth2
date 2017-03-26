@@ -1,4 +1,4 @@
-class Places < ActiveRecord::Migration
+class Places < ActiveRecord::Migration[5.0]
 #  Rails migration for GeoWorldMap db into postgresql db
 #(inspired by http://blog.inspired.no/populate-your-database-with-free-world-cities-countries-regions-in-2-minutes-using-a-rails-migration-273/ post)
  

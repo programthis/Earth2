@@ -1,4 +1,4 @@
-class CreateNewsfeeds < ActiveRecord::Migration
+class CreateNewsfeeds < ActiveRecord::Migration[5.0]
   def change
     create_table :newsfeeds do |t|
 

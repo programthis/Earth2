@@ -27,8 +27,6 @@ group :doc do
     gem 'sdoc', require: false
 end
 
-gem 'foreigner'
-
 gem 'gon'
 
 gem "geocoder"
